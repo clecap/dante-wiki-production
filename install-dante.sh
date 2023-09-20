@@ -23,7 +23,7 @@ mkdir -p ${DIR}/volumes/full/content/wiki-dir
 printf "mkdir completed\n"
 wget https://github.com/clecap/dante-wiki-volume/archive/refs/heads/main.zip -O ${DIR}/volumes/full/content/main.zip
 printf "wget completed\n"
-unzip  ${DIR}/volumes/full/content -d ${DIR}/volumes/full/content
+unzip  ${DIR}/volumes/full/content/main.zip -d ${DIR}/volumes/full/content
 printf "unzip completed\n"
 #tar --no-same-owner -xzvf ${DIR}/dante-deploy.tar.gz  -C ${DIR}/volumes/full/content > ${DIR}/tar-extraction-log
 echo "DONE building template directory\n"
