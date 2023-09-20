@@ -26,7 +26,7 @@ wget https://github.com/clecap/dante-wiki-volume/archive/refs/heads/main.zip -O 
 printf "wget completed\n"
 unzip  ${DIR}/volumes/full/content/main.zip -d ${DIR}/volumes/full/content > unzip.log
 printf "Unzip completed\n"
-cp -R ${DIR}/volumes/full/content/dante-wiki-volume-main/wiki-dir/ ${DIR}/volumes/full/content/
+cp -R ${DIR}/volumes/full/content/dante-wiki-volume-main/ ${DIR}/volumes/full/content/wiki-dir/
 printf "unzip completed\n"
 #tar --no-same-owner -xzvf ${DIR}/dante-deploy.tar.gz  -C ${DIR}/volumes/full/content > ${DIR}/tar-extraction-log
 echo "DONE building template directory\n"
