@@ -1,0 +1,26 @@
+#
+# This is the .gitignore file for continuous-deployment-test
+#
+
+.DS_Store
+deprecated/
+
+#
+# private configuration data
+#
+customize-PRIVATE.sh
+localhost-key.pem
+localhost.pem
+login-key
+login-key.pub
+server.key
+server.pem
+mediawiki-PRIVATE.php
+AWS-PRIVATE.txt
+
+
+.git/
+
+dumps/
+chamaeleon/
+images/ssh-copy/bin/ssh_host_rsa_key.pub
