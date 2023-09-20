@@ -21,7 +21,7 @@ echo "DONE making a backup of the configuration file CONF.sh";
 printf "*** Building template directory\n"
 mkdir -p ${DIR}/volumes/full/content/wiki-dir
 printf "mkdir completed\n"
-wget https://github.com/clecap/dante-wiki-volume/archive/refs/heads/main.zip -O ${DIR}/volumes/full/content/
+wget https://github.com/clecap/dante-wiki-volume/archive/refs/heads/main.zip -O ${DIR}/volumes/full/content/main.zip
 printf "wget completed\n"
 unzip  ${DIR}/volumes/full/content -d ${DIR}/volumes/full/content
 printf "unzip completed\n"
