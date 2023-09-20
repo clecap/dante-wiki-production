@@ -6,7 +6,6 @@
 # This defines the target ownership for all files
 OWNERSHIP="100.101"
 
-
 # get directory where this script resides wherever it is called from
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}/..
@@ -15,16 +14,18 @@ set -e
 
 rm -f ${TOP_DIR}/main.zip
 
-
-
 echo ""; echo "*** Making a backup of the configuration file CONF.sh"
 cp ${DIR}/CONF.sh ${DIR}/CONF-backup.sh
 echo "DONE making a backup of the configuration file CONF.sh";
 
 printf "*** Building template directory\n"
 mkdir -p ${DIR}/volumes/full/content/wiki-dir
-tar --no-same-owner -xzvf ${DIR}/dante-deploy.tar.gz  -C ${DIR}/volumes/full/content > ${DIR}/tar-extraction-log
+wget https://github.com/clecap/dante-wiki-volume/archive/refs/heads/main.zip -O ${DIR}/volumes/full/content/wiki-dir
+unzip  ${DIR}/volumes/full/content -d ${DIR}/volumes/full/content
+#tar --no-same-owner -xzvf ${DIR}/dante-deploy.tar.gz  -C ${DIR}/volumes/full/content > ${DIR}/tar-extraction-log
 echo "DONE building template directory\n"
+
+
 
 echo ""; echo "*** Generating configuration file directory"
 mkdir -p ${DIR}/conf
