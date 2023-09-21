@@ -138,8 +138,8 @@ printf "*** Setting up drawio\n"
 
 docker exec -it my-lap-container mkdir -p /var/www/html/wiki-dir/external-services/draw-io/
 docker exec -it my-lap-container wget https://github.com/clecap/drawio/archive/refs/heads/dev.zip -O /var/www/html/wiki-dir/external-services/dev.zip
-docker exec -it unzip /var/www/html/wiki-dir/external-services/dev.zip -d /var/www/html/wiki-dir/external-services/draw-io/
-docker exec -it rm /var/www/html/wiki-dir/external-services/dev.zip
+docker exec -it my-lap-container unzip /var/www/html/wiki-dir/external-services/dev.zip -d /var/www/html/wiki-dir/external-services/draw-io/
+docker exec -it my-lap-container rm /var/www/html/wiki-dir/external-services/dev.zip
 printf "DONE setting up drawio"
 
 # Fix permissions also for the files newly generated right now
