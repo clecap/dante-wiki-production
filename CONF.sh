@@ -43,7 +43,7 @@ SMTP_USERNAME='usernamesamplexx'
 SMTP_PASSWORD='password'
 
 
-LOCALTIMEZONE = "Europe/Berlin";
+LOCALTIMEZONE='Europe/Berlin';
 
 ##
 ## Below values should not be changed unless you know what you are doing

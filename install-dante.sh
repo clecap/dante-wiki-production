@@ -61,7 +61,7 @@ echo  "  'username' => '${SMTP_USERNAME}',                 // username of the em
 echo  "  'password' => '${SMTP_PASSWORD}',                 // password of the email account   " >> ${MWP}
 echo  "  'auth'     => true                                // shall authentisation be used    " >> ${MWP}
 echo "]; "                                  >> ${MWP}
-echo "$wgLocaltimezone='${LOCALTIMEZONE}';"    >> ${MWP}
+echo "\$wgLocaltimezone='${LOCALTIMEZONE}';"    >> ${MWP}
 echo "?>  "                                 >> ${MWP}
 
 cp ${MWP} ${DIR}/volumes/full/content/wiki-dir
