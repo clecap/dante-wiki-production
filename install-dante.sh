@@ -42,10 +42,10 @@ trap 'abort' EXIT                       # call abort on EXIT
 
 printf "\n\n*** THIS IS INSTALLER install-dante.sh ***\n\n"
 
-printf "*** Making fresh template directory\n"
+printf "*** Making fresh volumes directory\n"
   rm -Rf ${DIR}/volumes/full/content
   mkdir -p ${DIR}/volumes/full/content/wiki-dir
-printf "DONE mkdir completed\n\n"
+printf "DONE making fresh volumes directory\n\n"
 
 
 printf "*** wget branch ${BRANCH} from dante-wiki-volume ...\n"
