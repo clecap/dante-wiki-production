@@ -13,11 +13,20 @@ MYSQL_DUMP_USER=username
 MYSQL_DUMP_PASSWORD=otherpassword
 
 # TO BE DETERMINED experimentally still....
-# https://localhost:4443 or https://dante.informatik.uni-rostock.de
+# https://localhost:4443 
+#
+# https://dante.informatik.uni-rostock.de/wiki-dir
+#
+# https://dante.informatik.uni-rostock.de/
+# 
+# CAVE: We might not need a path component if reverse proxy maps it in specific ways
+#
 MW_SITE_SERVER=https://localhost:4443/wiki-dir
 
 # currently NO blank in below name
-MW_SITE_NAME="Local Test Wiki"
+MW_SITE_NAME="LocalTestWiki"
+
+LOCALTIMEZONE="Europe/Berlin"
 
 #
 # SMTP Settings
