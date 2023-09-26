@@ -2,7 +2,7 @@
 
 ## The original of this file is in dante-wiki-production
 
-
+    
 
 ##
 ## CONFIGURE script
@@ -13,14 +13,14 @@
 BRANCH=master
 
 
-##### TODO
+##### TODO 
 PRIVATE_KEY=server.key
 PUBLIC_KEY=server.pem
 
 # 100.101 on alpine installations is apache.www-data
 # This defines the target ownership for all files
 OWNERSHIP="100.101"
-
+  
 
 
 
@@ -51,7 +51,7 @@ printf "DONE making fresh volumes directory\n\n"
 printf "*** wget branch ${BRANCH} from dante-wiki-volume ...\n"
   rm -f ${DIR}/volumes/full/content/${BRANCH}.zip
   wget https://github.com/clecap/dante-wiki-volume/archive/refs/heads/${BRANCH}.zip -O ${DIR}/volumes/full/content/${BRANCH}.zip
-  unzip  ${DIR}/volumes/full/content/${BRANCH}.zip -d ${DIR}/volumes/full/content > unzip.log
+  unzip -o ${DIR}/volumes/full/content/${BRANCH}.zip -d ${DIR}/volumes/full/content > unzip.log
   rm -f  ${DIR}/volumes/full/content/${BRANCH}.zip 
   mv ${DIR}/volumes/full/content/dante-wiki-volume-${BRANCH}/wiki-dir ${DIR}/volumes/full/content/
 printf "DONE building template directory\n\n"
