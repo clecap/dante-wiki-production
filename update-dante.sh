@@ -5,6 +5,8 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}/..
 
+BRANCH=master
+
 abort()
 {
   printf "%b" "\e[1;31m *** UPDATER of DANTEWIKI was ABOERTED, check error messages *** \e[0m"
@@ -16,13 +18,13 @@ trap 'abort' EXIT                       # call abort on EXIT
 
 cd ${TOP_DIR}
 
-printf "*** Getting fresh source..."
+printf "\n\n*** Getting fresh source from branch ${BRANCH}..."
 rm -f ${TOP_DIR}/main.zip
-wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/main.zip
+wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
 printf "DONE getting fresh source"
 
 printf "*** Unzipping source..."
-unzip -o main.zip
+unzip -o ${BRANCH}.zip
 printf "DONE unzipping fresh source"
 
 printf "*** Copying in backup of configuration file ..."

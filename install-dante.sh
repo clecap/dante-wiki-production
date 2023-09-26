@@ -45,12 +45,12 @@ printf "\n\n*** THIS IS INSTALLER install-dante.sh ***\n\n"
 printf "*** Making fresh template directory\n"
   rm -Rf ${DIR}/volumes/full/content
   mkdir -p ${DIR}/volumes/full/content/wiki-dir
-printf "DONE mkdir completed\n"
+printf "DONE mkdir completed\n\n"
 
 
 printf "*** wget branch ${BRANCH} from dante-wiki-volume ...\n"
   rm -f ${DIR}/volumes/full/content/${BRANCH}.zip
-  wget https://github.com/clecap/dante-wiki-volume/archive/refs/heads/¢{BRANCH}.zip -O ${DIR}/volumes/full/content/${BRANCH}.zip
+  wget https://github.com/clecap/dante-wiki-volume/archive/refs/heads/${BRANCH}.zip -O ${DIR}/volumes/full/content/${BRANCH}.zip
   unzip  ${DIR}/volumes/full/content/${BRANCH}.zip -d ${DIR}/volumes/full/content > unzip.log
   mv ${DIR}/volumes/full/content/dante-wiki-volume-main/wiki-dir ${DIR}/volumes/full/content/
 echo "DONE building template directory\n"
