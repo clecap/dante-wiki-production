@@ -54,6 +54,7 @@ printf "*** wget branch ${BRANCH} from dante-wiki-volume ...\n"
   unzip -o ${DIR}/volumes/full/content/${BRANCH}.zip -d ${DIR}/volumes/full/content > unzip.log
   rm -f  ${DIR}/volumes/full/content/${BRANCH}.zip 
   mv ${DIR}/volumes/full/content/dante-wiki-volume-${BRANCH}/wiki-dir ${DIR}/volumes/full/content/
+  rmdir ${DIR}/volumes/full/content/dante-wiki-volume-${BRANCH}/
 printf "DONE building template directory\n\n"
 
 
