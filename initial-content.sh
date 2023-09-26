@@ -7,39 +7,44 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}/.. 
 
 
-
 USER=apache
 # we need to run the maintenance scripts under the user under which the dante wiki is running normally in the server
-# to get the correct permissions
+# to get the correct permissions for later operations
 
 LAP_CONTAINER=my-lap-container
 
 DUMPFILE=/var/www/html/wiki-dir/initial-contents.xml
+MAIN=/var/www/html/wiki-dir/initial-mainpage.wiki
 
-echo ""; echo "*** Initial contents will be uploaded to wiki"
-echo ""; echo "*** IGNORE THE 'Done!' messages, they do not apply"
-echo ""; echo "*** WAIT until we tell you that the installation is complete" 
+printf "\n\n*** Initial contents will be uploaded to wiki"
+printf "\n\n*** IGNORE THE 'Done!' messages, they do not apply"
+printf "\n\n*** WAIT until we tell you that the content initialization is complete\n\n" 
 
-# CAVE: this must run as user apache
-echo ""; echo "* Doing namespaces 8"
-docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importDump.php --namespaces '8' --debug ${DUMPFILE}
-echo "DONE namespaces 8"
+### CAVE: this must run as user apache
+printf "*** Doing namespace 8 \n"
+  docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importDump.php --namespaces '8' --debug ${DUMPFILE}
+printf "DONE namespaces 8\n\n"
 
-echo ""; echo "* Doing namespaces 10"
-docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importDump.php --namespaces '10' --debug ${DUMPFILE}
-echo "DONE namespaces 10"
+printf "*** Doing namespace 10 \n"
+  docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importDump.php --namespaces '10' --debug ${DUMPFILE}
+printf "DONE namespaces 10\n\n"
 
-echo ""; echo "* Doing the rest, but no uploads flag"
-docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importDump.php --debug ${DUMPFILE}
-echo "DONE rest, no upload flag"
+printf "*** Doing the rest, but no uploads flag\n"
+  docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importDump.php --debug ${DUMPFILE}
+printf "DONE rest, no upload flag\n\n"
 
-echo ""; echo "* Doing the upload flag" 
-docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importDump.php --uploads --debug ${DUMPFILE}
-echo "DONE the upload flag"
+printf "*** Doing the upload flag\n" 
+  docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importDump.php --uploads --debug ${DUMPFILE}
+printf "DONE the upload flag\n\n"
 
-echo ""; echo "*** Running some maintenance commands"
-docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/rebuildrecentchanges.php
-docker exec  --user ${USER} ${LAP_CONTAINER} php /var/www/html/wiki-dir/maintenance/initSiteStats.php --update 
-echo "DONE running some maintenance commands"
+printf "*** Loading initial main page\n" 
+  docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importTextFiles.php --uploads --debug ${DUMPFILE}
+printf "DONE loading initial main page\n\n"
+
+printf "*** Running some maintenance commands\n"
+  docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/rebuildrecentchanges.php
+  docker exec  --user ${USER} ${LAP_CONTAINER} php /var/www/html/wiki-dir/maintenance/initSiteStats.php --update 
+printf "DONE running some maintenance commands"
 
 
+printf "\n\n*** THE CONTENT INITIALIZATION NOW IS COMPLETED \n\n
