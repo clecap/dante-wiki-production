@@ -27,6 +27,8 @@ printf "\n*** Making a backup of the configuration file ..."
 printf "DONE making a backup of the configuration file\n\n"
 
 printf "*** Clearing existing files ...\n"
+  # must go upstairs by one level or else we cannot do the ls
+  cd ${DIR}/..
   rm -Rf ${DIR}
   ls -al ${DIR}
 printf "DONE\n\n"
