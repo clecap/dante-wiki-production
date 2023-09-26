@@ -40,6 +40,7 @@ set -e                                  # abort execution on any error
 trap 'abort' EXIT                       # call abort on EXIT
 
 
+printf "\n\n*** THIS IS INSTALLER install-dante.sh ***\n\n"
 
 printf "*** Making fresh template directory\n"
   rm -Rf ${DIR}/volumes/full/content

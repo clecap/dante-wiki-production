@@ -17,7 +17,7 @@ MYSQL_DUMP_PASSWORD=otherpassword
 MW_SITE_SERVER=https://localhost:4443/wiki-dir
 
 # currently NO blank in below name
-MW_SITE_NAME="MatheWiki"
+MW_SITE_NAME="Local Test Wiki"
 
 #
 # SMTP Settings
