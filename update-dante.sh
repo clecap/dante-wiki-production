@@ -5,28 +5,41 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}/..
 
+abort()
+{
+  printf "%b" "\e[1;31m *** UPDATER of DANTEWIKI was ABOERTED, check error messages *** \e[0m"
+  exit 1
+}
+
+set -e                                  # abort execution on any error
+trap 'abort' EXIT                       # call abort on EXIT
+
+
 cd ${TOP_DIR}
 
 chmod -f 700 CONF.sh
 chmod -f 700 CONF-backup.sh
 
-echo ""; echo "*** Preserving old configuration..."
+printf "*** Preserving old configuration..."
 cp -f ${DIR}/CONF.sh ${DIR}/CONF-backup.sh
-echo "DONE copying in preserved old configuration"
+printf "DONE copying in preserved old configuration"
 
-echo ""; echo "*** Getting fresh source..."
+printf "*** Getting fresh source..."
 rm -f ${TOP_DIR}/main.zip
 wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/main.zip
-echo "DONE getting fresh source"
+printf "DONE getting fresh source"
 
-echo ""; echo "*** Unzipping source..."
+printf "*** Unzipping source..."
 unzip -o main.zip
-echo "DONE unzipping fresh source"
+printf "DONE unzipping fresh source"
 
-echo ""; echo "*** Copying in preserved old configuration..."
+printf "*** Copying in preserved old configuration..."
 cp -f ${DIR}/CONF-backup.sh ${DIR}/CONF.sh
-echo "DONE copying in preserved old configuration"
+printf "DONE copying in preserved old configuration"
 
-echo ""; echo "*** Running installer again..."
-source ${DIR}/install-dante.sh
-echo "DONE running installer again"
+printf "*** Running installer ..."
+  source ${DIR}/install-dante.sh
+printf "DONE running installer\n"
+
+
+

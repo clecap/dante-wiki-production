@@ -13,27 +13,41 @@ TOP_DIR=${DIR}/..
 
 set -e
 
+
+
+abort()
+{
+  printf "%b" "\e[1;31m *** INSTALLATION fo DANTEWIKI was ABOERTED *** \e[0m"
+  exit 1
+}
+
+set -e                                  # abort execution on any error
+trap 'abort' EXIT                       # call abort on EXIT
+
+
 rm -f ${TOP_DIR}/main.zip
-
-
 
 echo ""; echo "*** Making a backup of the configuration file CONF.sh"
 cp ${DIR}/CONF.sh ${DIR}/CONF-backup.sh
 echo "DONE making a backup of the configuration file CONF.sh";
 
-echo ""; echo "*** Building template directory"
-mkdir -p ${DIR}/volumes/full/content/wiki-dir
-tar --no-same-owner -xzvf ${DIR}/dante-deploy.tar.gz  -C ${DIR}/volumes/full/content > ${DIR}/tar-extraction-log
-echo "DONE building template directory"
 
-echo ""; echo "*** Generating configuration file directory"
-mkdir -p ${DIR}/conf
-echo "DONE generating configuration file directory"
+printf "*** Building template directory ... "
+  mkdir -p ${DIR}/volumes/full/content/wiki-dir
+  tar --no-same-owner -xzvf ${DIR}/dante-deploy.tar.gz  -C ${DIR}/volumes/full/content > ${DIR}/tar-extraction-log
+printc "DONE building template directory\n\~"
+
+
+printf "*** Generating configuration file directory\n\n"
+  mkdir -p ${DIR}/conf
+printf "DONE generating configuration file directory\n\n"
+
 
 echo ""; echo "*** Reading in configuration"
 source ${DIR}/CONF.sh
-echo "DONE reading configuration"
+echo "DONE reading configuration" 
 
+## TODO: why set +e ?????
 set +e
 echo ""; echo "*** Fixing permission of config files" 
 chmod -f 700 CONF.sh
@@ -86,37 +100,40 @@ echo ""
 
 docker run --rm --volume ${DIR}/volumes/full/content:/source --volume ${LAP_VOLUME}:/dest -w /source alpine cp -R wiki-dir /dest
 
-echo ""; echo "*** Pulling Docker Images from docker hub..."
+
+printf "*** Pulling Docker Images from docker hub... "
   docker pull clecap/lap:latest
   docker pull clecap/my-mysql:latest
-echo "DONE pulling docker images"
+printf "DONE pulling docker images\n\n"
 
-echo ""; echo "*** Retagging docker images into local names for install mechanisms..."
+
+printf "*** Retagging docker images into local names for install mechanisms ... "
   docker tag clecap/lap:latest lap
   docker tag clecap/my-mysql:latest my-mysql
-echo "DONE "
+printf "DONE\n\n"
 
-echo ""; echo "*** Starting containers..."
-#${DIR}/images/lap/bin/both.sh --db my-test-db-volume --dir full
-${DIR}/images/lap/bin/both.sh --db my-test-db-volume --vol ${LAP_VOLUME}
-echo "DONE starting containers"
+printf "*** Starting both containers..."
+  ${DIR}/images/lap/bin/both.sh --db my-test-db-volume --vol ${LAP_VOLUME}
+printf "DONE starting containers"
 
 
 MYSQL_CONTAINER=my-mysql
 
-echo ""; echo "*** Waiting for database to come up..."
-echo "" ;echo "   PLEASE WAIT AT LEAST 1 MINUTE UNTIL NO ERRORS ARE SHOWING UP ANY LONGER"; echo ""
+printf "*** Waiting for database to come up ... \n"
+printf "PLEASE WAIT AT LEAST 1 MINUTE UNTIL NO ERRORS ARE SHOWING UP ANY LONGER\n\n"
 # while ! docker exec ${MYSQL_CONTAINER} mysql --user=root --password=${MYSQL_ROOT_PASSWORD} -e "SELECT 1" >/dev/null 2>&1; do
 while ! docker exec ${MYSQL_CONTAINER} mysql --user=root --password=${MYSQL_ROOT_PASSWORD} -e "SELECT 1"; do
   sleep 1
   echo "   Still waiting for database to come up..."
 done
+printf "DONE: database container is up\n\n"
 
-
+printf "*** Fixing permissions of files ... \n"
 docker exec -it my-lap-container chown -R ${OWNERSHIP} /var/www/html/wiki-dir
+printf "DONE fixing permissions of files\n\n"
 
 
-echo ""; echo "*** Initializing Database"
+printf "*** Initializing Database"
 
 # volumes/full/spec/wiki-db-local-initialize.sh mysite https://localhost:4443 acro adminpassword sqlpassword
 
@@ -127,12 +144,34 @@ ${DIR}/volumes/full/spec/wiki-db-local-initialize.sh ${MW_SITE_NAME} ${MW_SITE_S
 # Fix permissions also for the files newly generated right now
 docker exec -it my-lap-container chown -R ${OWNERSHIP} /var/www/html/wiki-dir
 
-echo ""; echo "*** Installer install-dante.sh completed"
 
-echo ""; echo "*** Installer now calling inital.content"
+
+if [ -f $PRIVATE_KEY ]; then
+  chmod 400 ${PRIVATE_KEY}
+  printf "*** Found a private key at ${PRIVATE_KEY}, copying it in and fixing permissions ... \n" 
+  docker cp $PRIVATE_KEY    /etc/ssl/apache2/server.key
+  docker exec -it my-lap-container   chown root.root /etc/ssl/apache2/server.key
+  docker exec -it my-lap-container   chmod 400 /etc/ssl/apache2/server.key
+  printf "DONE\n\n"
+else
+  printf "*** Found no private key, checked at ${PRIVATE_KEY}, nothing to do ... DONE\n\n"
+fi
+if [ -f $PUBLIC_KEY ]; then
+  printf "*** Found a public key at ${PUBLIC_KEY}, copying it in and fixing permissions ... \n" 
+  chmod 444 ${PUBLIC_KEY}
+  docker cp $PUBLIC_KEY my-lap-container:/etc/ssl/apache2/server.pem
+  docker exec -it my-lap-container   chown root.root /etc/ssl/apache2/server.pem
+  docker exec -it my-lap-container   chmod 444 /etc/ssl/apache2/server.pem
+  printf "DONE\n\n"
+else
+  printf "*** Found no public key, checked at ${PUBLIC_KEY}, nothing to do ... DONE\n\n"
+fi
+
+
+printf "*** Installer install-dante.sh completed\n\~"
+
+printf "*** Installer now calling inital.content\n\~"
 ${DIR}/initial-content.sh
-
-
 
 echo ""; echo "";
 echo "******** THE INSTALLATION IS COMPLETE"
