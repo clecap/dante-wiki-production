@@ -76,16 +76,19 @@ cleanMost () {
 }
 
 display () {
-  echo "";echo ""; echo "*** Displaying existing docker resources..."
-  echo ""; echo "*** CONTAINERS:"
+  printf "\n\n"
+  printf "********************************************\n"
+  printf "*** Displaying existing docker resources ***\n"
+  printf "********************************************\n\n"
+  printf "*** CONTAINERS:\n"
   docker container ls
-  echo ""; echo "*** NETWORKS:"
+  printf "\n\n*** NETWORKS:\n"
   docker network ls
-  echo ""; echo "*** VOLUMES:"
+  printf "\n\n*** VOLUMES:\n"
   docker volume ls
-  echo ""; echo "*** IMAGES:"
+  printf "\n\n*** IMAGES:\n"
   docker image ls
-  echo ""; echo "DONE displaying docker resources"
+  printf "\n\nDONE displaying docker resources"
 }
 
 
