@@ -90,6 +90,12 @@ Here, you will
 * change the configuration of DanteWiki web server to make the service available on port 443 and
 * change the configuration of DanteWiki web server to redirect an access to port 8080 to port 443
 
+```
+Copy the private key of the server into conf/server.key
+Copy the public key of the server into conf/server.pem
+```
+
+
 ### 3. https Solution: Localhost Certificate
 
 Here, you will
