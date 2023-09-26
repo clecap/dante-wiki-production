@@ -10,7 +10,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 usage() {
   echo "Usage: $0   and add one or more options on what to clean."
-  echo "Clean files:        --files         "
+  echo "Clean files:        --files      ALL files are removed"
   echo "Clean volumes:      --volumes       "
   echo "Clean containers:   --containers       "
   echo "Clean images:       --images        "
@@ -20,8 +20,10 @@ usage() {
  exit 1
 }
 
+
+## this does not remove all files TODO !!!
 cleanFiles () {
-  echo "*** Removing generated directories"
+  echo "*** Removing all files (NOT all)"
   rm -Rf ${DIR}/volumes
   rm -Rf ${DIR}/conf
 echo "DONE removing generated directories"
