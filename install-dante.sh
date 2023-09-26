@@ -2,9 +2,6 @@
 
 ## The original of this file is in dante-wiki-production
 
-# 100.101 on alpine installations is apache.www-data
-# This defines the target ownership for all files
-OWNERSHIP="100.101"
 
 
 ##
@@ -19,6 +16,11 @@ BRANCH=master
 ##### TODO
 PRIVATE_KEY=server.key
 PUBLIC_KEY=server.pem
+
+# 100.101 on alpine installations is apache.www-data
+# This defines the target ownership for all files
+OWNERSHIP="100.101"
+
 
 
 
@@ -51,8 +53,6 @@ printf "*** wget branch ${BRANCH} from dante-wiki-volume ...\n"
   unzip  ${DIR}/volumes/full/content/${BRANCH}.zip -d ${DIR}/volumes/full/content > unzip.log
   mv ${DIR}/volumes/full/content/dante-wiki-volume-main/wiki-dir ${DIR}/volumes/full/content/
 echo "DONE building template directory\n"
-
-
 
 
 printf "*** Generating mediawiki configuration file directory\n\n"
