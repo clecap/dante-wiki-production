@@ -52,7 +52,7 @@ printf "*** wget branch ${BRANCH} from dante-wiki-volume ...\n"
   rm -f ${DIR}/volumes/full/content/${BRANCH}.zip
   wget https://github.com/clecap/dante-wiki-volume/archive/refs/heads/${BRANCH}.zip -O ${DIR}/volumes/full/content/${BRANCH}.zip
   unzip  ${DIR}/volumes/full/content/${BRANCH}.zip -d ${DIR}/volumes/full/content > unzip.log
-  mv ${DIR}/volumes/full/content/dante-wiki-volume-main/wiki-dir ${DIR}/volumes/full/content/
+  mv ${DIR}/volumes/full/content/dante-wiki-volume-${BRANCH}/wiki-dir ${DIR}/volumes/full/content/
 printf "DONE building template directory\n\n"
 
 
@@ -64,9 +64,6 @@ printf "DONE generating configuration file directory\n\n"
 printf "*** Reading in configuration"
 source ${DIR}/CONF.sh
 printf "DONE reading configuration\n\n" 
-
-
-
 
 ## TODO: why set +e ?????
 set +e

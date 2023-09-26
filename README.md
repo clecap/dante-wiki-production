@@ -28,13 +28,15 @@ Maybe we will later provide installation files for Windows later.
 
 ### Description of Installation
 
-1. Log in as a normal user and navigate to a directory which shall contain the installation directory.
-2. Download the zip archive at https://github.com/clecap/dante-wiki-production/archive/refs/heads/master.zip into directory `dante`.
-3. Unzip file `master.zip`
-4. Navigate into the newly generated directory `dante-wiki-production-master`
-5. Edit the configuration file `CONF.sh`. The data required in the configuration file is described by comments directly in this file. 
+1. Log in as a normal user and navigate to a directory which shall later contain the installation directory.
+2. Download the zip archive at https://github.com/clecap/dante-wiki-production/archive/refs/heads/master.zip into that.
+3. Unzip file `master.zip` in that directory.
+4. Navigate into the newly generated installation directory `dante-wiki-production-master`
+5. Edit the configuration file `CONF.sh` in `dante-wiki-production-master`. 
+  The data required in the configuration file is described by comments directly in this file. 
 You might want to consult the section on configuration changes below before editing this file.
-6. Run DanteWIki installation script `install-dante.sh` (this may take several minutes).
+6. You might want to copy an https server private key file `server.key` and an https server certificate file `server.pem` into directory `dante-wiki-production-master`.
+7. Run DanteWIki installation script `install-dante.sh` (this may take a while).
 
 ### Command Cheat Sheet for Installation
 
@@ -45,6 +47,8 @@ cd dante-wiki-production-master
 ```
 
 Edit using your favorite editor, for example: ```vi CONF.sh                                   ```
+
+Copy files `server.key`and `server.pem`into `dante-wiki-production-master`.
 
 ```./install-dante.sh```
 
