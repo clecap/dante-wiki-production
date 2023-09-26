@@ -53,29 +53,27 @@ printf "*** wget branch ${BRANCH} from dante-wiki-volume ...\n"
   wget https://github.com/clecap/dante-wiki-volume/archive/refs/heads/${BRANCH}.zip -O ${DIR}/volumes/full/content/${BRANCH}.zip
   unzip  ${DIR}/volumes/full/content/${BRANCH}.zip -d ${DIR}/volumes/full/content > unzip.log
   mv ${DIR}/volumes/full/content/dante-wiki-volume-main/wiki-dir ${DIR}/volumes/full/content/
-echo "DONE building template directory\n"
+printf "DONE building template directory\n\n"
 
 
-printf "*** Generating mediawiki configuration file directory\n\n"
+printf "*** Generating mediawiki configuration file directory\n"
   mkdir -p ${DIR}/conf
 printf "DONE generating configuration file directory\n\n"
 
 
-echo ""; echo "*** Reading in configuration"
+printf "*** Reading in configuration"
 source ${DIR}/CONF.sh
-echo "DONE reading configuration" 
-
-
+printf "DONE reading configuration\n\n" 
 
 
 
 
 ## TODO: why set +e ?????
 set +e
-echo ""; echo "*** Fixing permission of config files" 
+echo ""; echo "*** Fixing permission of config files\n" 
 chmod -f 700 CONF.sh
 chmod -f 700 CONF-backup.sh
-echo "DONE fixing permissions of config files"
+echo "DONE fixing permissions of config files\n\n"
 set -e
 
 
@@ -96,7 +94,7 @@ printf "*** Generating mediawiki-PRIVATE configuration file at ${MWP}\n"
   echo "?>  "                                 >> ${MWP}
   cp ${MWP} ${DIR}/volumes/full/content/wiki-dir
   rm ${MWP}
-printf "DONE generating mediawiki-PRIVATE configuration file at ${MWP}\n"
+printf "DONE generating mediawiki-PRIVATE configuration file at ${MWP}\n\n"
 
 
 CUS=${DIR}/conf/customize-PRIVATE.sh
@@ -109,7 +107,7 @@ printf "*** Generating customize-PRIVATE shell script file at ${CUS}\n"
   echo "MW_SITE_SERVER=${MW_SITE_SERVER}"                  >> ${CUS}
   echo "MW_SITE_NAME='${MW_SITE_NAME}'"                    >> ${CUS}
   echo "DONE generating mediawiki-PRIVATE.php"
-printf "DONE generating customize-PRIVATE shell script file at ${CUS}\n"
+printf "DONE generating customize-PRIVATE shell script file at ${CUS}\n\n"
 
 
 
@@ -125,7 +123,7 @@ printf "DONE building docker volume\n\n"
 
 DOCKER_TAG=latest
 
-printf "*** Pulling Docker Images from docker hub... "
+printf "*** Pulling Docker Images from docker hub, tag ${DOCKER_TAG} "
   docker pull clecap/lap:${DOCKER_TAG}
   docker pull clecap/my-mysql:${DOCKER_TAG}
 printf "DONE pulling docker images\n\n"
