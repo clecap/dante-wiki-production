@@ -33,8 +33,7 @@ printf "*** Clearing existing files ...\n"
 printf "DONE\n\n"
 
 printf "*** Getting fresh system from branch ${BRANCH}..."
-  rm -f ${DIR}/../${BRANCH}.zip
-  cd ${DIR}/..
+  rm -f ${BRANCH}.zip
   wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
 printf "DONE getting fresh source"
 
