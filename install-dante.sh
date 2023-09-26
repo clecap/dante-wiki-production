@@ -198,7 +198,7 @@ printf "DONE setting up public key infrastructure, if present\n\n"
 printf "*** Setting up drawio\n"
   docker exec -it my-lap-container mkdir -p /var/www/html/wiki-dir/external-services/draw-io/
   docker exec -it my-lap-container wget https://github.com/clecap/drawio/archive/refs/heads/dev.zip -O /var/www/html/wiki-dir/external-services/dev.zip
-  docker exec -it my-lap-container unzip /var/www/html/wiki-dir/external-services/dev.zip -d /var/www/html/wiki-dir/external-services/draw-io/
+  docker exec -it my-lap-container unzip -o /var/www/html/wiki-dir/external-services/dev.zip -d /var/www/html/wiki-dir/external-services/draw-io/
   docker exec -it my-lap-container rm /var/www/html/wiki-dir/external-services/dev.zip
 printf "DONE setting up drawio\n\n"
 

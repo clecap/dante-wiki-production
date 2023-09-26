@@ -18,7 +18,7 @@ abort()
 
 set -e                                  # abort execution on any error
 trap 'abort' EXIT                       # call abort on EXIT
-
+ 
 printf "\n*** Making a backup of the configuration file ..."
   mkdir -p  .BAK
   chmod 700 .BAK
