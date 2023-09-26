@@ -151,7 +151,7 @@ echo ""; echo "*** Installer install-dante.sh completed"
 echo ""; echo "*** Installer now calling inital.content"
 ${DIR}/initial-content.sh
 
-
+  
 
 echo ""; echo "";
 echo "******** THE INSTALLATION IS COMPLETE"
