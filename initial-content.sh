@@ -29,11 +29,11 @@ printf "*** Doing namespace 10 \n"
   docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importDump.php --namespaces '10' --debug ${DUMPFILE}
 printf "DONE namespaces 10\n\n"
 
-printf "*** Doing the rest, but no uploads flag\n"
+printf "*** Doing the rest, but no uploads flag (takes long)\n"
   docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importDump.php --debug ${DUMPFILE}
 printf "DONE rest, no upload flag\n\n"
 
-printf "*** Doing the upload flag\n" 
+printf "*** Doing the upload flag (takes long)\n" 
   docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importDump.php --uploads --debug ${DUMPFILE}
 printf "DONE the upload flag\n\n"
 
