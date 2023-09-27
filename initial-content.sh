@@ -38,7 +38,7 @@ printf "*** Doing the upload flag (takes long)\n"
 printf "DONE the upload flag\n\n"
 
 printf "*** Loading initial main page\n" 
-  docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importTextFiles.php --uploads --debug ${DUMPFILE}
+  docker exec  --user ${USER} ${LAP_CONTAINER}  php /var/www/html/wiki-dir/maintenance/importTextFiles.php ${MAIN}
 printf "DONE loading initial main page\n\n"
 
 printf "*** Running some maintenance commands\n"
