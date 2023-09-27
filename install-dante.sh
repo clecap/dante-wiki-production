@@ -167,7 +167,7 @@ printf "*** Initializing Database"
 
 echo ""; echo "******* initialize-dante.sh: MW_SITE_NAME=${MW_SITE_NAME}  MW_SITE_SERVER=${MW_SITE_SERVER}  SITE_ACRONYM=${SITE_ACRONYM}  ADMIN_PASSWORD=${ADMIN_PASSWORD}  MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
 
-${DIR}/volumes/full/spec/wiki-db-local-initialize.sh ${MW_SITE_NAME} ${MW_SITE_SERVER} ${SITE_ACRONYM} ${ADMIN_PASSWORD} ${MYSQL_ROOT_PASSWORD}
+${DIR}/volumes/full/spec/wiki-db-local-initialize.sh  "${MW_SITE_NAME}"  "${MW_SITE_SERVER}"  "${SITE_ACRONYM}"  "${ADMIN_PASSWORD}"  "${MYSQL_ROOT_PASSWORD}"
 
 # Fix permissions also for the files newly generated right now
 docker exec -it my-lap-container chown -R ${OWNERSHIP} /var/www/html/wiki-dir
