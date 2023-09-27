@@ -113,11 +113,12 @@ Here, you will
 ### Installing HTTPS keys and certificates
 
 1. Navigate to the parent directory of `dante-wiki-production-master`.
-2. Make directory `KEYS-AND-CERTIFICATES``
-3. Copy the private key into file NAME.key
-4. Copy the certificate into file NAME.pem
+2. Make directory `KEYS-AND-CERTIFICATES`
+  mkdir `KEYS-AND-CERTIFICATES`
+3. Assume `NAME`is any name of a host, conforming to [a-zA-Z0-9]*
+4. Copy the private key into file `NAME.key`
+4. Copy the certificate into file `NAME.pem`
 5. Inject the files into the container and restart the webserver.
-
 `dante-wiki-production-master/inject-keys.sh NAME`
 
 

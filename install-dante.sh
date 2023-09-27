@@ -63,10 +63,10 @@ printf "DONE reading configuration\n\n"
 
 ## TODO: why set +e ?????
 set +e
-echo ""; echo "*** Fixing permission of config files\n" 
+printf ""; echo "*** Fixing permission of config files\n" 
 chmod -f 700 CONF.sh
 chmod -f 700 CONF-backup.sh
-echo "DONE fixing permissions of config files\n\n"
+printf "DONE fixing permissions of config files\n\n"
 set -e
 
 
