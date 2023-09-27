@@ -99,11 +99,29 @@ Copy the public key of the server into conf/server.pem
 ```
 
 
+
+
+
+
 ### 3. https Solution: Localhost Certificate
 
 Here, you will
 * generate a certificate for localhost using mkcert and
 * install the certificate for localhost on DanteWiki web server
+
+
+### Installing HTTPS keys and certificates
+
+1. Navigate to the parent directory of `dante-wiki-production-master`.
+2. Make directory `KEYS-AND-CERTIFICATES``
+3. Copy the private key into file NAME.key
+4. Copy the certificate into file NAME.pem
+5. Inject the files into the container and restart the webserver.
+
+`dante-wiki-production-master/inject-keys.sh NAME`
+
+
+
 
 ### Port Change
 

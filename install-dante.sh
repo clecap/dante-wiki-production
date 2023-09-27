@@ -13,15 +13,9 @@
 BRANCH=master
 
 
-##### TODO 
-PRIVATE_KEY=server.key
-PUBLIC_KEY=server.pem
-
 # 100.101 on alpine installations is apache.www-data
 # This defines the target ownership for all files
 OWNERSHIP="100.101"
-  
-
 
 
 # get directory where this script resides wherever it is called from
@@ -176,28 +170,6 @@ docker exec -it my-lap-container chown -R ${OWNERSHIP} /var/www/html/wiki-dir
 
 
 
-printf "*** Setting up public key infrastructure, if present\n\n"
-  if [ -f $PRIVATE_KEY ]; then
-    chmod 400 ${PRIVATE_KEY}
-    printf "*** Found a private key at ${PRIVATE_KEY}, copying it in and fixing permissions ... \n" 
-    docker cp $PRIVATE_KEY    /etc/ssl/apache2/server.key
-    docker exec -it my-lap-container   chown root.root /etc/ssl/apache2/server.key
-    docker exec -it my-lap-container   chmod 400 /etc/ssl/apache2/server.key
-    printf "DONE\n\n"
-  else
-    printf "*** Found no private key, checked at ${PRIVATE_KEY}, nothing to do ... DONE\n\n"
-  fi
-  if [ -f $PUBLIC_KEY ]; then
-    printf "*** Found a public key at ${PUBLIC_KEY}, copying it in and fixing permissions ... \n" 
-    chmod 444 ${PUBLIC_KEY}
-    docker cp $PUBLIC_KEY my-lap-container:/etc/ssl/apache2/server.pem
-    docker exec -it my-lap-container   chown root.root /etc/ssl/apache2/server.pem
-    docker exec -it my-lap-container   chmod 444 /etc/ssl/apache2/server.pem
-    printf "DONE\n\n"
-  else
-    printf "*** Found no public key, checked at ${PUBLIC_KEY}, nothing to do ... DONE\n\n"
-  fi
-printf "DONE setting up public key infrastructure, if present\n\n"
 
 
 printf "*** Setting up drawio as an external service (the extension is set up together with mediawiki in cmd.sh and wiki-init.sh)\n"
