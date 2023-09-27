@@ -47,4 +47,4 @@ printf "*** Running some maintenance commands\n"
 printf "DONE running some maintenance commands"
 
 
-printf "\n\n*** THE CONTENT INITIALIZATION NOW IS COMPLETED \n\n
+printf "\n\n*** THE CONTENT INITIALIZATION NOW IS COMPLETED \n\n"
