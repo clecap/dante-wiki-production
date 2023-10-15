@@ -8,6 +8,28 @@
 
 
 
+initialTemplates () { # imports an initial set of Parsifal templates from the wiki_dir into a running wiki
+  # get directory where this script resides wherever it is called from
+  MOUNT=/var/www/html/
+  TARGET=wiki-dir
+  LAP_CONTAINER=my-lap-container
+  printf "*** Importing initial set of Parsifal templates..."
+    set -e; trap 'abort' EXIT                       # call abort on EXIT
+    docker exec ${LAP_CONTAINER} php ${MOUNT}${TARGET}/maintenance/importTextFiles.php --prefix "MediaWiki:ParsifalTemplate/" --rc --overwrite ${MOUNT}${TARGET}/extensions/Parsifal/initial-templates/*
+  printf "DONE\n\n"
+
+}  
+
+
+touchLocalSettings () { # touch the file LocalSettings.php helps refresh the cache
+  MOUNT=/var/www/html/
+  TARGET=wiki-dir
+  printf "*** Touching LocalSettings.php..."
+  docker exec ${LAP_CONTAINER} /bin/sh -c "touch ${MOUNT}${TARGET}/LocalSettings.php"
+  printf "DONE\n\n"
+}
+
+
 addingImages () {
 # Call with name of TARGET, example:  wiki-dir
   TARGET=$1
@@ -22,12 +44,9 @@ installingDrawio () {
   TARGET=$1
   printf "\n *** Installing drawio external service into target=${TARGET}\n"
   mkdir -p ${TOPDIR}/volumes/full/content/${TARGET}/external-services/draw-io/
-  echo "  mkdir done, now wget"
-  ls ${TOPDIR}/volumes/full/content/${TARGET}
+#  ls ${TOPDIR}/volumes/full/content/${TARGET}
   wget https://github.com/clecap/drawio/archive/refs/heads/dev.zip -O ${TOPDIR}/volumes/full/content/${TARGET}/external-services/dev.zip
-  echo "  wget done"
   unzip -q ${TOPDIR}/volumes/full/content/${TARGET}/external-services/dev.zip -d ${TOPDIR}/volumes/full/content/${TARGET}/external-services/draw-io/
-  echo "  unzip done"
   rm ${TOPDIR}/volumes/full/content/${TARGET}/external-services/dev.zip
   echo "DONE installing drawio external service\n"
 }
