@@ -99,10 +99,6 @@ Copy the public key of the server into conf/server.pem
 ```
 
 
-
-
-
-
 ### 3. https Solution: Localhost Certificate
 
 Here, you will
@@ -150,7 +146,7 @@ To prevent this, we will provide some automated shell scripts for the standard c
 
 ## Running DanteWiki
 
-TBD
+
 
 
 ## Backup and Restore of DanteWiki
