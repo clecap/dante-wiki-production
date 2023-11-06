@@ -10,29 +10,67 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 BRANCH=master
 
+USER=apache
+LAP_CONTAINER=my-lap-container
+
+
+usage() {
+  echo "Usage: $0       "
+  echo "  --skip-content     Skip the content backup (eg when we have a backup and the container is not running)     "
+  exit 1
+}
+
+##
+## Parse command line
+##
+# region
+if [ "$#" -eq 0 ]; then
+  usage
+  CONTENT_BACKUP=true
+else                      ### Variant 2: We were called with parameters.
+  while (($#)); do
+    case $1 in 
+      (--skip-content) 
+        CONTENT_BACKUP=false;;
+      (*) 
+         echo "Error parsing options - aborting" 
+         usage 
+         exit 1
+    esac
+  shift 2
+  done
+fi
+
+
 abort()
 {
-  printf "%b" "\e[1;31m *** UPDATER of DANTEWIKI was ABOERTED, check error messages *** \e[0m"
+  printf "%b" "\e[1;31m *** UPDATER of DANTEWIKI was ABORTED, check error messages *** \e[0m"
   exit 1
 }
 
 set -e                                  # abort execution on any error
 trap 'abort' EXIT                       # call abort on EXIT
  
-function backup () {
+function configBackup () {
   printf "\n*** Making a backup of the configuration file ..."
     mkdir -p  ../DANTE-BACKUP
     chmod 700 ../DANTE-BACKUP
     cp CONF.sh ../DANTE-BACKUP/CONF.sh
     chmod 700  ../DANTE-BACKUP/CONF.sh
   printf "DONE making a backup of the configuration file\n\n"
+}
 
-  printf "\n*** Making a backup of Wiki Contents ..."
-    mkdir -p  ../DANTE-BACKUP
-    chmod 700 ../DANTE-BACKUP
-    docker exec  --user ${USER} ${LAP_CONTAINER} php  /var/www/html/wiki-dir/maintenance/dumpBackup.php --full --include-files --uploads  > ../DANTE-BACKUP/wiki-xml-dump-$(date +%d.%m.%y-%k:%M)
-    ls -l ../DANTE-BACKUP
-  printf "DONE making a backup of Wiki Contents\n\n"
+function contentBackup () {
+  if [ "$CONTENT_BACKUP" = true ]; then
+    printf "\n*** Making a backup of Wiki Contents ..."
+      mkdir -p  ../DANTE-BACKUP
+      chmod 700 ../DANTE-BACKUP
+      docker exec  --user ${USER} ${LAP_CONTAINER} php  /var/www/html/wiki-dir/maintenance/dumpBackup.php --full --include-files --uploads  > ../DANTE-BACKUP/wiki-xml-dump-$(date +%d.%m.%y-%k:%M)
+      ls -l ../DANTE-BACKUP
+    printf "DONE making a backup of Wiki Contents\n\n"
+  else
+    printf "\n*** SKIPPING CONTENTS BACKUP !!!\n\n"
+  fi
 }
 
 function clearing () {
@@ -61,11 +99,11 @@ function getting () {
 }
 
 printf "\n\n\n **********************************\n"
-printf       " *** Dante Updater Version 2.17 ***\n"
+printf       " *** Dante Updater Version 2.18 ***\n"
 printf       " **********************************\n"
 
-backup
-
+configBackup
+contentBackup
 getting
 
 
