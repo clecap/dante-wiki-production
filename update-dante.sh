@@ -58,7 +58,7 @@ function getting () {
   printf "DONE copying in backup of configuration file\n\n"
 }
 
-printf "\n\n\n Dante Updater Version 2.11 "
+printf "\n\n\n Dante Updater Version 2.12 "
 
 backup
 
