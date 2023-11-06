@@ -166,7 +166,7 @@ docker exec -it my-lap-container chown -R ${OWNERSHIP} /var/www/html/wiki-dir
 printf "*** Setting up drawio as an external service (the extension is set up together with mediawiki in cmd.sh and wiki-init.sh)\n"
   docker exec -it my-lap-container mkdir -p /var/www/html/wiki-dir/external-services/draw-io/
   docker exec -it my-lap-container wget https://github.com/clecap/drawio/archive/refs/heads/dev.zip -O /var/www/html/wiki-dir/external-services/dev.zip
-  docker exec -it my-lap-container unzip -o /var/www/html/wiki-dir/external-services/dev.zip -d /var/www/html/wiki-dir/external-services/draw-io/ > drawio-unzip.log
+  docker exec -it my-lap-container unzip -q -o /var/www/html/wiki-dir/external-services/dev.zip -d /var/www/html/wiki-dir/external-services/draw-io/
   docker exec -it my-lap-container rm /var/www/html/wiki-dir/external-services/dev.zip
 printf "DONE setting up drawio\n\n"
 
