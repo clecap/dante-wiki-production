@@ -104,6 +104,9 @@ printf       " *** Dante Updater Version 2.22 ***\n"
 printf       " **********************************\n"
 
 
+rm -f update-dante.bak
+mv update-dante.sh update-dante.bak
+
 configBackup
 contentBackup
 getting
