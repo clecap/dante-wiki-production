@@ -2,7 +2,6 @@
 
 ## The original of this file is in dante-wiki-production
 
-
 ##
 ## CONFIGURE script
 ##
@@ -57,14 +56,14 @@ printf "DONE generating configuration file directory\n\n"
 
 
 printf "*** Reading in configuration"
-source ${DIR}/CONF.sh
+  source ${DIR}/CONF.sh
 printf "DONE reading configuration\n\n" 
 
 ## TODO: why set +e ?????
 set +e
 printf ""; echo "*** Fixing permission of config files\n" 
-chmod -f 700 CONF.sh
-chmod -f 700 CONF-backup.sh
+  chmod -f 700 CONF.sh
+  chmod -f 700 CONF-backup.sh
 printf "DONE fixing permissions of config files\n\n"
 set -e
 

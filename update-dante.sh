@@ -49,7 +49,7 @@ printf "DONE getting fresh source"
 
 printf "*** Unzipping source..."
   # -o is overwrite mode
-  unzip -o ${BRANCH}.zip
+  unzip -o ${BRANCH}.zip > unzip-branch.log
 printf "DONE unzipping fresh source\n\n"
 
 printf "*** Copying in backup of configuration file ..."
