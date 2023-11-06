@@ -42,20 +42,31 @@ function clearing () {
   printf "DONE clearing existing files\n\n"
 }
 
-printf "*** Getting fresh system from branch ${BRANCH}..."
-  rm -f ${BRANCH}.zip
-  wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
-printf "DONE getting fresh source\n\n"
 
-printf "*** Unzipping source..."
-  # -o is overwrite mode
-  unzip -q -o ${BRANCH}.zip > unzip-branch.log
-printf "DONE unzipping fresh source\n\n"
+function getting () {
+  printf "*** Getting fresh system from branch ${BRANCH}..."
+    rm -f ${BRANCH}.zip
+    wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
+  printf "DONE getting fresh source\n\n"
+  printf "*** Unzipping source..."
+    # -o is overwrite mode
+    unzip -q -o ${BRANCH}.zip > unzip-branch.log
+  printf "DONE unzipping fresh source\n\n"
+  printf "*** Copying in backup of configuration file ..."
+    cp -f ${DIR}/.BAK/CONF.sh ${DIR}/CONF.sh
+    chmod 700 ${DIR}/CONF.sh
+  printf "DONE copying in backup of configuration file\n\n"
+}
 
-printf "*** Copying in backup of configuration file ..."
-  cp -f ${DIR}/.BAK/CONF.sh ${DIR}/CONF.sh
-  chmod 700 ${DIR}/CONF.sh
-printf "DONE copying in backup of configuration file\n\n"
+backup
+
+getting
+
+
+
+
+
+
 
 
 #printf "*** Running installer ..."
