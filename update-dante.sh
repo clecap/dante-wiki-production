@@ -30,7 +30,7 @@ function backup () {
   printf "\n*** Making a backup of Wiki Contents ..."
     mkdir -p  ../DANTE-BACKUP
     chmod 700 ../DANTE-BACKUP
-    php dumpBackup.php --full --include-files --uploads  > ../DANTE-BACKUP/wiki-xml-dump-$(date +%d.%m.%y)
+##    php dumpBackup.php --full --include-files --uploads  > ../DANTE-BACKUP/wiki-xml-dump-$(date +%d.%m.%y)
   printf "DONE making a backup of Wiki Contents\n\n"
 }
 
