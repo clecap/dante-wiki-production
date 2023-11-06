@@ -2,8 +2,7 @@
 
 ## The original of this file is in dante-wiki-production
 
-    
- 
+
 ##
 ## CONFIGURE script
 ##
@@ -119,6 +118,7 @@ printf "DONE building docker volume\n\n"
 
 DOCKER_TAG=latest
 
+
 printf "*** Pulling Docker Images from docker hub, tag ${DOCKER_TAG} "
   docker pull clecap/lap:${DOCKER_TAG}
   docker pull clecap/my-mysql:${DOCKER_TAG}
@@ -131,7 +131,7 @@ printf "DONE\n\n"
 
 printf "*** Starting both containers..."
   ${DIR}/images/lap/bin/both.sh --db my-test-db-volume --vol ${LAP_VOLUME}
-printf "DONE starting containers"
+printf "DONE starting containers\n\n"
 
 
 MYSQL_CONTAINER=my-mysql
@@ -151,9 +151,6 @@ printf "*** Fixing permissions of files ... \n"
 printf "DONE fixing permissions of files\n\n"
 
 
-
-
-
 printf "*** Initializing Database"
 
 # TODO: MYSQL PASSWORD
@@ -165,11 +162,6 @@ ${DIR}/volumes/full/spec/wiki-db-local-initialize.sh  "${MW_SITE_NAME}"  "${MW_S
 
 # Fix permissions also for the files newly generated right now
 docker exec -it my-lap-container chown -R ${OWNERSHIP} /var/www/html/wiki-dir
-
-
-
-
-
 
 
 printf "*** Setting up drawio as an external service (the extension is set up together with mediawiki in cmd.sh and wiki-init.sh)\n"
@@ -184,12 +176,7 @@ printf "*** Fix permissions ..."
   docker exec -it my-lap-container chown -R ${OWNERSHIP} /var/www/html/wiki-dir
 printf "DONE fixing permissions \n\n"
 
-
 printf "*** Installer install-dante.sh completed\n\n"
-
-
-
-
 printf "*** THE INSTALLATION HAS COMPLETED *** \n"
 printf "*** DanteWiki should now be available locally at ${DANTE_WIKI_URL}/wiki-dir/index.php"
 printf "*** You can now install initial content ***"

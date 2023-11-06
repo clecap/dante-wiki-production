@@ -19,18 +19,28 @@ abort()
 set -e                                  # abort execution on any error
 trap 'abort' EXIT                       # call abort on EXIT
  
-printf "\n*** Making a backup of the configuration file ..."
-  mkdir -p  .BAK
-  chmod 700 .BAK
-  cp CONF.sh .BAK/CONF.sh
-  chmod 700 .BAK/CONF.sh
-printf "DONE making a backup of the configuration file\n\n"
+function backup () {
+  printf "\n*** Making a backup of the configuration file ..."
+    mkdir -p  ../DANTE-BACKUP
+    chmod 700 ../DANTE-BACKUP
+    cp CONF.sh ../DANTE-BACKUP/CONF.sh
+    chmod 700  ../DANTE-BACKUP/CONF.sh
+  printf "DONE making a backup of the configuration file\n\n"
 
-printf "*** Clearing existing files ...\n"
-  # must go upstairs by one level or else we cannot do the ls
-  cd ${DIR}/..
-  rm -Rf ${DIR}/*
-printf "DONE\n\n"
+  printf "\n*** Making a backup of Wiki Contents ..."
+    mkdir -p  ../DANTE-BACKUP
+    chmod 700 ../DANTE-BACKUP
+    php dumpBackup.php --full --include-files --uploads  > ../DANTE-BACKUP/wiki-xml-dump-$(date +%d.%m.%y)
+  printf "DONE making a backup of Wiki Contents\n\n"
+}
+
+function clearing () {
+  printf "*** Clearing existing files ...\n"
+    # must go upstairs by one level or else we cannot do the ls
+    cd ${DIR}/..
+    rm -Rf ${DIR}/*
+  printf "DONE clearing existing files\n\n"
+}
 
 printf "*** Getting fresh system from branch ${BRANCH}..."
   rm -f ${BRANCH}.zip
@@ -47,9 +57,10 @@ printf "*** Copying in backup of configuration file ..."
   chmod 700 ${DIR}/CONF.sh
 printf "DONE copying in backup of configuration file\n\n"
 
-printf "*** Running installer ..."
-  source ${DIR}/install-dante.sh
-printf "DONE running installer\n\n"
+
+#printf "*** Running installer ..."
+#  source ${DIR}/install-dante.sh
+#printf "DONE running installer\n\n"
 
 trap : EXIT         # switch trap command back to noop (:) on EXIT
 
