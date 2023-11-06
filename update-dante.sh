@@ -51,6 +51,7 @@ function getting () {
   printf "*** Unzipping source..."
     # -o is overwrite mode
     unzip -q -o ${BRANCH}.zip -d .. > unzip-branch.log
+    rm ${BRANCH}.zip
   printf "DONE unzipping fresh source\n\n"
   printf "*** Copying in backup of configuration file ..."
     cp -f ${DIR}/.BAK/CONF.sh ${DIR}/CONF.sh
@@ -58,7 +59,7 @@ function getting () {
   printf "DONE copying in backup of configuration file\n\n"
 }
 
-printf "\n\n\n Dante Updater Version 2.13 "
+printf "\n\n\n Dante Updater Version 2.14 "
 
 backup
 
