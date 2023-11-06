@@ -17,7 +17,8 @@ LAP_CONTAINER=my-lap-container
 usage() {
   echo "Usage: $0       "
   echo "  --skip-content     Skip the content backup (eg when we have a backup and the container is not running)     "
-  exit 1
+  echo "  "
+#  exit 1
 }
 
 ##
