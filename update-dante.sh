@@ -84,7 +84,7 @@ function clearing () {
 
 
 function getting () {
-  printf "*** Getting fresh system from branch ${BRANCH}..."
+  printf "*** Getting fresh system from branch ${BRANCH}...\n\n"
     rm -f ${BRANCH}.zip
     wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
   printf "DONE getting fresh source\n\n"
@@ -100,7 +100,7 @@ function getting () {
 }
 
 printf "\n\n\n **********************************\n"
-printf       " *** Dante Updater Version 2.18 ***\n"
+printf       " *** Dante Updater Version 2.19 ***\n"
 printf       " **********************************\n"
 
 configBackup
