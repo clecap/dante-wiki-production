@@ -30,8 +30,8 @@ function backup () {
   printf "\n*** Making a backup of Wiki Contents ..."
     mkdir -p  ../DANTE-BACKUP
     chmod 700 ../DANTE-BACKUP
-
-##    php dumpBackup.php --full --include-files --uploads  > ../DANTE-BACKUP/wiki-xml-dump-$(date +%d.%m.%y)
+    docker exec  --user ${USER} ${LAP_CONTAINER} php  /var/www/html/wiki-dir/maintenance/dumpBackup.php --full --include-files --uploads  > ../DANTE-BACKUP/wiki-xml-dump-$(date +%d.%m.%y-%k:%M)
+    ls -l ../DANTE-BACKUP
   printf "DONE making a backup of Wiki Contents\n\n"
 }
 
@@ -61,7 +61,7 @@ function getting () {
 }
 
 printf "\n\n\n **********************************\n"
-printf       " *** Dante Updater Version 2.16 ***\n"
+printf       " *** Dante Updater Version 2.17 ***\n"
 printf       " **********************************\n"
 
 backup
