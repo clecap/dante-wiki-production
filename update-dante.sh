@@ -38,7 +38,7 @@ else                      ### Variant 2: We were called with parameters.
          usage 
          exit 1
     esac
-  shift 2
+    shift 1
   done
 fi
 
