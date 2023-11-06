@@ -58,6 +58,8 @@ function getting () {
   printf "DONE copying in backup of configuration file\n\n"
 }
 
+printf "\n\n\n"
+
 backup
 
 getting
