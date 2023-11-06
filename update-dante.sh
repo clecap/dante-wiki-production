@@ -45,11 +45,11 @@ function clearing () {
 printf "*** Getting fresh system from branch ${BRANCH}..."
   rm -f ${BRANCH}.zip
   wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
-printf "DONE getting fresh source"
+printf "DONE getting fresh source\n\n"
 
 printf "*** Unzipping source..."
   # -o is overwrite mode
-  unzip -o ${BRANCH}.zip > unzip-branch.log
+  unzip -q -o ${BRANCH}.zip > unzip-branch.log
 printf "DONE unzipping fresh source\n\n"
 
 printf "*** Copying in backup of configuration file ..."
