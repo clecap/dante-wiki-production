@@ -133,7 +133,7 @@ printf "DONE starting containers\n\n"
 
 
 MYSQL_CONTAINER=my-mysql
-
+LAP_CONTAINER=lap
 
 waitingForDatabase
 fixPermissionsContainer
@@ -156,6 +156,8 @@ DB_NAME="DB_${DB_USER}"
 DB_PASS="password-$DB_USER"
 WK_USER=$DB_USER
 WK_PASS="password-$DB_USER"
+
+
 
 
 dropUser ${MYSQL_CONTAINER} ${MYSQL_ROOT_PASSWORD} ${DB_USER}
