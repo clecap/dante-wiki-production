@@ -106,7 +106,7 @@ function getting () {
   printf " *** Getting fresh system from branch ${BRANCH}...\n\n"
     rm -f ${BRANCH}.zip
     COMMIT=`wget -qO- https://github.com/clecap/dante-wiki-production/commits/master | grep -m1 -oP 'commit/\K[0-9a-f]{40}'`
-    printf "*** COMMIT Hash currently is ${COMMIT}\n\n"
+    printf " *** COMMIT Hash currently is ${COMMIT}\n\n"
     wget --no-cookies --no-cache https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
     printf " DONE getting fresh source, COMMIT is ${COMMIT}\n\n"
   printf " *** Unzipping source..."
