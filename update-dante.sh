@@ -87,7 +87,8 @@ function getting () {
   printf "*** Getting fresh system from branch ${BRANCH}...\n\n"
     rm -f ${BRANCH}.zip
     wget --no-cookies --no-cache https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
-  printf "DONE getting fresh source\n\n"
+    COMMIT=`wget -qO- https://github.com/clecap/dante-wiki-production/commits/master | grep -m1 -oP 'commit/\K[0-9a-f]{40}'``
+  printf "DONE getting fresh source, COMMIT is ${COMMIT}\n\n"
   printf "*** Unzipping source..."
     # -o is overwrite mode
     unzip -q -o ${BRANCH}.zip -d .. > unzip-branch.log
@@ -102,8 +103,6 @@ function getting () {
 printf "\n\n\n **********************************\n"
 printf       " *** Dante Updater Version 2.33 ***\n" 
 printf       " **********************************\n"
-
- 
 
 BASE_NAME=$(basename "$0")
 
