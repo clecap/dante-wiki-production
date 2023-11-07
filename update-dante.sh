@@ -5,15 +5,29 @@
 # This makes sure that we get defined results and are not overwriting the script while it is executing
 # which could produce random results. See https://stackoverflow.com/questions/21096478/overwrite-executing-bash-script-files?rq=3
 
+
+
+## 
+##        update-dante.sh MUST stay stand-alone and MUST NOT use script-library (for reasons fo stability) 
+##
+
 # get directory where this script resides wherever it is called from
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-BRANCH=master
 
-USER=apache
+VERSION=2.38
+
+
+###
+### CONFIGURATION
+###
+
+BRANCH=master
 LAP_CONTAINER=my-lap-container
 
 
+# user name for docker exec
+USER=apache
 
 
 function usage() {
@@ -54,8 +68,9 @@ abort()
 }
 
 set -e                                  # abort execution on any error
-trap 'abort' EXIT                       # call abort on EXIT
- 
+trap 'abort' ERR                        # call abort on ERROR
+trap 'abort' EXIT                       # call abort on EXIT 
+
 function configBackup () {
   printf "\n *** Making a backup of the configuration file ..."
     mkdir -p  ../DANTE-BACKUP
@@ -107,7 +122,7 @@ function getting () {
 }
 
 printf "\n\n\n **********************************\n"
-printf       " *** Dante Updater Version 2.35 ***\n" 
+printf       " *** Dante Updater Version $VERSION ***\n" 
 printf       " **********************************\n"
 
 BASE_NAME=$(basename "$0")
