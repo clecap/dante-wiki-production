@@ -100,7 +100,7 @@ function getting () {
 }
 
 printf "\n\n\n **********************************\n"
-printf       " *** Dante Updater Version 2.27 ***\n" 
+printf       " *** Dante Updater Version 2.28 ***\n" 
 printf       " **********************************\n"
 
 
