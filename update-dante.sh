@@ -103,9 +103,7 @@ printf "\n\n\n **********************************\n"
 printf       " *** Dante Updater Version 2.26 ***\n" 
 printf       " **********************************\n"
 
-rm -f update-dante-run.sh
-cp update-dante.sh update-dante-run.sh
-chmod 700 update-dante-run.sh
+
 
 BASE_NAME=$(basename "$0")
 
@@ -117,6 +115,9 @@ if [ "$BASE_NAME" = "update-dante-run.sh" ]; then
     getting
 else
     printf "\n *** We are just the copying stub"
+    rm -f update-dante-run.sh
+    cp update-dante.sh update-dante-run.sh
+    chmod 700 update-dante-run.sh
     /bin/bash ${DIR}/update-dante-run.sh --skip-content
 fi
 
