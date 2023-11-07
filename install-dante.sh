@@ -11,7 +11,6 @@
 BRANCH=master
 
 
-
 # get directory where this script resides wherever it is called from
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}
@@ -106,37 +105,32 @@ printf "DONE building docker volume\n\n"
 DOCKER_TAG=latest
 
 
-printf "*** Pulling Docker Images from docker hub, tag ${DOCKER_TAG} "
-  docker pull clecap/lap:${DOCKER_TAG}
-  docker pull clecap/my-mysql:${DOCKER_TAG}
-printf "DONE pulling docker images\n\n"
-
-printf "*** Retagging docker images into local names for install mechanisms ... "
-  docker tag clecap/lap:${DOCKER_TAG} lap
-  docker tag clecap/my-mysql:${DOCKER_TAG} my-mysql
-printf "DONE\n\n"
-
-printf "*** Starting both containers..."
-  ${DIR}/images/lap/bin/both.sh --db my-test-db-volume --vol ${LAP_VOLUME}
-printf "DONE starting containers\n\n"
+pullDockerImages DOCKER_TAG
+retagDockerImages DOCKER_TAG
 
 
 MYSQL_CONTAINER=my-mysql
 LAP_CONTAINER=my-lap-container
 
-waitingForDatabase
+printf "*** Starting both containers..."
+  ${DIR}/images/lap/bin/both.sh --db my-test-db-volume --vol ${LAP_VOLUME}
+
+  runDB
+  waitingForDatabase
+  runLap
+
+
+printf "DONE starting containers\n\n"
+
+
+
 fixPermissionsContainer
 
 printf "*** Initializing Database"
 
 # TODO: MYSQL PASSWORD
 # volumes/full/spec/wiki-db-local-initialize.sh mysite https://localhost:4443 acro adminpassword sqlpassword
-
 ###echo ""; echo "******* initialize-dante.sh: MW_SITE_NAME=${MW_SITE_NAME}  MW_SITE_SERVER=${MW_SITE_SERVER}  SITE_ACRONYM=${SITE_ACRONYM}  ADMIN_PASSWORD=${ADMIN_PASSWORD}  MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
-
-
-### ${DIR}/volumes/full/spec/wiki-db-local-initialize.sh  "${MW_SITE_NAME}"  "${MW_SITE_SERVER}"  "${SITE_ACRONYM}"  "${ADMIN_PASSWORD}"  "${MYSQL_ROOT_PASSWORD}"
-
 
 #####################  TODO: for wiki-dir use db name   dir
  DB_USER=dir

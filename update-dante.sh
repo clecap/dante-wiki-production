@@ -14,7 +14,6 @@
 # get directory where this script resides wherever it is called from
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-
 VERSION=2.38
 
 
@@ -32,7 +31,7 @@ USER=apache
 
 function usage() {
   echo "Usage: $0       "
-  echo "  --skip-content     Skip the content backup (eg when we have a backup and the container is not running)     "
+  echo "  --skip-content     Skip the content backup (eg when we already have a backup and the container is not running)     "
   echo "  --no-usage         Dummy parameter which can be usd to prevent display of usage (which happens when no parameter is given)"
 #  exit 1
 }
@@ -129,7 +128,6 @@ function getScripts () {
     rm -f script-library.sh
     wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/script-library.sh
   
-
     cd ${DIR}/images/lap/bin
     rm -f run.sh
     rm -f both.sh
@@ -141,10 +139,6 @@ function getScripts () {
     wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/images/my-mysql/bin/run.sh
   printf "DONE getting script elements\n\n"
 }
-
-
-
-
 
 
 
