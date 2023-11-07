@@ -100,10 +100,10 @@ function getting () {
 }
 
 printf "\n\n\n **********************************\n"
-printf       " *** Dante Updater Version 2.28 ***\n" 
+printf       " *** Dante Updater Version 2.29 ***\n" 
 printf       " **********************************\n"
 
-
+ 
 
 BASE_NAME=$(basename "$0")
 
