@@ -145,7 +145,17 @@ printf "*** Initializing Database"
 
 echo ""; echo "******* initialize-dante.sh: MW_SITE_NAME=${MW_SITE_NAME}  MW_SITE_SERVER=${MW_SITE_SERVER}  SITE_ACRONYM=${SITE_ACRONYM}  ADMIN_PASSWORD=${ADMIN_PASSWORD}  MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
 
+
 ${DIR}/volumes/full/spec/wiki-db-local-initialize.sh  "${MW_SITE_NAME}"  "${MW_SITE_SERVER}"  "${SITE_ACRONYM}"  "${ADMIN_PASSWORD}"  "${MYSQL_ROOT_PASSWORD}"
+
+
+
+
+dropUser ${DB_CONTAINER} ${MYSQL_ROOT_PASSWORD} ${DB_USER}
+dropDatabase ${DB_NAME} ${DB_CONTAINER} ${MYSQL_ROOT_PASSWORD}
+addDatabase ${DB_NAME} ${DB_USER} ${DB_PASS} ${MYSQL_ROOT_PASSWORD} ${DB_CONTAINER}
+removeLocalSettings ${LAP_CONTAINER} ${MOUNT} ${VOLUME_PATH}
+
 
 
 ##
