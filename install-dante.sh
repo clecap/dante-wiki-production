@@ -158,13 +158,17 @@ WK_USER=$DB_USER
 WK_PASS="password-$DB_USER"
 
 
+MW_SITE_NAME=
+MW_SITE_SERVER=
+SITE_ACRONYM=
 
+MOUNT="/var/www/html"
+VOLUME_PATH=wiki-dir
 
 dropUser ${MYSQL_CONTAINER} ${MYSQL_ROOT_PASSWORD} ${DB_USER}
 dropDatabase ${DB_NAME} ${MYSQL_CONTAINER} ${MYSQL_ROOT_PASSWORD}
 addDatabase ${DB_NAME} ${DB_USER} ${DB_PASS} ${MYSQL_ROOT_PASSWORD} ${MYSQL_CONTAINER}
 removeLocalSettings ${LAP_CONTAINER} ${MOUNT} ${VOLUME_PATH}
-
 
 
 ##
@@ -176,6 +180,8 @@ printf "*** Setting up drawio as an external service (the extension is set up to
 printf "DONE setting up drawio\n\n"
 
 
+runMWInstallScript "${MW_SITE_NAME}" "${MW_SITE_SERVER}" "${SITE_ACRONYM}" "${WK_PASS}"
+addingReferenceToDante ${MOUNT} ${VOLUME_PATH} ${LAP_CONTAINER}
 
 fixPermissionsContainer
 fixPermissionsProduction
