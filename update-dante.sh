@@ -107,8 +107,10 @@ printf       " **********************************\n"
 rm -f update-dante-run.sh
 cp update-dante.sh update-dante-run.sh
 
-printf "\n WE are: $BASH_SOURCE +++++++++ \n"
-if [ "$BASH_SOURCE" = "update-dante-run.sh" ]; then
+BASE_NAME=$(basename "$0")
+
+printf "\n WE are: $BASE_NAME +++++++++ \n"
+if [ "$BASE_NAME" = "update-dante-run.sh" ]; then
     echo "We are dante-run"
 else
     echo "We are not dante-run"
