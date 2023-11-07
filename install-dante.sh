@@ -30,7 +30,7 @@ printf "\n\n*** THIS IS INSTALLER install-dante.sh ***\n\n"
 
 printf "\n\n*** Reading in the script library..."
   source ${TOP_DIR}/volumes/full/spec/script-library.sh
-printf "DONE\n\n"
+printf "DONE, script library is version ${SCRIPT_LIB_VERSION}\n\n"
 
 
 printf "*** Making required local directories\n"
