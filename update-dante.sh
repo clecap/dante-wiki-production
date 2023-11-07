@@ -86,7 +86,7 @@ function clearing () {
 function getting () {
   printf "*** Getting fresh system from branch ${BRANCH}...\n\n"
     rm -f ${BRANCH}.zip
-    wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
+    wget --no-cookies --no-cache https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
   printf "DONE getting fresh source\n\n"
   printf "*** Unzipping source..."
     # -o is overwrite mode
