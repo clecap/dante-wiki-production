@@ -58,7 +58,7 @@ function configBackup () {
     chmod 700 ../DANTE-BACKUP
     cp CONF.sh ../DANTE-BACKUP/CONF.sh
     chmod 700  ../DANTE-BACKUP/CONF.sh
-  printf "DONE making a backup of the configuration file\n\n"
+  printf "DONE making a backup of the configuration file\n"
 }
 
 function contentBackup () {
@@ -114,7 +114,7 @@ if [ "$BASE_NAME" = "update-dante-run.sh" ]; then
     contentBackup
     getting
 else
-    printf "\n *** We are just the copying stub"
+    printf "\n *** We are just the copying stub\n"
     rm -f update-dante-run.sh
     cp update-dante.sh update-dante-run.sh
     chmod 700 update-dante-run.sh
