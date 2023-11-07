@@ -150,8 +150,12 @@ ${DIR}/volumes/full/spec/wiki-db-local-initialize.sh  "${MW_SITE_NAME}"  "${MW_S
 
 
 #####################  TODO: for wiki-dir use db name   dir
-DB_NAME=dir
+ DB_USER=dir
 
+DB_NAME="DB_${DB_USER}"
+DB_PASS="password-$DB_USER"
+WK_USER=$DB_USER
+WK_PASS="password-$DB_USER"
 
 
 dropUser ${MYSQL_CONTAINER} ${MYSQL_ROOT_PASSWORD} ${DB_USER}
