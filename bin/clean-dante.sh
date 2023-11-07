@@ -6,6 +6,7 @@
  
 # get directory where this script resides wherever it is called from
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+TOP_DIR="${DIR}/../"
 
 
 usage() {
@@ -22,14 +23,16 @@ usage() {
 
 
 ## this does not remove all files TODO !!!
-cleanFiles () {
+function cleanFiles () {
   echo "*** Removing all files (NOT all)"
-  rm -Rf ${DIR}/volumes
-  rm -Rf ${DIR}/conf
+  rm -Rf ${TOP_DIR}/volumes/full
+  rm -Rf ${TOP_DIR}/images
+  rm -Rf ${TOP_DIR}/conf
 echo "DONE removing generated directories"
 }
 
-cleanVolumes () {
+
+function cleanVolumes () {
   echo "*** Cleaning up docker volumes generated..."
   docker volume rm my-test-db-volume
   docker volume rm sample-volume
@@ -37,7 +40,8 @@ cleanVolumes () {
   echo "DONE cleaning up docker volumes generated"
 }
 
-cleanContainers () {
+
+function cleanContainers () {
   echo "*** Stopping and removing docker containers"
   docker container stop my-lap-container -t 0
   docker container rm my-lap-container
@@ -46,19 +50,22 @@ cleanContainers () {
   echo "DONE stopping and removing docker containers"
 }
 
-cleanImages () {
+
+function cleanImages () {
   echo "*** Cleaning up docker images..."
   docker rmi -f $(docker images -aq)
   echo "DONE cleaning up docker images"
 }
 
-cleanNetworks () {
+
+function cleanNetworks () {
   echo "*** Cleaning up docker networks generated..."
   docker network   rm dante-network
   echo "DONE cleaning up docker networks generated"
 }
 
-cleanAll () {
+
+function cleanAll () {
   cleanFiles
 # CAVE: FIRST the containers and only then the volumes
   cleanContainers
@@ -67,7 +74,8 @@ cleanAll () {
   cleanNetworks
 }
 
-cleanMost () {
+
+function cleanMost () {
   cleanFiles
 # CAVE: FIRST the containers and only then the volumes
   cleanContainers
@@ -75,7 +83,8 @@ cleanMost () {
   cleanNetworks
 }
 
-display () {
+
+function display () {
   printf "\n\n"
   printf "********************************************\n"
   printf "*** Displaying existing docker resources ***\n"

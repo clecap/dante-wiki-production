@@ -11,33 +11,35 @@
 BRANCH=master
 
 
-# 100.101 on alpine installations is apache.www-data
-# This defines the target ownership for all files
-OWNERSHIP="100.101"
-
 
 # get directory where this script resides wherever it is called from
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}/..
 
-set -e
 
 abort()
 {
-  printf "%b" "\e[1;31m *** INSTALLATION fo DANTEWIKI was ABOERTED *** \e[0m"
+  printf "%b" "\e[1;31m *** INSTALLATION fo DANTEWIKI was ABORTED *** \e[0m"
   exit 1
 }
 
 set -e                                  # abort execution on any error
-trap 'abort' EXIT                       # call abort on EXIT
 
 
 printf "\n\n*** THIS IS INSTALLER install-dante.sh ***\n\n"
 
-printf "*** Making fresh volumes directory\n"
+printf "\n\n*** Reading in the script library..."
+  source ${TOP_DIR}/volumes/full/spec/script-library.sh
+printf "DONE\n\n"
+
+
+printf "*** Making required local directories\n"
   rm -Rf ${DIR}/volumes/full/content
   mkdir -p ${DIR}/volumes/full/content/wiki-dir
-printf "DONE making fresh volumes directory\n\n"
+  mkdir -p ${DIR}/conf
+printf "DONE making required local directories\n\n"
+
+
 
 
 printf "*** wget branch ${BRANCH} from dante-wiki-volume ...\n"
@@ -50,22 +52,12 @@ printf "*** wget branch ${BRANCH} from dante-wiki-volume ...\n"
 printf "DONE building template directory\n\n"
 
 
-printf "*** Generating mediawiki configuration file directory\n"
-  mkdir -p ${DIR}/conf
-printf "DONE generating configuration file directory\n\n"
-
-
-printf "*** Reading in configuration"
+printf "*** Reading in the active configuration file"
   source ${DIR}/CONF.sh
 printf "DONE reading configuration\n\n" 
 
-## TODO: why set +e ?????
-set +e
-printf ""; echo "*** Fixing permission of config files\n" 
-  chmod -f 700 CONF.sh
-  chmod -f 700 CONF-backup.sh
-printf "DONE fixing permissions of config files\n\n"
-set -e
+
+
 
 
 MWP=${DIR}/conf/mediawiki-PRIVATE.php
@@ -99,6 +91,8 @@ printf "*** Generating customize-PRIVATE shell script file at ${CUS}\n"
   echo "MW_SITE_NAME='${MW_SITE_NAME}'"                    >> ${CUS}
   echo "DONE generating mediawiki-PRIVATE.php"
 printf "DONE generating customize-PRIVATE shell script file at ${CUS}\n\n"
+
+
 
 
 printf "*** Initial contents copied to volume directory to make it accessible in docker volume for later"
@@ -135,20 +129,9 @@ printf "DONE starting containers\n\n"
 
 MYSQL_CONTAINER=my-mysql
 
-printf "*** Waiting for database to come up ... \n"
-  printf "PLEASE WAIT AT LEAST 1 MINUTE UNTIL NO ERRORS ARE SHOWING UP ANY LONGER\n\n"
-# while ! docker exec ${MYSQL_CONTAINER} mysql --user=root --password=${MYSQL_ROOT_PASSWORD} -e "SELECT 1" >/dev/null 2>&1; do
-  while ! docker exec ${MYSQL_CONTAINER} mysql --user=root --password=${MYSQL_ROOT_PASSWORD} -e "SELECT 1"; do
-    sleep 1
-    echo "   Still waiting for database to come up..."
-  done
-printf "DONE: database container is up\n\n"
 
-
-printf "*** Fixing permissions of files ... \n"
-  docker exec -it my-lap-container chown -R ${OWNERSHIP} /var/www/html/wiki-dir
-printf "DONE fixing permissions of files\n\n"
-
+waitingForDatabase
+fixPermissionsContainer
 
 printf "*** Initializing Database"
 
@@ -159,10 +142,8 @@ echo ""; echo "******* initialize-dante.sh: MW_SITE_NAME=${MW_SITE_NAME}  MW_SIT
 
 ${DIR}/volumes/full/spec/wiki-db-local-initialize.sh  "${MW_SITE_NAME}"  "${MW_SITE_SERVER}"  "${SITE_ACRONYM}"  "${ADMIN_PASSWORD}"  "${MYSQL_ROOT_PASSWORD}"
 
-# Fix permissions also for the files newly generated right now
-docker exec -it my-lap-container chown -R ${OWNERSHIP} /var/www/html/wiki-dir
 
-
+##
 printf "*** Setting up drawio as an external service (the extension is set up together with mediawiki in cmd.sh and wiki-init.sh)\n"
   docker exec -it my-lap-container mkdir -p /var/www/html/wiki-dir/external-services/draw-io/
   docker exec -it my-lap-container wget https://github.com/clecap/drawio/archive/refs/heads/dev.zip -O /var/www/html/wiki-dir/external-services/dev.zip
@@ -171,9 +152,9 @@ printf "*** Setting up drawio as an external service (the extension is set up to
 printf "DONE setting up drawio\n\n"
 
 
-printf "*** Fix permissions ..."
-  docker exec -it my-lap-container chown -R ${OWNERSHIP} /var/www/html/wiki-dir
-printf "DONE fixing permissions \n\n"
+
+fixPermissionsContainer
+fixPermissionsProduction
 
 printf "*** Installer install-dante.sh completed\n\n"
 printf "*** THE INSTALLATION HAS COMPLETED *** \n"

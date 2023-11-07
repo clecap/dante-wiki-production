@@ -16,6 +16,8 @@ LAP_CONTAINER=my-lap-container
 DUMPFILE=/var/www/html/wiki-dir/initial-contents.xml
 MAIN=/var/www/html/wiki-dir/initial-mainpage.wiki
 
+
+
 printf "\n\n*** Initial contents will be uploaded to wiki"
 printf "\n\n*** IGNORE THE 'Done!' messages, they do not apply"
 printf "\n\n*** WAIT until we tell you that the content initialization is complete\n\n" 

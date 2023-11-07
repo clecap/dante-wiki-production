@@ -14,6 +14,8 @@ USER=apache
 LAP_CONTAINER=my-lap-container
 
 
+
+
 function usage() {
   echo "Usage: $0       "
   echo "  --skip-content     Skip the content backup (eg when we have a backup and the container is not running)     "
@@ -77,11 +79,11 @@ function contentBackup () {
   fi
 }
 
+
 function clearing () {
   printf "*** Clearing existing files ...\n"
-    # must go upstairs by one level or else we cannot do the ls
-    cd ${DIR}/..
-    rm -Rf ${DIR}/*
+    rm -Rf ${DIR}/volumes/full
+
   printf "DONE clearing existing files\n\n"
 }
  

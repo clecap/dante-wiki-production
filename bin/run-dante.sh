@@ -5,8 +5,11 @@
 
 exit 1
 
-####### CAvE: both.sh cleans the container !!
 
+exit 1
+
+####### CAvE: both.sh cleans the container !!
+####### CAVE: NOT FIT TO RUN
 
 
 # get directory where this script resides wherever it is called from
