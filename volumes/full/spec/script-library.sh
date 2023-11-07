@@ -228,7 +228,7 @@ dropUser () {
   local MYSQL_ROOT_PASSWORD=$2
   local MY_DB_USER=$3
 
-  printf "\n\n*** dropUser: Dropping default anonymous user \n"
+  printf "\n\n*** dropUser: Dropping default anonymous user \n\n"
 
 
   # CAVE: we also must drop MY_DB_USER as we might have created this user earlier and then with a different password
@@ -241,7 +241,7 @@ SELECT user, host, password from mysql.user;
 MYSQLSTUFF
 
   EXIT_CODE=$?
-  printf "DONE: Exit code of dropUser call: ${EXIT_CODE} \n\n"
+  printf "\nDONE: Exit code of dropUser call: ${EXIT_CODE} \n\n"
 }
 
 
@@ -328,9 +328,7 @@ function fixPermissionsProduction() {
   local TARGET="wiki-dir"
   printf "\n *** Fixing local permissions for production" 
     chmod -f 700 ${TOP_DIR}/CONF.sh
-    chmod -f 700 ${TOP_DIR}/CONF-backup.sh
     chmod -f 700 ${TOP_DIR}/../DANTE-BACKUP
-
     chmod -f 700 ${TOP_DIR}/volumes/full/content/${TARGET}/LocalSettings.php
     chmod -f 700 ${TOP_DIR}/volumes/full/content/${TARGET}/mediawiki-PRIVATE.php
 
