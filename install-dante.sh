@@ -151,9 +151,9 @@ ${DIR}/volumes/full/spec/wiki-db-local-initialize.sh  "${MW_SITE_NAME}"  "${MW_S
 
 
 
-dropUser ${DB_CONTAINER} ${MYSQL_ROOT_PASSWORD} ${DB_USER}
-dropDatabase ${DB_NAME} ${DB_CONTAINER} ${MYSQL_ROOT_PASSWORD}
-addDatabase ${DB_NAME} ${DB_USER} ${DB_PASS} ${MYSQL_ROOT_PASSWORD} ${DB_CONTAINER}
+dropUser ${MYSQL_CONTAINER} ${MYSQL_ROOT_PASSWORD} ${DB_USER}
+dropDatabase ${DB_NAME} ${MYSQL_CONTAINER} ${MYSQL_ROOT_PASSWORD}
+addDatabase ${DB_NAME} ${DB_USER} ${DB_PASS} ${MYSQL_ROOT_PASSWORD} ${MYAQL_CONTAINER}
 removeLocalSettings ${LAP_CONTAINER} ${MOUNT} ${VOLUME_PATH}
 
 
