@@ -14,7 +14,7 @@ BRANCH=master
 
 # get directory where this script resides wherever it is called from
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-TOP_DIR=${DIR}/..
+TOP_DIR=${DIR}
 
 
 abort()
@@ -59,25 +59,30 @@ printf "DONE reading configuration\n\n"
 
 
 
+function makeMediawikiPrivate () {
+  MWP=${DIR}/conf/mediawiki-PRIVATE.php
+  printf "*** Generating mediawiki-PRIVATE configuration file at ${MWP}\n"
+    rm   -f ${MWP}
+    echo  "<?php "   > ${MWP}
+    echo "\$wgPasswordSender='${SMTP_SENDER_ADDRESS}';          // address of the sending email account                            " >> ${MWP}
+    echo "\$wgSMTP = [                                                                                                             " >> ${MWP}
+    echo  "  'host'     => '${SMTP_HOSTNAME}',                 // hostname of the smtp server of the email account  " >> ${MWP}
+    echo  "  'IDHost'   => 'localhost',                        // sub(domain) of your wiki                                             " >> ${MWP}
+    echo  "  'port'     => ${SMTP_PORT},                       // SMTP port to be used      " >> ${MWP}
+    echo  "  'username' => '${SMTP_USERNAME}',                 // username of the email account   " >> ${MWP}
+    echo  "  'password' => '${SMTP_PASSWORD}',                 // password of the email account   " >> ${MWP}
+    echo  "  'auth'     => true                                // shall authentisation be used    " >> ${MWP}
+    echo "]; "                                  >> ${MWP}
+    echo "\$wgLocaltimezone='${LOCALTIMEZONE}';"    >> ${MWP}
+    echo "?>  "                                 >> ${MWP}
+    cp ${MWP} ${DIR}/volumes/full/content/wiki-dir
+    rm ${MWP}
+  printf "DONE generating mediawiki-PRIVATE configuration file at ${MWP}\n\n"
+}
 
-MWP=${DIR}/conf/mediawiki-PRIVATE.php
-printf "*** Generating mediawiki-PRIVATE configuration file at ${MWP}\n"
-  rm   -f ${MWP}
-  echo  "<?php "   > ${MWP}
-  echo "\$wgPasswordSender='${SMTP_SENDER_ADDRESS}';          // address of the sending email account                            " >> ${MWP}
-  echo "\$wgSMTP = [                                                                                                             " >> ${MWP}
-  echo  "  'host'     => '${SMTP_HOSTNAME}',                 // hostname of the smtp server of the email account  " >> ${MWP}
-  echo  "  'IDHost'   => 'localhost',                        // sub(domain) of your wiki                                             " >> ${MWP}
-  echo  "  'port'     => ${SMTP_PORT},                       // SMTP port to be used      " >> ${MWP}
-  echo  "  'username' => '${SMTP_USERNAME}',                 // username of the email account   " >> ${MWP}
-  echo  "  'password' => '${SMTP_PASSWORD}',                 // password of the email account   " >> ${MWP}
-  echo  "  'auth'     => true                                // shall authentisation be used    " >> ${MWP}
-  echo "]; "                                  >> ${MWP}
-  echo "\$wgLocaltimezone='${LOCALTIMEZONE}';"    >> ${MWP}
-  echo "?>  "                                 >> ${MWP}
-  cp ${MWP} ${DIR}/volumes/full/content/wiki-dir
-  rm ${MWP}
-printf "DONE generating mediawiki-PRIVATE configuration file at ${MWP}\n\n"
+
+
+makeMediawikiPrivate
 
 
 CUS=${DIR}/conf/customize-PRIVATE.sh
