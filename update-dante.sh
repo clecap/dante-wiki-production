@@ -159,6 +159,7 @@ if [ "$BASE_NAME" = "update-dante-run.sh" ]; then
     configBackup
     contentBackup
     getting
+    getScripts
 else
     printf "\n *** We are just the copying stub\n"
     rm -f update-dante-run.sh
