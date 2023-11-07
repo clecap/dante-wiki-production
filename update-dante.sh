@@ -100,7 +100,7 @@ function getting () {
 }
 
 printf "\n\n\n **********************************\n"
-printf       " *** Dante Updater Version 2.25 ***\n" 
+printf       " *** Dante Updater Version 2.26 ***\n" 
 printf       " **********************************\n"
 
 rm -f update-dante-run.sh
