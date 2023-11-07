@@ -53,7 +53,7 @@ set -e                                  # abort execution on any error
 trap 'abort' EXIT                       # call abort on EXIT
  
 function configBackup () {
-  printf "\n*** Making a backup of the configuration file ..."
+  printf "\n *** Making a backup of the configuration file ..."
     mkdir -p  ../DANTE-BACKUP
     chmod 700 ../DANTE-BACKUP
     cp CONF.sh ../DANTE-BACKUP/CONF.sh
@@ -63,7 +63,7 @@ function configBackup () {
 
 function contentBackup () {
   if [ "$CONTENT_BACKUP" = true ]; then
-    printf "\n*** Making a backup of Wiki Contents ..."
+    printf "\n *** Making a backup of Wiki Contents ..."
       mkdir -p  ../DANTE-BACKUP
       chmod 700 ../DANTE-BACKUP
       docker exec  --user ${USER} ${LAP_CONTAINER} php  /var/www/html/wiki-dir/maintenance/dumpBackup.php --full --include-files --uploads  > ../DANTE-BACKUP/wiki-xml-dump-$(date +%d.%m.%y-%k:%M)
@@ -86,9 +86,10 @@ function clearing () {
 function getting () {
   printf "*** Getting fresh system from branch ${BRANCH}...\n\n"
     rm -f ${BRANCH}.zip
-    wget --no-cookies --no-cache https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
     COMMIT=`wget -qO- https://github.com/clecap/dante-wiki-production/commits/master | grep -m1 -oP 'commit/\K[0-9a-f]{40}'`
-  printf "DONE getting fresh source, COMMIT is ${COMMIT}\n\n"
+    printf "COMMIT currently is ${COMMIT}\n\n"
+    wget --no-cookies --no-cache https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
+    printf "DONE getting fresh source, COMMIT is ${COMMIT}\n\n"
   printf "*** Unzipping source..."
     # -o is overwrite mode
     unzip -q -o ${BRANCH}.zip -d .. > unzip-branch.log
@@ -106,9 +107,9 @@ printf       " **********************************\n"
 
 BASE_NAME=$(basename "$0")
 
-printf "\n *** BASE_NAME is $BASE_NAME \n\n"
+printf "\n *** BASE_NAME is $BASE_NAME \n"
 if [ "$BASE_NAME" = "update-dante-run.sh" ]; then
-    printf "\n *** We are update-dante-run.sh"
+    printf "\n *** We are update-dante-run.sh and will run the update script now\n"
     configBackup
     contentBackup
     getting
@@ -117,7 +118,7 @@ else
     rm -f update-dante-run.sh
     cp update-dante.sh update-dante-run.sh
     chmod 700 update-dante-run.sh
-    /bin/bash ${DIR}/update-dante-run.sh --skip-content
+    /bin/bash ${DIR}/update-dante-run.sh "$@"
 fi
 
 #configBackup
