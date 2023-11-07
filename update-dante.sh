@@ -112,7 +112,7 @@ function getting () {
     printf "DONE getting fresh source, COMMIT is ${COMMIT}\n\n"
   printf "*** Unzipping source..."
     # -o is overwrite mode
-    unzip -q -o ${BRANCH}.zip -d .. > unzip-branch.log
+    unzip -q -o ${BRANCH}.zip -d .. 
     rm ${BRANCH}.zip
   printf "DONE unzipping fresh source\n\n"
   printf "*** Copying in backup of configuration file ..."
