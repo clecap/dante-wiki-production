@@ -17,15 +17,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}
 
 
-abort()
-{
-  printf "%b" "\e[1;31m *** INSTALLATION fo DANTEWIKI was ABORTED *** \e[0m"
-  exit 1
-}
-
-set -e                                  # abort execution on any error
-
-
 printf "\n\n*** THIS IS INSTALLER install-dante.sh ***\n\n"
 
 printf "\n\n*** Reading in the script library..."
@@ -33,13 +24,17 @@ printf "\n\n*** Reading in the script library..."
 printf "DONE, script library is version ${SCRIPT_LIB_VERSION}\n\n"
 
 
+printf "*** Reading in the active configuration file"
+  source ${DIR}/CONF.sh
+printf "DONE reading configuration\n\n" 
+
+
 printf "*** Making required local directories\n"
   rm -Rf ${DIR}/volumes/full/content
   mkdir -p ${DIR}/volumes/full/content/wiki-dir
   mkdir -p ${DIR}/conf
+  chmod 700 ${DIR}/conf
 printf "DONE making required local directories\n\n"
-
-
 
 
 printf "*** wget branch ${BRANCH} from dante-wiki-volume ...\n"
@@ -50,12 +45,6 @@ printf "*** wget branch ${BRANCH} from dante-wiki-volume ...\n"
   mv ${DIR}/volumes/full/content/dante-wiki-volume-${BRANCH}/wiki-dir ${DIR}/volumes/full/content/
   rmdir ${DIR}/volumes/full/content/dante-wiki-volume-${BRANCH}/
 printf "DONE building template directory\n\n"
-
-
-printf "*** Reading in the active configuration file"
-  source ${DIR}/CONF.sh
-printf "DONE reading configuration\n\n" 
-
 
 
 
@@ -158,9 +147,12 @@ WK_USER=$DB_USER
 WK_PASS="password-$DB_USER"
 
 
-MW_SITE_NAME=
-MW_SITE_SERVER=
-SITE_ACRONYM=
+## DEPRECATED TODO
+#MW_SITE_NAME=
+#MW_SITE_SERVER=
+#SITE_ACRONYM=
+
+
 
 MOUNT="/var/www/html"
 VOLUME_PATH=wiki-dir
@@ -185,6 +177,11 @@ addingReferenceToDante ${MOUNT} ${VOLUME_PATH} ${LAP_CONTAINER}
 
 fixPermissionsContainer
 fixPermissionsProduction
+
+
+
+apacheRestartDocker
+
 
 printf "*** Installer install-dante.sh completed\n\n"
 printf "*** THE INSTALLATION HAS COMPLETED *** \n"
