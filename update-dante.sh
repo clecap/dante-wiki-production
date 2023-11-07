@@ -103,21 +103,21 @@ function clearing () {
 
 
 function getting () {
-  printf "*** Getting fresh system from branch ${BRANCH}...\n\n"
+  printf " *** Getting fresh system from branch ${BRANCH}...\n\n"
     rm -f ${BRANCH}.zip
     COMMIT=`wget -qO- https://github.com/clecap/dante-wiki-production/commits/master | grep -m1 -oP 'commit/\K[0-9a-f]{40}'`
-    printf "COMMIT currently is ${COMMIT}\n\n"
+    printf "*** COMMIT Hash currently is ${COMMIT}\n\n"
     wget --no-cookies --no-cache https://github.com/clecap/dante-wiki-production/archive/refs/heads/${BRANCH}.zip
-    printf "DONE getting fresh source, COMMIT is ${COMMIT}\n\n"
-  printf "*** Unzipping source..."
+    printf " DONE getting fresh source, COMMIT is ${COMMIT}\n\n"
+  printf " *** Unzipping source..."
     # -o is overwrite mode
     unzip -q -o ${BRANCH}.zip -d .. 
     rm ${BRANCH}.zip
-  printf "DONE unzipping fresh source\n\n"
-  printf "*** Copying in backup of configuration file ..."
+  printf " DONE unzipping fresh source\n\n"
+  printf " *** Copying in backup of configuration file ..."
     cp -f ${DIR}/.BAK/CONF.sh ${DIR}/CONF.sh
     chmod 700 ${DIR}/CONF.sh
-  printf "DONE copying in backup of configuration file\n\n"
+  printf " DONE copying in backup of configuration file\n\n"
 }
  
 
@@ -137,7 +137,7 @@ function getScripts () {
     cd ${DIR}/images/my-mysql/bin
     rm -f run.sh
     wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/images/my-mysql/bin/run.sh
-  printf "DONE getting script elements\n\n"
+  printf " DONE getting script elements\n\n"
 }
 
 
