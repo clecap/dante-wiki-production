@@ -108,8 +108,8 @@ printf "DONE building docker volume\n\n"
 DOCKER_TAG=latest
 
 
-pullDockerImages DOCKER_TAG
-retagDockerImages DOCKER_TAG
+pullDockerImages    ${DOCKER_TAG}
+retagDockerImages   ${DOCKER_TAG}
 
 
 MYSQL_CONTAINER=my-mysql
