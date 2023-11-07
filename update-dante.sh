@@ -119,6 +119,10 @@ function getting () {
     cp -f ${DIR}/.BAK/CONF.sh ${DIR}/CONF.sh
     chmod 700 ${DIR}/CONF.sh
   printf "DONE copying in backup of configuration file\n\n"
+
+
+  cd volumes/full/spec
+  wget --no-cookies --no-chache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/script-library.sh
 }
 
 printf "\n\n\n **********************************\n"
