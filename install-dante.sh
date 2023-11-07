@@ -86,12 +86,12 @@ printf "*** Generating customize-PRIVATE shell script file at ${CUS}\n"
 printf "DONE generating customize-PRIVATE shell script file at ${CUS}\n\n"
 
 
+## TODO: initial contents - is it in volume ????
 
-
-printf "*** Initial contents copied to volume directory to make it accessible in docker volume for later"
-  cp ${DIR}/initial-contents.xml  ${DIR}/volumes/full/content/wiki-dir/initial-contents.xml
-  cp ${DIR}/initial-mainpage.wiki ${DIR}/volumes/full/content/wiki-dir/initial-mainpage.wiki
-printf "DONE copying in initial contents"
+#printf "*** Initial contents copied to volume directory to make it accessible in docker volume for later"
+#  cp ${DIR}/initial-contents.xml  ${DIR}/volumes/full/content/wiki-dir/initial-contents.xml
+#  cp ${DIR}/initial-mainpage.wiki ${DIR}/volumes/full/content/wiki-dir/initial-mainpage.wiki
+#printf "DONE copying in initial contents"
 
 LAP_VOLUME=lap-volume
 
