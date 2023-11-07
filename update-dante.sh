@@ -122,7 +122,7 @@ function getting () {
 
 
   cd volumes/full/spec
-  wget --no-cookies --no-chache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/script-library.sh
+  wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/script-library.sh
 }
 
 printf "\n\n\n **********************************\n"
