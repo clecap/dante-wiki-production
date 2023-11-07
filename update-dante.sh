@@ -101,7 +101,7 @@ function clearing () {
 
   printf "DONE clearing existing files\n\n"
 }
- 
+
 
 function getting () {
   printf "*** Getting fresh system from branch ${BRANCH}...\n\n"
@@ -119,12 +119,33 @@ function getting () {
     cp -f ${DIR}/.BAK/CONF.sh ${DIR}/CONF.sh
     chmod 700 ${DIR}/CONF.sh
   printf "DONE copying in backup of configuration file\n\n"
-
-
-  cd volumes/full/spec
-  rm -f script-library.sh
-  wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/script-library.sh
 }
+
+
+
+function getScripts () {
+  printf " *** Getting script elements\n"
+    cd volumes/full/spec
+    rm -f script-library.sh
+    wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/script-library.sh
+    wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/wiki-db-local-initialize.sh
+    wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/inject-keys.sh
+
+    cd ${DIR}/images/lap/bin
+    wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/images/lap/bin/run.sh
+    wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/images/lap/bin/both.sh
+
+    cd ${DIR}/imates/my-mysql/bin
+    wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/images/my-mysql/bin/run.sh
+  printf "DONE getting script elements\n\n"
+}
+
+
+
+
+
+
+
 
 printf "\n\n\n **********************************\n"
 printf       " *** Dante Updater Version $VERSION ***\n" 
