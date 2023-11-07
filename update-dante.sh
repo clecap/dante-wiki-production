@@ -121,17 +121,6 @@ else
     /bin/bash ${DIR}/update-dante-run.sh "$@"
 fi
 
-#configBackup
-#contentBackup
-#getting
-
-
-
-
-
-
-
-
 #printf "*** Running installer ..."
 #  source ${DIR}/install-dante.sh
 #printf "DONE running installer\n\n"
