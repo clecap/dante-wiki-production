@@ -133,7 +133,7 @@ printf "DONE starting containers\n\n"
 
 
 MYSQL_CONTAINER=my-mysql
-LAP_CONTAINER=lap
+LAP_CONTAINER=my-lap-container
 
 waitingForDatabase
 fixPermissionsContainer
