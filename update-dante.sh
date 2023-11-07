@@ -14,34 +14,36 @@ USER=apache
 LAP_CONTAINER=my-lap-container
 
 
-usage() {
+function usage() {
   echo "Usage: $0       "
   echo "  --skip-content     Skip the content backup (eg when we have a backup and the container is not running)     "
-  echo "  "
+  echo "  --no-usage         Dummy parameter which can be usd to prevent display of usage (which happens when no parameter is given)"
 #  exit 1
 }
 
 ##
 ## Parse command line
 ##
-# region
-if [ "$#" -eq 0 ]; then
-  usage
-  CONTENT_BACKUP=true
-else                      ### Variant 2: We were called with parameters.
-  while (($#)); do
-    case $1 in 
-      (--skip-content) 
-        CONTENT_BACKUP=false;;
-      (*) 
-         echo "Error parsing options - aborting" 
-         usage 
-         exit 1
-    esac
-    shift 1
-  done
-fi
-
+function parseCommandLine() {
+  if [ "$#" -eq 0 ]; then
+    usage
+    CONTENT_BACKUP=true
+  else                      ### Variant 2: We were called with parameters.
+    while (($#)); do
+      case $1 in 
+        (--skip-content) 
+          CONTENT_BACKUP=false;;
+         (--no-usage)
+           ;;
+        (*) 
+           echo "Error parsing options - aborting" 
+           usage 
+           exit 1
+      esac
+      shift 1
+    done
+  fi
+}
 
 abort()
 {
@@ -63,14 +65,15 @@ function configBackup () {
 
 function contentBackup () {
   if [ "$CONTENT_BACKUP" = true ]; then
-    printf "\n *** Making a backup of Wiki Contents ..."
+    printf "\n *** Making a backup of Wiki Contents ...\n"
       mkdir -p  ../DANTE-BACKUP
       chmod 700 ../DANTE-BACKUP
       docker exec  --user ${USER} ${LAP_CONTAINER} php  /var/www/html/wiki-dir/maintenance/dumpBackup.php --full --include-files --uploads  > ../DANTE-BACKUP/wiki-xml-dump-$(date +%d.%m.%y-%k:%M)
+      printf "\n\n **  Listing of directory DANTE-BACKUP \n\n"
       ls -l ../DANTE-BACKUP
-    printf "DONE making a backup of Wiki Contents\n\n"
+    printf "\n\n DONE making a backup of Wiki Contents\n\n"
   else
-    printf "\n*** SKIPPING CONTENTS BACKUP !!!\n\n"
+    printf "\n *** SKIPPING CONTENTS BACKUP !!!\n\n"
   fi
 }
 
@@ -118,7 +121,7 @@ else
     rm -f update-dante-run.sh
     cp update-dante.sh update-dante-run.sh
     chmod 700 update-dante-run.sh
-    /bin/bash ${DIR}/update-dante-run.sh "$@"
+    /bin/bash ${DIR}/update-dante-run.sh --no-usage "$@"
 fi
 
 #printf "*** Running installer ..."
