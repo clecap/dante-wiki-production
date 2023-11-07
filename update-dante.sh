@@ -116,8 +116,8 @@ if [ "$BASE_NAME" = "update-dante-run.sh" ]; then
     contentBackup
     getting
 else
-    echo "\n *** We are just the copying stub"
-    /bin/bash ${DIR}/update-dante-run.sh
+    printf "\n *** We are just the copying stub"
+    /bin/bash ${DIR}/update-dante-run.sh --skip-content
 fi
 
 #configBackup
