@@ -143,10 +143,10 @@ printf "*** Initializing Database"
 # TODO: MYSQL PASSWORD
 # volumes/full/spec/wiki-db-local-initialize.sh mysite https://localhost:4443 acro adminpassword sqlpassword
 
-echo ""; echo "******* initialize-dante.sh: MW_SITE_NAME=${MW_SITE_NAME}  MW_SITE_SERVER=${MW_SITE_SERVER}  SITE_ACRONYM=${SITE_ACRONYM}  ADMIN_PASSWORD=${ADMIN_PASSWORD}  MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+###echo ""; echo "******* initialize-dante.sh: MW_SITE_NAME=${MW_SITE_NAME}  MW_SITE_SERVER=${MW_SITE_SERVER}  SITE_ACRONYM=${SITE_ACRONYM}  ADMIN_PASSWORD=${ADMIN_PASSWORD}  MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
 
 
-${DIR}/volumes/full/spec/wiki-db-local-initialize.sh  "${MW_SITE_NAME}"  "${MW_SITE_SERVER}"  "${SITE_ACRONYM}"  "${ADMIN_PASSWORD}"  "${MYSQL_ROOT_PASSWORD}"
+### ${DIR}/volumes/full/spec/wiki-db-local-initialize.sh  "${MW_SITE_NAME}"  "${MW_SITE_SERVER}"  "${SITE_ACRONYM}"  "${ADMIN_PASSWORD}"  "${MYSQL_ROOT_PASSWORD}"
 
 
 #####################  TODO: for wiki-dir use db name   dir
