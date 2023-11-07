@@ -116,7 +116,7 @@ MYSQL_CONTAINER=my-mysql
 LAP_CONTAINER=my-lap-container
 
 printf "*** Starting both containers..."
-  ${DIR}/images/lap/bin/both.sh --db my-test-db-volume --vol ${LAP_VOLUME}
+  # ${DIR}/images/lap/bin/both.sh --db my-test-db-volume --vol ${LAP_VOLUME}
 
   runDB
   waitingForDatabase
