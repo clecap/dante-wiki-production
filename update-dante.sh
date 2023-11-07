@@ -120,7 +120,7 @@ function getting () {
     chmod 700 ${DIR}/CONF.sh
   printf "DONE copying in backup of configuration file\n\n"
 }
-
+ 
 
 
 function getScripts () {
@@ -135,7 +135,7 @@ function getScripts () {
     wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/images/lap/bin/run.sh
     wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/images/lap/bin/both.sh
 
-    cd ${DIR}/imates/my-mysql/bin
+    cd ${DIR}/images/my-mysql/bin
     wget --no-cookies --no-cache https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/images/my-mysql/bin/run.sh
   printf "DONE getting script elements\n\n"
 }
