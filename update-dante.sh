@@ -103,22 +103,26 @@ printf "\n\n\n **********************************\n"
 printf       " *** Dante Updater Version 2.24 ***\n" 
 printf       " **********************************\n"
 
-
 rm -f update-dante-run.sh
 cp update-dante.sh update-dante-run.sh
+chmod 700 update-dante-run.sh
 
 BASE_NAME=$(basename "$0")
 
-printf "\n WE are: $BASE_NAME +++++++++ \n"
+printf "\n *** BASE_NAME is $BASE_NAME \n\n"
 if [ "$BASE_NAME" = "update-dante-run.sh" ]; then
-    echo "We are dante-run"
+    printf "\n *** We are update-dante-run.sh"
+    configBackup
+    contentBackup
+    getting
 else
-    echo "We are not dante-run"
+    echo "\n *** We are just the copying stub"
+    /bin/bash ${DIR}/update-dante-run.sh
 fi
 
-configBackup
-contentBackup
-getting
+#configBackup
+#contentBackup
+#getting
 
 
 
