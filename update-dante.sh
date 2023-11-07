@@ -104,8 +104,15 @@ printf       " *** Dante Updater Version 2.24 ***\n"
 printf       " **********************************\n"
 
 
-rm -f update-dante.bak
-mv update-dante.sh update-dante.bak
+rm -f update-dante-run.sh
+cp update-dante.sh update-dante-run.sh
+
+printf "\n WE are: $BASH_SOURCE +++++++++ \n"
+if [ "$BASH_SOURCE" = "update-dante-run.sh" ]; then
+    echo "We are dante-run"
+else
+    echo "We are not dante-run"
+fi
 
 configBackup
 contentBackup
