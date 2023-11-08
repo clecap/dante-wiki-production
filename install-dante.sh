@@ -30,9 +30,6 @@ printf "\n\n*** Reading in the script library..."
 printf "DONE, script library is version ${SCRIPT_LIB_VERSION}\n\n"
 
 
-
-
-
 printf "*** Reading in the active configuration file ..."
   source ${DIR}/CONF.sh
 printf "DONE \n\n" 
@@ -127,14 +124,16 @@ printf "*** Initializing Database"
 
 DB_NAME="DB_${DB_USER}"
 DB_PASS="password-$DB_USER"
-WK_USER=$DB_USER
-WK_PASS="password-$DB_USER"
+
+# Wiki user
+WK_USER=Admin
+
+WK_PASS="${ADMIN_PASSWORD}"
+# WK_PASS="password-$DB_USER"
 
 
 ## DEPRECATED TODO
 #MW_SITE_NAME=
-#MW_SITE_SERVER=
-#SITE_ACRONYM=
 
 
 
