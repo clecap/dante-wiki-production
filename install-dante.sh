@@ -23,9 +23,9 @@ printf "\n\n*** Reading in the script library..."
 printf "DONE, script library is version ${SCRIPT_LIB_VERSION}\n\n"
 
 
-printf "*** Reading in the active configuration file"
+printf "*** Reading in the active configuration file ..."
   source ${DIR}/CONF.sh
-printf "DONE reading configuration\n\n" 
+printf "DONE \n\n" 
 
 
 printf "*** Making required local directories\n"
@@ -46,30 +46,7 @@ printf "DONE making required local directories\n\n"
 #printf "DONE building template directory\n\n"
 
 
-
 getDanteWikiVolume
-
-
-function makeMediawikiPrivate () {
-  MWP=${DIR}/conf/mediawiki-PRIVATE.php
-  printf "*** Generating mediawiki-PRIVATE configuration file at ${MWP}\n"
-    rm   -f ${MWP}
-    echo  "<?php "   > ${MWP}
-    echo "\$wgPasswordSender='${SMTP_SENDER_ADDRESS}';          // address of the sending email account                            " >> ${MWP}
-    echo "\$wgSMTP = [                                                                                                             " >> ${MWP}
-    echo  "  'host'     => '${SMTP_HOSTNAME}',                 // hostname of the smtp server of the email account  " >> ${MWP}
-    echo  "  'IDHost'   => 'localhost',                        // sub(domain) of your wiki                                             " >> ${MWP}
-    echo  "  'port'     => ${SMTP_PORT},                       // SMTP port to be used      " >> ${MWP}
-    echo  "  'username' => '${SMTP_USERNAME}',                 // username of the email account   " >> ${MWP}
-    echo  "  'password' => '${SMTP_PASSWORD}',                 // password of the email account   " >> ${MWP}
-    echo  "  'auth'     => true                                // shall authentisation be used    " >> ${MWP}
-    echo "]; "                                  >> ${MWP}
-    echo "\$wgLocaltimezone='${LOCALTIMEZONE}';"    >> ${MWP}
-    echo "?>  "                                 >> ${MWP}
-    cp ${MWP} ${DIR}/volumes/full/content/wiki-dir
-    rm ${MWP}
-  printf "DONE generating mediawiki-PRIVATE configuration file at ${MWP}\n\n"
-}
 
 
 
