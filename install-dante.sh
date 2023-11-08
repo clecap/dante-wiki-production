@@ -86,7 +86,10 @@ LAP_VOLUME=lap-volume
 printf "*** Building docker volume and copying in files\n"
   docker volume create ${LAP_VOLUME}
   #  -rm  automagically remove container when it exits
-  docker run --rm --volume ${DIR}/volumes/full/content:/source --volume ${LAP_VOLUME}:/dest -w /source alpine cp -R wiki-dir /dest
+#  docker run --rm --volume ${DIR}/volumes/full/content:/source --volume ${LAP_VOLUME}:/dest -w /source alpine cp -R wiki-dir /dest
+
+  docker run --volume ${DIR}/volumes/full/content:/source --volume ${LAP_VOLUME}:/dest -w /source alpine cp -R wiki-dir /dest
+
 printf "DONE building docker volume\n\n"
 
 
@@ -131,11 +134,6 @@ WK_USER=Admin
 
 WK_PASS="${ADMIN_PASSWORD}"
 # WK_PASS="password-$DB_USER"
-
-
-## DEPRECATED TODO
-#MW_SITE_NAME=
-
 
 
 MOUNT="/var/www/html"
