@@ -167,9 +167,8 @@ fixPermissionsProduction
 apacheRestartDocker
 
 
-printf "*** Installer install-dante.sh completed\n\n"
 printf "*** THE INSTALLATION HAS COMPLETED *** \n"
-printf "*** DanteWiki should now be available locally at ${DANTE_WIKI_URL}/wiki-dir/index.php"
+printf "*** DanteWiki should now be available locally at ${DANTE_WIKI_URL}/wiki-dir/index.php\n "
 printf "*** You can now install initial content ***"
 
 trap : EXIT         # switch trap command back to noop (:) on EXIT
