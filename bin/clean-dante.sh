@@ -66,6 +66,7 @@ function cleanNetworks () {
 
 
 function cleanAll () {
+  printf "------------------- CLEANALL \n"
   cleanFiles
 # CAVE: FIRST the containers and only then the volumes
   cleanContainers

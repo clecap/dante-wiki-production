@@ -5,17 +5,17 @@ This repository https://github.com/clecap/dante-wiki-production is for end users
 ## Requirements for DanteWiki
 
 DanteWiki is based on two Docker images, so you need a possibility to run Docker images. A traditional
-docker server is fine, but DanteWiki will also run on a medium-sized laptop. It consists of a web-server,
+docker server is fine, but DanteWiki will also run on medium-sized laptops. It consists of a web-server,
 a PHP application process, which is a MediaWiki modification, and a number of latex processes. 
 It uses extensive caching. It is not a microservice architecture and can make use of several CPUs
 for speeding up reaction time.
 
-We currently run the system on our development machine with 8 vCPUs, 8 GB Memory and 20 GB Disc and we are
-studying performance to cut down on this.
+We currently run the system on our development machine with 8 vCPUs, 8 GB Memory and 30 GB Disc
+and we are studying performance to cut down on this.
 
 **CPU:**  minimum 2 vCPUs, recommended 4 vCPUs
 **MEMORY:** minimum 6GB, recommended 8 GB
-**DISK:** 8-10 GB recommended
+**DISK:** 20-30 GB recommended
 
 ## Installation
 
@@ -32,25 +32,27 @@ Maybe we will later provide installation files for Windows later.
 2. Download the zip archive at https://github.com/clecap/dante-wiki-production/archive/refs/heads/master.zip into that.
 3. Unzip file `master.zip` in that directory.
 4. Navigate into the newly generated installation directory `dante-wiki-production-master`
-5. Edit the configuration file `CONF.sh` in `dante-wiki-production-master`. 
+5. **Edit the configuration file** `CONF.sh` in `dante-wiki-production-master`. 
+  This step is essentially about naming your Wiki and entering an initial password.
   The data required in the configuration file is described by comments directly in this file. 
-You might want to consult the section on configuration changes below before editing this file.
-6. You might want to copy an https server private key file `server.key` and an https server certificate file `server.pem` into directory `dante-wiki-production-master`.
+  You might want to consult the section on configuration changes below before editing this file.
+6. In case you use https: Copy the https server private key file `server.key` and the https server certificate file `server.pem` 
+into directory `dante-wiki-production-master`.
 7. Run DanteWIki installation script `install-dante.sh` (this may take a while).
 
-### Command Cheat Sheet for Installation
+#### Cheat Sheet for Installation Commands
 
 ```
 wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/master.zip
 unzip master.zip
 cd dante-wiki-production-master
+
+vi CONF.sh
+
+Copy files server.key and server.pem into  directory dante-wiki-production-master
+
+./install-dante.sh
 ```
-
-Edit using your favorite editor, for example: ```vi CONF.sh                                   ```
-
-Copy files `server.key`and `server.pem`into `dante-wiki-production-master`.
-
-```./install-dante.sh```
 
 ### First Test
 

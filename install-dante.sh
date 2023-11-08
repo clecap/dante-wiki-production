@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTALL_DANTE_VERSION=1.22
+DANTE_INSTALLER_VERSION=1.22
 
 ## The original of this file is in dante-wiki-production
 
@@ -17,8 +17,8 @@ BRANCH=master
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}
 
-printf "\n\n *****************************************\n"
-printf "\n\n *** THIS IS INSTALLER install-dante.sh ${INSTALL-DANTE_VERSION} ***\n"
+printf "\n\n **********************************************\n"
+printf     " *** THIS IS DANTE INSTALLER install-dante.sh ${DANTE_INSTALLER_VERSION} ***\n"
 printf     " *******************************************\n\n"
 
 printf "\n\n*** Reading in the script library..."

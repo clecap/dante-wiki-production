@@ -18,7 +18,6 @@ server.pem
 mediawiki-PRIVATE.php
 AWS-PRIVATE.txt
 
-
 .git/
 
 dumps/
