@@ -146,6 +146,9 @@ apacheRestartDocker
 
 minimalInitialContents
 
+# after minimalInitialContents some ownerships are wrong
+fixPermissionsContainer
+
 
 printf "*** THE INSTALLATION HAS COMPLETED *** \n"
 printf "*** DanteWiki should now be available locally at ${DANTE_WIKI_URL}/wiki-dir/index.php \n\n"

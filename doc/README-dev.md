@@ -12,7 +12,7 @@ We can enter the containers for introspection by shell commands via
 
 ## Volum introspection
 
- docker run -it --rm -v lap-volume:/vol alpine /bin/ash
+`docker run -it --rm -v lap-volume:/vol alpine /bin/ash`
 
 
 
