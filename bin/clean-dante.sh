@@ -37,6 +37,7 @@ function cleanVolumes () {
   docker volume rm my-test-db-volume
   docker volume rm sample-volume
   docker volume rm lap-volume
+  docker volume rm mysql-volume
   echo "DONE cleaning up docker volumes generated"
 }
 
