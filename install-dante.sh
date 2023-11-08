@@ -68,7 +68,7 @@ printf "DONE generating customize-PRIVATE shell script file at ${CUS}\n\n"
 
 LAP_VOLUME=lap-volume
 
-printf "*** Building docker volume and copying in files\n"
+printf " *** Building docker volume and copying in files\n"
   docker volume create ${LAP_VOLUME}
   #  -rm  automagically remove container when it exits
   docker run --rm --volume ${DIR}/volumes/full/content:/source --volume ${LAP_VOLUME}:/dest -w /source alpine cp -R wiki-dir /dest
