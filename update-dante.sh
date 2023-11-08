@@ -150,8 +150,8 @@ printf       " **********************************\n"
 BASE_NAME=$(basename "$0")
 
 printf "\n *** BASE_NAME is $BASE_NAME \n"
-if [ "$BASE_NAME" = "update-dante-run.sh" ]; then
-    printf "\n *** We are update-dante-run.sh and will run the update script now\n"
+if [ "$BASE_NAME" = "_update-dante-run.sh" ]; then
+    printf "\n *** We are _update-dante-run.sh and will run the update script now\n"
     configBackup
     contentBackup
     getting
