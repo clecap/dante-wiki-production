@@ -19,8 +19,16 @@ TOP_DIR=${DIR}
 printf "\n\n*** THIS IS INSTALLER install-dante.sh ***\n\n"
 
 printf "\n\n*** Reading in the script library..."
-  source ${TOP_DIR}/volumes/full/spec/script-library.sh
+  if ! bash  -n  "${TOP_DIR}/volumes/full/spec/script-library.sh"; then
+    printf " *** ERROR: Syntax error detected in $script_to_source" >&2
+    false
+  else
+    source ${TOP_DIR}/volumes/full/spec/script-library.sh
+  fi
 printf "DONE, script library is version ${SCRIPT_LIB_VERSION}\n\n"
+
+
+
 
 
 printf "*** Reading in the active configuration file ..."
