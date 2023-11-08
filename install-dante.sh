@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DANTE_INSTALLER_VERSION=1.22
+DANTE_INSTALLER_VERSION=1.25
 
 ## The original of this file is in dante-wiki-production
 
