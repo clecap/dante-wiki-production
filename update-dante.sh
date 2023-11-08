@@ -158,10 +158,10 @@ if [ "$BASE_NAME" = "update-dante-run.sh" ]; then
     getScripts
 else
     printf "\n *** We are just the copying stub\n"
-    rm -f update-dante-run.sh
-    cp update-dante.sh update-dante-run.sh
-    chmod 700 update-dante-run.sh
-    /bin/bash ${DIR}/update-dante-run.sh --no-usage "$@"
+    rm -f _update-dante-run.sh
+    cp update-dante.sh _update-dante-run.sh
+    chmod 700 _update-dante-run.sh
+    /bin/bash ${DIR}/_update-dante-run.sh --no-usage "$@"
 fi
 
 #printf "*** Running installer ..."
