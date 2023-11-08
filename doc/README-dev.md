@@ -10,7 +10,7 @@ We can enter the containers for introspection by shell commands via
 `docker exec -it my-mysql /bin/ash`
 
 
-## Volum introspection
+## Volume introspection
 
 `docker run -it --rm -v lap-volume:/vol alpine /bin/ash`
 
