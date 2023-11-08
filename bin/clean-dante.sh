@@ -38,6 +38,7 @@ function cleanVolumes () {
   docker volume rm sample-volume
   docker volume rm lap-volume
   docker volume rm mysql-volume
+  docker system prune -f
   echo "DONE cleaning up docker volumes generated"
 }
 
@@ -48,6 +49,7 @@ function cleanContainers () {
   docker container rm my-lap-container
   docker container stop my-mysql -t 0
   docker container rm my-mysql
+  docker system prune -f
   echo "DONE stopping and removing docker containers"
 }
 
