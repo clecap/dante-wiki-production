@@ -22,8 +22,8 @@ printf "\n\n*** THIS IS INSTALLER install-dante.sh ***\n\n"
 
 printf "\n\n*** Reading in the script library..."
   if ! bash  -n  "${TOP_DIR}/volumes/full/spec/script-library.sh"; then
-    printf " *** ERROR: Syntax error detected in $script_to_source" >&2
-    false
+    printf " *** ERROR: Syntax error detected in ${TOP_DIR}/volumes/full/spec/script-library.sh" >&2
+    exit 1
   else
     source ${TOP_DIR}/volumes/full/spec/script-library.sh
   fi
