@@ -163,7 +163,7 @@ minimalInitialContents
 
 
 printf "*** THE INSTALLATION HAS COMPLETED *** \n"
-printf "*** DanteWiki should now be available locally at ${DANTE_WIKI_URL}/wiki-dir/index.php\n "
-printf "*** You can now install initial content ***"
+printf "*** DanteWiki should now be available locally at ${DANTE_WIKI_URL}/wiki-dir/index.php \n\n"
+printf "*** You can now install initial content ***\n"
 
 trap : EXIT         # switch trap command back to noop (:) on EXIT
