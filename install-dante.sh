@@ -17,8 +17,9 @@ BRANCH=master
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}
 
-
-printf "\n\n*** THIS IS INSTALLER install-dante.sh ***\n\n"
+printf "\n\n *****************************************\n"
+printf "\n\n *** THIS IS INSTALLER install-dante.sh ${INSTALL-DANTE_VERSION} ***\n"
+printf     " *******************************************\n\n"
 
 printf "\n\n*** Reading in the script library..."
   if ! bash  -n  "${TOP_DIR}/volumes/full/spec/script-library.sh"; then
@@ -161,9 +162,9 @@ addingReferenceToDante ${MOUNT} ${VOLUME_PATH} ${LAP_CONTAINER}
 fixPermissionsContainer
 fixPermissionsProduction
 
-
-
 apacheRestartDocker
+
+minimalInitialContents
 
 
 printf "*** THE INSTALLATION HAS COMPLETED *** \n"
