@@ -98,7 +98,7 @@ function display () {
   docker volume ls
   printf "\n\n*** IMAGES:\n"
   docker image ls
-  printf "\n\nDONE displaying docker resources"
+  printf "\n\nDONE displaying docker resources\n\n"
 }
 
 
