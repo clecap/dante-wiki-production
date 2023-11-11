@@ -9,7 +9,8 @@ This repository https://github.com/clecap/dante-wiki-production is for end users
 
 <table>
 <tr><td><b>OS</b></td><td>Docker environment</td></tr>
-<tr><td><b>Software</b></td><td>Preferably LINUX or Mac OS <br> Windows currently only with Linux extension (<code>bash</code>)</td></tr>
+<tr><td><b>Software</b></td><td>Preferably LINUX or Mac OS <br> Windows with Linux extensions <br>
+ Installed <code>/bin/bash</code> and <code>curl</code></td></tr>
 <tr><td><b>CPU</b></td><td>minimum 2 vCPUs, recommended 4 vCPUs</td></tr>
 <tr><td><b>RAM</b></td><td>minimum 6GB, recommended 8 GB</td></tr>
 <tr><td><b>DISC</b></td><td>20-30 GB recommended</td></tr>
@@ -31,15 +32,19 @@ and we are studying performance to cut down on this.
 
 
 <details>
-<summary><b style="font-size:larger">Quick Install:</b> (Click on triangle for further explanations.)
+<summary><b style="font-size:larger">Quick Install:</b> (Click on triangle for further <b>explanations</b>.)
 
 1. Open a terminal shell on the machine where you want to install.
 2. Navigate to a directory into which you want to install. A good place is your home directory.
-3. Copy-and-paste the following line into your shell and press execute.
+  The procedure will generate a directory named `/dante` in your home directory.
+3. `Copy-and-paste` the following line into your shell and press execute.
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/clecap/dante-wiki-production/HEAD/quick-install.sh)"
 ```
+
+4. Edit file `CONF.sh`to set an initial password and adjust the initial URL (comments in the file)
+5. Execute in the shell the command `./complete-install.sh` and wait several minutes for completion.
 </summary>
 
 <div style="background-color:lightgrey">

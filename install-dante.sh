@@ -12,7 +12,6 @@ DANTE_INSTALLER_VERSION=1.25
 #
 BRANCH=master
 
-
 # get directory where this script resides wherever it is called from
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}
@@ -21,7 +20,9 @@ printf "\n\n **********************************************\n"
 printf     " *** THIS IS DANTE INSTALLER install-dante.sh ${DANTE_INSTALLER_VERSION} ***\n"
 printf     " *******************************************\n\n"
 
-printf "\n\n*** Reading in the script library..."
+curl -fsSL -o ${TOP_DIR}/volumes/full/spec/script-library.sh https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/script-library.sh
+
+printf "\n\n*** Reading in the script library at ${TOP_DIR}/volumes/full/spec/script-library.sh"
   if ! bash  -n  "${TOP_DIR}/volumes/full/spec/script-library.sh"; then
     printf " *** ERROR: Syntax error detected in ${TOP_DIR}/volumes/full/spec/script-library.sh" >&2
     exit 1
