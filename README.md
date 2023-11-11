@@ -2,7 +2,19 @@
 
 This repository https://github.com/clecap/dante-wiki-production is for end users wanting to install DanteWiki.
 
-## Requirements for DanteWiki
+## Requirements for Installing DanteWiki
+
+<details>
+<summary><b>Summary:</b> (Click on triangle for additional explanations.)
+
+<table>
+<tr><td><b>OS</b></td><td>Docker environment</td></tr>
+<tr><td><b>Software</b></td><td>Preferably LINUX or Mac OS <br> Windows currently only with Linux extension (<code>bash</code>)</td></tr>
+<tr><td><b>CPU</b></td><td>minimum 2 vCPUs, recommended 4 vCPUs</td></tr>
+<tr><td><b>RAM</b></td><td>minimum 6GB, recommended 8 GB</td></tr>
+<tr><td><b>DISC</b></td><td>20-30 GB recommended</td></tr>
+</table>
+</summary>
 
 DanteWiki is based on two Docker images, so you need a possibility to run Docker images. A traditional
 docker server is fine, but DanteWiki will also run on medium-sized laptops. It consists of a web-server,
@@ -13,22 +25,55 @@ for speeding up reaction time.
 We currently run the system on our development machine with 8 vCPUs, 8 GB Memory and 30 GB Disc
 and we are studying performance to cut down on this.
 
-**CPU:**  minimum 2 vCPUs, recommended 4 vCPUs
-**MEMORY:** minimum 6GB, recommended 8 GB
-**DISK:** 20-30 GB recommended
+</details>
 
 ## Installation
 
-The instructions here are meant for a Linux or a MacOS machine with a running docker installation.
 
-If you use a Windows machine you are yourself responsible for this mistake ;-)  
-and should read https://programmerbear.com/why-microsoft-is-evil/ 
+<details>
+<summary><b style="font-size:larger">Quick Install:</b> (Click on triangle for further explanations.)
 
-Maybe we will later provide installation files for Windows later.
+1. Open a terminal shell on the machine where you want to install.
+2. Navigate to a directory into which you want to install. A good place is your home directory.
+3. Copy-and-paste the following line into your shell and press execute.
 
-### Description of Installation
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/clecap/dante-wiki-production/HEAD/quick-install.sh)"
+```
+</summary>
 
-1. Log in as a normal user and navigate to a directory which shall later contain the installation directory.
+<div style="background-color:lightgrey">
+
+##### Explanations:
+`curl` will download an install script and `/bin/bash` will execute it on your machine.
+<details>
+<summary>Explanations of the curl parameters</summary>
+<table>
+<tr><td>-f</td><td>Fail silently on server errors.</td></tr>
+<tr><td>-s</td><td>Do not show a progress meter.</td></tr>
+<tr><td>-S</td><td>Show error messages on all other errors.</td></tr>
+<tr><td>-L</td><td>Follow redirects when received from the server.</td></tr>
+</table>
+</details>
+
+<details>
+<summary>Explanation of what `quick-install.sh` does.</summary>
+
+1.
+2.
+3.
+
+</details>
+<hr>
+
+</details>
+</div>
+
+
+### Manual Insta
+
+1. Log in to the installation machine as a normal user.
+2. Navigate to a directory which shall later contain the installation directory.
 2. Download the zip archive at https://github.com/clecap/dante-wiki-production/archive/refs/heads/master.zip into that.
 3. Unzip file `master.zip` in that directory.
 4. Navigate into the newly generated installation directory `dante-wiki-production-master`
