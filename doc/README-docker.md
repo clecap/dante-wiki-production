@@ -2,12 +2,13 @@
 
 ## Quick Install on a VM
 
-Copy-and-paste this into a shell running on the VM.
-
+1. Log on to a VM running Debian under a user name capable of `sudo`.
+2. Copy-and-paste this into a shell running on the VM.
   ```curl -fsSL https://raw.githubusercontent.com/clecap/dante-wiki-production/HEAD/bin/prepare-docker.sh | sudo /bin/bash```
 
 **Note:** Running an unknown shell script as root can be dangerous unless you completely trust that script. 
 Only do this on an ephemeral virtual machine.
+On a different machine, check the script or do a setp-by-step manual install, as below.
 
 ## Manual Install
 
