@@ -11,7 +11,7 @@ For development work on DanteWIki see https://github.com/clecap/dante-wiki
 
 <table>
 <tr><td><b>OS</b></td><td>Docker environment <br>
-  [Preparing docker on a VM](https://github.com/clecap/dante-wiki-production/doc/README-docker.md)
+  [Preparing docker on a VM](https://github.com/clecap/dante-wiki-production/doc/README-docker.md Preparing docker on a VM)
 </td></tr>
 <tr><td><b>Software</b></td><td>Preferably LINUX or Mac OS <br> Windows with Linux extensions <br>
  Installed <code>/bin/bash</code> and <code>curl</code></td></tr>
