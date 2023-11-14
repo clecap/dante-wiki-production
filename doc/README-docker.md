@@ -26,7 +26,7 @@ Only do this on an ephemeral virtual machine.
 * Log out and log in again.
 
 #### Generate required user
-* We need a user with a home directory (in which we install everything), with shell /bin/bash, 
+* We need a user `dante`with a home directory (in which we install everything), with shell /bin/bash, 
   and belonging to group docker.
   ```
   sudo adduser --disabled-password dante

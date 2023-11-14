@@ -8,7 +8,9 @@ This repository https://github.com/clecap/dante-wiki-production is for end users
 <summary><b>Summary:</b> (Click on triangle for additional explanations.)
 
 <table>
-<tr><td><b>OS</b></td><td>Docker environment</td></tr>
+<tr><td><b>OS</b></td><td>Docker environment <br>
+  [Preparing docker on a VM](doc/README-docker.md)
+</td></tr>
 <tr><td><b>Software</b></td><td>Preferably LINUX or Mac OS <br> Windows with Linux extensions <br>
  Installed <code>/bin/bash</code> and <code>curl</code></td></tr>
 <tr><td><b>CPU</b></td><td>minimum 2 vCPUs, recommended 4 vCPUs</td></tr>
