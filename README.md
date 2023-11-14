@@ -1,6 +1,8 @@
 # DanteWiki Production
 
-This repository https://github.com/clecap/dante-wiki-production is for end users wanting to install DanteWiki.
+This repository https://github.com/clecap/dante-wiki-production is for **end users** wanting to install DanteWiki.
+
+For development work on DanteWIki see https://github.com/clecap/dante-wiki
 
 ## Requirements for Installing DanteWiki
 
