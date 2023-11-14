@@ -1,4 +1,4 @@
-# DanteWiki
+# DanteWiki Production
 
 This repository https://github.com/clecap/dante-wiki-production is for end users wanting to install DanteWiki.
 
@@ -9,7 +9,7 @@ This repository https://github.com/clecap/dante-wiki-production is for end users
 
 <table>
 <tr><td><b>OS</b></td><td>Docker environment <br>
-  [Preparing docker on a VM](doc/README-docker.md)
+  [Preparing docker on a VM](https://github.com/clecap/dante-wiki-production/doc/README-docker.md)
 </td></tr>
 <tr><td><b>Software</b></td><td>Preferably LINUX or Mac OS <br> Windows with Linux extensions <br>
  Installed <code>/bin/bash</code> and <code>curl</code></td></tr>
