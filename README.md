@@ -2,7 +2,7 @@
 
 This repository https://github.com/clecap/dante-wiki-production is for **end users** wanting to install DanteWiki.
 
-For development work on DanteWIki see https://github.com/clecap/dante-wiki
+For development work on DanteWiki see https://github.com/clecap/dante-wiki
 
 ## Requirements for Installing DanteWiki
 
@@ -11,7 +11,8 @@ For development work on DanteWIki see https://github.com/clecap/dante-wiki
 
 <table>
 <tr><td><b>OS</b></td><td>Docker environment <br>
-  <a href="https://github.com/clecap/dante-wiki-production/doc/README-docker.md">Preparing docker on a VM</a>
+  <a href="https://github.com/clecap/dante-wiki-production/doc/README-docker.md">Preparing docker on a Debian VM</a><br>
+  <a href="https://docs.docker.com/engine/install/">Preparing docker on an arbitrary machine</a>
 </td></tr>
 <tr><td><b>Software</b></td><td>Preferably LINUX or Mac OS <br> Windows with Linux extensions <br>
  Installed <code>/bin/bash</code> and <code>curl</code></td></tr>
@@ -32,16 +33,23 @@ and we are studying performance to cut down on this.
 
 </details>
 
-## Installation
+## Installation on a Debian VM
+
+1. Log on to the Debian VM
+2.  ```curl -fsSL https://raw.githubusercontent.com/clecap/dante-wiki-production/HEAD/bin/quick-install.sh | sudo /bin/bash```
+
+
+## Installation on an arbitrary machine
 
 
 <details>
 <summary><b style="font-size:larger">Quick Install:</b> (Click on triangle for further <b>explanations</b>.)
 
 1. Open a terminal shell on the machine where you want to install.
-2. Navigate to a directory into which you want to install. A good place is your home directory.
+2. Log on as a user with docker rights.
+3. Navigate to a directory into which you want to install. A good place is your home directory.
   The procedure will generate a directory named `/dante` in your home directory.
-3. `Copy-and-paste` the following line into your shell and press execute.
+4. `Copy-and-paste` the following line into your shell and press execute.
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/clecap/dante-wiki-production/HEAD/quick-install.sh)"

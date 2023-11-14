@@ -1,9 +1,13 @@
 #!/bin/bash
 
-wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/master.zip
-unzip master.zip
-cd dante-wiki-production-master
+MAIN_DIR=dante
+BRANCH=master
+REPO=dante-wiki-production
 
-mkdir KEYS-AND-CERTIFICATES
-chmod 700 KEYS-AND-CERTIFICATES
+cd ~dante
 
+wget https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
+unzip ${BRANCH}.zip
+cd ${REPO}-${BRANCH}
+
+./install-dante.sh
