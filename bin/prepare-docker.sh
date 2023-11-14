@@ -9,6 +9,7 @@ echo "LANG=\"en_US.UTF-8\""     >> /etc/default/locale
 
 adduser --disabled-password dante
 chsh -s /bin/bash dante
+usermod -aG docker dante
 
 apt update
 apt install apt-transport-https ca-certificates curl gnupg2 software-properties-common

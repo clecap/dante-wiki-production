@@ -1,12 +1,13 @@
 # Preparing Docker
 
+## Quick Install on a VM
 
-## Installing on a Debian VM
+Copy-and-paste this into a shell running on the VM.
 
-## Quick Install
+  ```curl -fsSL https://raw.githubusercontent.com/clecap/dante-wiki-production/HEAD/bin/prepare-docker.sh | sudo /bin/bash```
 
-  ```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/clecap/dante-wiki-production/HEAD/bin/prepare-docker.sh)"```
-
+**Note:** Running an unknown shell script as root can be dangerous unless you completely trust that script. 
+Only do this on an ephemeral virtual machine.
 
 ## Manual Install
 
@@ -25,7 +26,8 @@
 * Log out and log in again.
 
 #### Generate required user
-* We need a user with a home directory (in which we install everything) and with shell /bin/bash.
+* We need a user with a home directory (in which we install everything), with shell /bin/bash, 
+  and belonging to group docker.
   ```
   sudo adduser --disabled-password dante
   sudo chsh -s /bin/bash dante
