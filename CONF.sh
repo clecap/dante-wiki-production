@@ -20,7 +20,7 @@ ADMIN_PASSWORD=adminpassword
 #
 # MW_SITE_SERVER=https://localhost:4443/wiki-dir
 
-MW_SITE_SERVER=https://iuk-stage.informatik.uni-rostock.de:4443/wiki-dir
+MW_SITE_SERVER=https://iuk-stage.informatik.uni-rostock.de:4443/
 
 
 # currently NO blank in below name
