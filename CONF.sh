@@ -18,7 +18,10 @@ ADMIN_PASSWORD=adminpassword
 # 
 # CAVE: We might not need a path component if reverse proxy maps it in specific ways
 #
-MW_SITE_SERVER=https://localhost:4443/wiki-dir
+# MW_SITE_SERVER=https://localhost:4443/wiki-dir
+
+MW_SITE_SERVER=https://iuk-stage.informatik.uni-rostock.de:4443/wiki-dir
+
 
 # currently NO blank in below name
 MW_SITE_NAME="LocalTestWiki"
@@ -38,7 +41,7 @@ HTTPS_PORT=4443
 
 
 
-
+# TODO: WHY? conflicts with the file based root password which is generated in ./private
 # The root password to be installed for the MYSQL database
 MYSQL_ROOT_PASSWORD=sqlrootpassword
 
