@@ -12,9 +12,14 @@ printf "**************************\n"
 
 cd ~dante
 rm -Rf ${BRANCH}.zip
-rm -Rf dante-wiki-production-master
+rm -Rf ${REPO}-${BRANCH}
 wget https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
 unzip ${BRANCH}.zip
 cd ${REPO}-${BRANCH}
+
+mkdir private
+openssl rand -base64 16 > private/mysql-root-password.txt
+chmod 700 private
+chmod 700 private/mysql-root-password.txt
 
 ./install-dante.sh
