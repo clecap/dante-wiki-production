@@ -11,7 +11,8 @@ printf "*** QUICK INSTALLER ${VERSION} ***\n"
 printf "**************************\n"
 
 cd ~dante
-rm ${BRANCH}.zip
+rm -Rf ${BRANCH}.zip
+rm -Rf dante-wiki-production-master
 wget https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
 unzip ${BRANCH}.zip
 cd ${REPO}-${BRANCH}
