@@ -125,7 +125,7 @@ VOLUME_PATH=wiki-dir
 # the following two commands are not found
 # dropUser ${MYSQL_CONTAINER} ${MYSQL_ROOT_PASSWORD} ${DB_USER}
 # dropDatabase ${DB_NAME} ${MYSQL_CONTAINER} ${MYSQL_ROOT_PASSWORD}
-addDatabase ${DB_NAME} ${DB_USER} ${DB_PASS} ${MYSQL_ROOT_PASSWORD} ${MYSQL_CONTAINER}
+addDatabase ${DB_NAME} ${DB_USER} ${DB_PASS} ${MYSQL_CONTAINER}
 removeLocalSettings ${LAP_CONTAINER} ${MOUNT} ${VOLUME_PATH}
 
 
