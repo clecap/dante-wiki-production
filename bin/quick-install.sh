@@ -6,9 +6,9 @@ REPO=dante-wiki-production
 VERSION=1.1
 
 printf "\n"
-printf "**************************\n"
+printf "***************************\n"
 printf "*** QUICK INSTALLER ${VERSION} ***\n"
-printf "**************************\n"
+printf "***************************\n"
 
 read -p "We will attempt to delete an old installation in ${PWD}/${MAIN_DIR} " -n 1 -r
 echo    # (optional) move to a new line
@@ -24,6 +24,8 @@ cd ${MAIN_DIR}
 wget https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
 unzip ${BRANCH}.zip
 cd ${REPO}-${BRANCH}
+
+./bin/make-conf.sh
 
 mkdir private
 openssl rand -base64 16 > private/mysql-root-password.txt

@@ -78,6 +78,6 @@ DEFAULT_DB_VOLUME_NAME=my-mysql-data-volume
 
 
 
-source generated-conf-file.sh
+source ../generated-conf-file.sh
 
 
