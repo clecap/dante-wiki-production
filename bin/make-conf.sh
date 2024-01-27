@@ -33,7 +33,10 @@ echo "  For example:   80"
 echo "  For example: 8080"
 read -p "HTTP_PORT: " HTTP_PORT
 
-rm ${CF}
+
+echo -n "Removing ${CF}..."
+rm -f ${CF}
+echo -n "DONE"
 echo "ADMIN_PASSWORD=\"${ADMIN_PASSWORD}\"" >> ${CF}
 echo "HTTPS_PORT=${HTTPS_PORT}" >> ${CF}
 echo "HTTP_PORT=${HTTP_PORT}" >> ${CF}
