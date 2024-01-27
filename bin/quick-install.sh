@@ -16,7 +16,7 @@ CF=${TOP_DIR}/../generated-conf-file.sh
 printf "\n"
 printf "***************************\n"
 printf "*** QUICK INSTALLER ${VERSION} ***\n"
-printf "***************************\n"
+printf "***************************\n" 
 
 
 if [ -d ${MAIN_DIR} ]; then
