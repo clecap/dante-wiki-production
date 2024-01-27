@@ -17,6 +17,7 @@ server.key
 server.pem
 mediawiki-PRIVATE.php
 AWS-PRIVATE.txt
+generated-conf-file.sh
 
 .git/
 

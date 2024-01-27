@@ -1,13 +1,10 @@
 # DanteWiki Production
 
-This repository https://github.com/clecap/dante-wiki-production is for **end users** wanting to install DanteWiki.
+<b>This repository</b> https://github.com/clecap/dante-wiki-production is for **end users** wanting to install DanteWiki.
 
-For development work on DanteWiki see https://github.com/clecap/dante-wiki
+<b>Development</b> work: See https://github.com/clecap/dante-wiki
 
 ## Requirements for Installing DanteWiki
-
-<details>
-<summary><b>Summary:</b> (Click on triangle for additional explanations.)
 
 <table>
 <tr><td><b>OS</b></td><td>Docker environment <br>
@@ -20,70 +17,53 @@ For development work on DanteWiki see https://github.com/clecap/dante-wiki
 <tr><td><b>RAM</b></td><td>minimum 6GB, recommended 8 GB</td></tr>
 <tr><td><b>DISC</b></td><td>20-30 GB recommended</td></tr>
 </table>
-</summary>
 
-DanteWiki is based on two Docker images, so you need a possibility to run Docker images. A traditional
-docker server is fine, but DanteWiki will also run on medium-sized laptops. It consists of a web-server,
-a PHP application process, which is a MediaWiki modification, and a number of latex processes. 
-It uses extensive caching. It is not a microservice architecture and can make use of several CPUs
-for speeding up reaction time.
+<details>
+<summary><b>Explanations:</b> (Click on triangle)</summary>
 
-We currently run the system on our development machine with 8 vCPUs, 8 GB Memory and 30 GB Disc
-and we are studying performance to cut down on this.
+<b>Docker:</b> DanteWiki is based on two Docker images, so you need a possibility to run Docker images. A traditional docker server is fine, but DanteWiki will also run on medium-sized laptops. It consists of a web-server, a PHP application process, which is a MediaWiki modification, and a number of latex processes. It uses extensive caching. It is not a microservice architecture and can make use of several CPUs for speeding up reaction time.
+
+<b>Requirements:</b> We currently run the system on our development machine with 8 vCPUs, 8 GB Memory and 30 GB Disc and we are studying performance to cut down on this.
+
 
 </details>
 
-## Installation on a Debian VM
-
-1. Log on to the Debian VM
-2.  ```curl -fsSL https://raw.githubusercontent.com/clecap/dante-wiki-production/HEAD/bin/quick-install.sh | sudo /bin/bash```
-
-
 ## Installation on an arbitrary machine
 
+1. Open a terminal shell on to the machine where you want to install, as a user with docker rights.
+2. Navigate to a directory into which you want to install. A good place is your home directory.
+  The procedure will generate a directory named `dante` inside of your home directory.
+3. `Copy-and-paste` the following line into your shell and press execute.
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/clecap/dante-wiki-production/HEAD/bin/quick-install.sh)"
+```
+4. Answer the questions posed by the interactive shell.
+5. Wait several minutes until completion.
+
+
+<b>Note:</b>  If you repeat the installation, no questions will be asked, but the file `dante/private/generated-conf-file.sh.sh` will be used. If you want to change the answers you gave in the first installation, you should edit this file manually
+or delete it before running the installation again.
 
 <details>
-<summary><b style="font-size:larger">Quick Install:</b> (Click on triangle for further <b>explanations</b>.)
+<summary><b>Explanations:</b> (Click on triangle)</summary>
 
-1. Open a terminal shell on the machine where you want to install.
-2. Log on as a user with docker rights.
-3. Navigate to a directory into which you want to install. A good place is your home directory.
-  The procedure will generate a directory named `/dante` in your home directory.
-4. `Copy-and-paste` the following line into your shell and press execute.
+<div style="background-color:cyan">
 
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/clecap/dante-wiki-production/HEAD/quick-install.sh)"
-```
-
-4. Edit file `CONF.sh`to set an initial password and adjust the initial URL (comments in the file)
-5. Execute in the shell the command `./complete-install.sh` and wait several minutes for completion.
-</summary>
-
-<div style="background-color:lightgrey">
-
-##### Explanations:
 `curl` will download an install script and `/bin/bash` will execute it on your machine.
-<details>
-<summary>Explanations of the curl parameters</summary>
-<table>
+
+Explanation of the curl parameters:
+<table style="border-collapse:collapse;" cellpadding=0 cellspacing=10>
 <tr><td>-f</td><td>Fail silently on server errors.</td></tr>
 <tr><td>-s</td><td>Do not show a progress meter.</td></tr>
 <tr><td>-S</td><td>Show error messages on all other errors.</td></tr>
 <tr><td>-L</td><td>Follow redirects when received from the server.</td></tr>
 </table>
-</details>
 
-<details>
-<summary>Explanation of what `quick-install.sh` does.</summary>
-
+Explanation `quick-install.sh`:
 1.
 2.
 3.
-
-</details>
-<hr>
-
-</details>
 </div>
 
 

@@ -30,16 +30,11 @@ MW_SITE_NAME="LocalTestWiki"
 ##  PORT numbers
 ##
 #
-#  Normally, the port numbers are HTTP_PORT=80 and HTTPS_PORT=443
-#
+#  Normally, the port numbers are HTTP_PORT=80   and  HTTPS_PORT=443
+#  Alternative port numbers are   HTTP_PORT=8080 and  HTTPS_PORT=4443
 #
 HTTP_PORT=80
 HTTPS_PORT=4443
-
-
-
-
-
 
 # TODO: WHY? conflicts with the file based root password which is generated in ./private
 # The root password to be installed for the MYSQL database
@@ -48,10 +43,6 @@ MYSQL_ROOT_PASSWORD=sqlrootpassword
 # The name of a user which will be entitled to do a dump of the entire mysql installation
 MYSQL_DUMP_USER=username
 MYSQL_DUMP_PASSWORD=otherpassword
-
-
-
-
 
 ##
 ## SMTP Settings
@@ -77,17 +68,16 @@ SMTP_USERNAME='usernamesamplexx'
 # the password for logging in into the SMTP account
 SMTP_PASSWORD='password'
 
-
-
 ##
 ## Below values should not be changed unless you know what you are doing
 ##
 
 SITE_ACRONYM=acro
-
-
 LOCALTIMEZONE="Europe/Berlin"
-
-
 DEFAULT_DB_VOLUME_NAME=my-mysql-data-volume
+
+
+
+source generated-conf-file.sh
+
 
