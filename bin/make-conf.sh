@@ -2,7 +2,11 @@
 
 # Shell script to generate a fresh configuration file
 
-CF=generated-conf-file.sh
+# get directory where this script resides wherever it is called from
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+TOP_DIR="${DIR}"
+
+CF=${TOP_DIR}/../generated-conf-file.sh
 
 input ()
 {
