@@ -83,6 +83,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR="${DIR}/../"
 
 
-source ${TOPD_DIR}/../generated-conf-file.sh
+source ${TOP_DIR}/../generated-conf-file.sh
 
 
