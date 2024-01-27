@@ -18,6 +18,14 @@ echo "  For example: localhost"
 echo -n "HOSTNAME: " 
 read -r HOSTNAME
 
+if [[ -z "$HOSTNAME" ]]; then
+    echo "Hostame is empty, picking up default"
+    HOSTNAME="iuk-stage.informatik.uni-rostock.de"
+else
+    echo "Hostname chosen is ${HOSTNAME}"
+fi
+
+
 
 local ADMIN_PASSWORD
 echo ""
