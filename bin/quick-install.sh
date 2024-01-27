@@ -1,9 +1,17 @@
 #!/bin/bash
 
+# quick-install shell script which downloads ${REPO} and uses the shellscripts from there to set up the system
+
 MAIN_DIR=dante
 BRANCH=master
 REPO=dante-wiki-production
 VERSION=1.1
+
+# get directory where this script resides wherever it is called from
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+TOP_DIR="${DIR}/.."
+
+CF=${TOP_DIR}/../generated-conf-file.sh
 
 printf "\n"
 printf "***************************\n"
@@ -11,9 +19,9 @@ printf "*** QUICK INSTALLER ${VERSION} ***\n"
 printf "***************************\n"
 
 
-if test -d ${MAIN_DIR}; then
-    echo "Directory ${MAIN_DIR} exists."
-  echo "We will attempt to delete an old installation in ${PWD}/${MAIN_DIR} " 
+if [ -d ${MAIN_DIR} ]; then
+  echo "Found an old installation directory at ${MAIN_DIR} "
+  echo "Shall I attempt to delete that old installation in ${PWD}/${MAIN_DIR} ?"
   read -p "Press  y  if this is okay or n to skip:  " -n 1 -r
   echo    # (optional) move to a new line
   if [[ $REPLY =~ ^[Yy]$ ]]
@@ -30,7 +38,20 @@ wget https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
 unzip ${BRANCH}.zip
 cd ${REPO}-${BRANCH}
 
-./bin/make-conf.sh
+
+if [ -f ${CF} ]; then
+  echo "Found an existing configuration file at ${CF}"
+  echo "Shall I attempt to recreate a configuration from interactive questions ?"
+  read -p "Press  y  to recreate or  n  to use old one: " -n 1 -r
+  echo    # (optional) move to a new line
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    ./bin/make-conf.sh
+  fi
+else
+  # did not find a configuration file: generate one 
+  ./bin/make-conf.sh
+fi
 
 mkdir private
 openssl rand -base64 16 > private/mysql-root-password.txt

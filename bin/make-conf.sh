@@ -29,7 +29,9 @@ fi
 
 local ADMIN_PASSWORD
 echo ""
-read -p "Enter the password for the Dantewiki admin user: "$'\n' -s ADMIN_PASSWORD
+read -p "Enter the password for the Dantewiki admin user. Minimal length 10 characters "$'\n' -s ADMIN_PASSWORD
+
+
 
 local HTTPS_PORT
 echo ""

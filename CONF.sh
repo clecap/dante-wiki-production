@@ -83,6 +83,11 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR="${DIR}"
 
 
-source ${TOP_DIR}/../generated-conf-file.sh
+if test -f ${TOP_DIR}/../generated-conf-file.sh; then
+  echo "A manually generated configuration file exists at ${TOP_DIR}/../generated-conf-file.sh and will be read in"
+  source ${TOP_DIR}/../generated-conf-file.sh
+fi
+
+
 
 
