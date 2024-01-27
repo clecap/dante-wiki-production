@@ -78,6 +78,11 @@ DEFAULT_DB_VOLUME_NAME=my-mysql-data-volume
 
 
 
-source ../generated-conf-file.sh
+# get directory where this script resides wherever it is called from
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+TOP_DIR="${DIR}/../"
+
+
+source ${TOPD_DIR}/../generated-conf-file.sh
 
 
