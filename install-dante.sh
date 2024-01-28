@@ -91,7 +91,7 @@ printf "*** Starting both containers..."
 
   runDB
   waitingForDatabase
-  runLap
+  runLap http 80
 
 
 printf "DONE starting containers\n\n"
