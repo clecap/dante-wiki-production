@@ -10,6 +10,11 @@ CF=${TOP_DIR}/../generated-conf-file.sh
 
 input ()
 {
+
+echo -n "Removing ${CF}..."
+rm -f ${CF}
+echo -n "DONE"
+
 local HOSTNAME
 echo ""
 echo "Enter a hostname including domain"
@@ -25,35 +30,56 @@ else
     echo "Hostname chosen is ${HOSTNAME}"
 fi
 
-
+local MY_SITE_NAME
+echo ""
+read -p "Enter a short name for the site. " MY_SITE_NAME
+echo "MY_SITE_NAME=\"${MY_SITE_NAME}\"" >> ${CF}
 
 local ADMIN_PASSWORD
 echo ""
 read -p "Enter the password for the Dantewiki admin user. Minimal length 10 characters "$'\n' -s ADMIN_PASSWORD
-
-
-
-local HTTPS_PORT
-echo ""
-echo "Enter port number for HTTPS service or press return if no HTTPS service is required"
-echo "  For example:  443"
-echo "  For example: 4443"
-read -p "HTTPS_PORT: " HTTPS_PORT
-
-local HTTP_PORT
-echo ""
-echo "Enter port number for HTTP service or press return if no HTTP service is required"
-echo "  For example:   80"
-echo "  For example: 8080"
-read -p "HTTP_PORT: " HTTP_PORT
-
-
-echo -n "Removing ${CF}..."
-rm -f ${CF}
-echo -n "DONE"
 echo "ADMIN_PASSWORD=\"${ADMIN_PASSWORD}\"" >> ${CF}
-echo "HTTPS_PORT=${HTTPS_PORT}" >> ${CF}
-echo "HTTP_PORT=${HTTP_PORT}" >> ${CF}
+
+
+local SERVICE
+echo ""
+read -p "Enter type of service:  http   or   https (DEFAULT) : " SERVICE
+if [[ -z "$SERVICE" ]]; then
+    echo "Service is empty, picking up default https"
+    SERVICE="https"
+else
+    echo "Service chosen is ${SERVICE}"
+fi
+
+local PORT
+echo ""
+echo "Enter port number on which the container offers the service on the host "
+echo "  For example:  443, 4443, 80, 8080 "
+read -p "PORT: " PORT
+
+local SMTP_SENDER_ADDRESS="sender@domain.de"
+echo ""
+read -p "Enter email address used by DanteWiki to send messages: " SMTP_SENDER_ADDRESS
+echo "SMTP_SENDER_ADDRESS=${SMTP_SENDER_ADDRESS}" >> ${CF}
+
+local SMTP_HOSTNAME
+echo ""
+read -p "Enter hostname includingg domain for an smtpserver used for sending emails "  SMTP_HOSTNAME
+echo "SMTP_HOSTNAME=${SMTP_HOSTNAME}" >> ${CF}
+
+local SMTP_PORT
+echo ""
+read -p "Enter the port number on which the SMTP server offers its service: Often it is 587. " SMTP_PORT
+echo "SMTP_PORT=${SMTP_PORT}" >> ${CF}
+
+local SMTP_USERNAME
+read -p "Enter the username for logging in into the SMTP account: " SMTP_USERNAME
+echo "SMTP_USERNAME=${SMTP_USERNAME}" >> ${CF}
+
+local SMTP_PASSWORD
+read -p "Enter the password for logging in into the SMTP account: " SMTP_PASSWORD
+echo "SMTP_PASSWORD=${SMTP_PASSWORD}" >> ${CF}
+
 }
 
 input

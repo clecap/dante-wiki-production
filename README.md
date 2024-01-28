@@ -30,7 +30,9 @@
 
 ## Installation on an arbitrary machine
 
-1. Open a terminal shell on to the machine where you want to install, as a user with docker rights.
+1. Open a terminal window to the machine where you want to install, as a user with docker rights.
+2. Ensure that you are running `/bin/bash`:
+  Check the shell with `echo $SHELL` and if needed switch, by `/bin/bash`.
 2. Navigate to a directory into which you want to install. A good place is your home directory.
   The procedure will generate a directory named `dante` inside of your home directory.
 3. `Copy-and-paste` the following line into your shell and press execute.
