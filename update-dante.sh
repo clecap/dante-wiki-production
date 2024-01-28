@@ -6,6 +6,14 @@
 # which could produce random results. See https://stackoverflow.com/questions/21096478/overwrite-executing-bash-script-files?rq=3
 
 
+echo "THIS SCRIPT STILL CONTAINS CALL TO run.sh and it is OLD""
+
+
+
+
+
+
+
 
 ## 
 ##        update-dante.sh MUST stay stand-alone and MUST NOT use script-library (for reasons fo stability) 
