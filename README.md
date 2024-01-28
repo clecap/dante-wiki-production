@@ -42,8 +42,9 @@
 5. Wait several minutes until completion.
 
 
-<b>Note:</b>  If you repeat the installation, no questions will be asked, but the file `dante/private/generated-conf-file.sh.sh` will be used. If you want to change the answers you gave in the first installation, you should edit this file manually
-or delete it before running the installation again.
+<b>Note:</b> 
+If you repeat the installation, no questions will be asked, but the file `dante/private/generated-conf-file.sh.sh` will be used. If you want to change the answers you gave in the first installation, you should edit this file manually
+or delete it before running the installation.
 
 <details>
 <summary><b>Explanations:</b> (Click on triangle)</summary>
