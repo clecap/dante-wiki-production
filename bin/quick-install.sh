@@ -35,7 +35,7 @@ if [ -d ${MAIN_DIR} ]; then
       echo "  Keeping old installation"
   fi
   else
-    echo "*** Making new installation directory at ${PWD}/${MAIN_DIR}
+    echo "*** Making new installation directory at ${PWD}/${MAIN_DIR} "
     mkdir -p ${MAIN_DIR}
     cd ${MAIN_DIR}
 fi
@@ -51,7 +51,7 @@ if [ -f ${CF} ]; then
   echo "Found an existing configuration file at ${CF}"
   echo "Shall I attempt to recreate a configuration from interactive questions ?"
   read -p "Press  y  to recreate or  n  to use old one: " -n 1 -r
-  echo " "
+  echo    # (optional) move to a new line
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
     ./bin/make-conf.sh
