@@ -5,7 +5,7 @@
 MAIN_DIR=dante
 BRANCH=master
 REPO=dante-wiki-production
-VERSION=1.1
+VERSION=1.2
 
 # get directory where this script resides wherever it is called from
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -51,7 +51,7 @@ if [ -f ${CF} ]; then
   echo "Found an existing configuration file at ${CF}"
   echo "Shall I attempt to recreate a configuration from interactive questions ?"
   read -p "Press  y  to recreate or  n  to use old one: " -n 1 -r
-  echo ""
+  echo " "
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
     ./bin/make-conf.sh
