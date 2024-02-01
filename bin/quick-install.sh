@@ -20,21 +20,29 @@ printf "***************************\n\n"
 
 
 if [ -d ${MAIN_DIR} ]; then
-  echo "*** I found an old installation directory at ${MAIN_DIR} "
+  echo "*** I found an old installation directory at ${PWD}/${MAIN_DIR} "
   echo "Shall I attempt to delete that old installation in ${PWD}/${MAIN_DIR} ?"
   read -p "Press  y  to delete or   n to keep:  " -n 1 -r
   echo    # (optional) move to a new line
   if [[ $REPLY =~ ^[Yy]$ ]]
-  then
-    
-    cd ${MAIN_DIR}
-    rm -Rf ${BRANCH}.zip
-    rm -Rf ${REPO}-${BRANCH}
+    then
+      echo "  Deleting old installation at ${PWD}${MAIN_DIR} "
+      cd ${MAIN_DIR}
+      rm -Rf ${BRANCH}.zip
+      rm -Rf ${REPO}-${BRANCH}
+      cd ..
+    else
+      echo "  Keeping old installation"
   fi
+  else
+    echo "*** Making new installation directory at ${PWD}/${MAIN_DIR}
+    mkdir -p ${MAIN_DIR}
+    cd ${MAIN_DIR}
 fi
 
-mkdir -p ${MAIN_DIR}
-cd ${MAIN_DIR}
+
+# STATUS: We now are in the dante directory and can start installing
+
 wget https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
 unzip ${BRANCH}.zip
 cd ${REPO}-${BRANCH}
