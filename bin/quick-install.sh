@@ -41,12 +41,11 @@ if [ -d ${MAIN_DIR} ]; then
 fi
 
 
-# STATUS: We now are in the dante directory and can start installing
-
+echo ""
+echo "STATUS: We now are in directory ${PWD} and start installing..."
 wget https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
 unzip ${BRANCH}.zip
 cd ${REPO}-${BRANCH}
-
 
 if [ -f ${CF} ]; then
   echo "Found an existing configuration file at ${CF}"
