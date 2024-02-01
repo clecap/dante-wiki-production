@@ -16,11 +16,11 @@ CF=${TOP_DIR}/../generated-conf-file.sh
 printf "\n"
 printf "***************************\n"
 printf "*** QUICK INSTALLER ${VERSION} ***\n"
-printf "***************************\n" 
+printf "***************************\n\n" 
 
 
 if [ -d ${MAIN_DIR} ]; then
-  echo "Found an old installation directory at ${MAIN_DIR} "
+  echo "*** I found an old installation directory at ${MAIN_DIR} "
   echo "Shall I attempt to delete that old installation in ${PWD}/${MAIN_DIR} ?"
   read -p "Press  y  to delete or   n to keep:  " -n 1 -r
   echo    # (optional) move to a new line
@@ -53,9 +53,13 @@ else
   ./bin/make-conf.sh
 fi
 
+
 mkdir private
 openssl rand -base64 16 > private/mysql-root-password.txt
+openssl rand -base64 16 > private/mysql-backup-password.txt
 chmod 700 private
 chmod 700 private/mysql-root-password.txt
+chmod 700 private/mysql-backup-password.txt
+
 
 ./install-dante.sh

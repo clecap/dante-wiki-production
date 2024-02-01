@@ -1,17 +1,19 @@
 # DanteWiki Production
 
-<b>This repository</b> https://github.com/clecap/dante-wiki-production is for **end users** wanting to install DanteWiki.
+<b>This repository</b> https://github.com/clecap/dante-wiki-production is for end users wanting to install DanteWiki on
+their machine and for administrators wanting to roll out DanteWikis automatically for a larger number of users.
 
-<b>Development</b> work: See https://github.com/clecap/dante-wiki
+The repository for <b>development</b> work can be found here: https://github.com/clecap/dante-wiki
 
 ## Requirements for Installing DanteWiki
 
 <table>
-<tr><td><b>OS</b></td><td>Docker environment <br>
+<tr><td><b>Ecosystem</b></td><td><b>Recommended:</b> Linux, MacOS<br>Windows (Win 10 and 11 with WSL Windows Subsystem for Linux)</td></tr>
+<tr><td><b>Deployment<br> Environment</b></td><td>Docker<br>
   <a href="https://github.com/clecap/dante-wiki-production/doc/README-docker.md">Preparing docker on a Debian VM</a><br>
-  <a href="https://docs.docker.com/engine/install/">Preparing docker on an arbitrary machine</a>
+  <a href="https://docs.docker.com/engine/install/">Preparing docker desktop on an arbitrary machine</a>
 </td></tr>
-<tr><td><b>Software</b></td><td>Preferably LINUX or Mac OS <br> Windows with Linux extensions <br>
+<tr><td><b>Software</b></td><td>
  Installed <code>/bin/bash</code> and <code>curl</code></td></tr>
 <tr><td><b>CPU</b></td><td>minimum 2 vCPUs, recommended 4 vCPUs</td></tr>
 <tr><td><b>RAM</b></td><td>minimum 6GB, recommended 8 GB</td></tr>
@@ -21,27 +23,28 @@
 <details>
 <summary><b>Explanations:</b> (Click on triangle)</summary>
 
-<b>Docker:</b> DanteWiki is based on two Docker images, so you need a possibility to run Docker images. A traditional docker server is fine, but DanteWiki will also run on medium-sized laptops. It consists of a web-server, a PHP application process, which is a MediaWiki modification, and a number of latex processes. It uses extensive caching. It is not a microservice architecture and can make use of several CPUs for speeding up reaction time.
+<b>Docker:</b> DanteWiki is based on two Docker images, so you need a possibility to run Docker images. A traditional docker server is fine, but DanteWiki will also run on medium-sized laptops. It consists of a web-server, a PHP application process, which is a MediaWiki modification, and a number of latex processes. It uses extensive caching. It is not a microservice architecture and can make use of 
+multicore / multithreade architectures for speeding up reaction time.
 
 <b>Requirements:</b> We currently run the system on our development machine with 8 vCPUs, 8 GB Memory and 30 GB Disc and we are studying performance to cut down on this.
 
-
 </details>
 
-## Installation on an arbitrary machine
+## Installation
 
-1. Open a terminal window to the machine where you want to install, as a user with docker rights.
-2. Ensure that you are running `/bin/bash`:
+### For End Users
+1. **Terminal:** Open a terminal window to the machine where you want to install, using a user name having docker rights.
+2. **Shell:** Ensure that you are running `/bin/bash`:
   Check the shell with `echo $SHELL` and if needed switch, by `/bin/bash`.
-2. Navigate to a directory into which you want to install. A good place is your home directory.
-  The procedure will generate a directory named `dante` inside of your home directory.
-3. `Copy-and-paste` the following line into your shell and press execute.
+2. **Directory:** Navigate to a directory into which you want to install. A good place is your home directory.
+  The procedure will generate a directory named `dante` inside of the directory you just navigated to. 
+3. **Run:** `Copy-and-paste` the following line into your shell and press return.
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/clecap/dante-wiki-production/HEAD/bin/quick-install.sh)"
 ```
-4. Answer the questions posed by the interactive shell.
-5. Wait several minutes until completion.
+4. **Configuration:** Answer the questions posed by the interactive shell.
+5. **Wait** several minutes until completion.
 
 
 <b>Note:</b> 
@@ -68,9 +71,10 @@ Explanation `quick-install.sh`:
 2.
 3.
 </div>
+</details>
 
 
-### Manual Insta
+### Manual Installation
 
 1. Log in to the installation machine as a normal user.
 2. Navigate to a directory which shall later contain the installation directory.
@@ -107,6 +111,7 @@ DanteWiki should now be up and running on the target machine at
 * http://IP-ADDRESS-OF-MACHINE:8080/wiki-dir/index.php
 * https://localhost:4443/wiki-dir/index.php (probably with some https security warning)
 * https://IP-ADDRESS-OF-MACHINE:4443/wiki-dir/index.php (probably with some https security warning)
+
 
 ## Configuration Changes
 
@@ -193,10 +198,7 @@ To prevent this, we will provide some automated shell scripts for the standard c
 
 ## Running DanteWiki
 
-
-
-
-## Backup and Restore of DanteWiki
+## Backup of DanteWiki
 
 TBD
 

@@ -13,12 +13,13 @@ input ()
 
 echo -n "Removing ${CF}..."
 rm -f ${CF}
-echo -n "DONE"
+echo "DONE"
 
 local HOSTNAME
 echo ""
 echo "Enter a hostname including domain"
 echo "  For example: iuk-stage.informatik.uni-rostock.de"
+echo "  For example: `hostname -f`"
 echo "  For example: localhost"
 echo -n "HOSTNAME: " 
 read -r HOSTNAME
