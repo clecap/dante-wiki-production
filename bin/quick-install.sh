@@ -51,7 +51,7 @@ if [ -f ${CF} ]; then
   echo "Found an existing configuration file at ${CF}"
   echo "Shall I attempt to recreate a configuration from interactive questions ?"
   read -p "Press  y  to recreate or  n  to use old one: " -n 1 -r
-  echo    # (optional) move to a new line
+  echo ""
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
     ./bin/make-conf.sh
