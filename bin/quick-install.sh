@@ -26,6 +26,7 @@ if [ -d ${MAIN_DIR} ]; then
   echo    # (optional) move to a new line
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
+    
     cd ${MAIN_DIR}
     rm -Rf ${BRANCH}.zip
     rm -Rf ${REPO}-${BRANCH}
