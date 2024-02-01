@@ -44,6 +44,8 @@ echo "ADMIN_PASSWORD=\"${ADMIN_PASSWORD}\"" >> ${CF}
 
 local SERVICE
 echo ""
+echo "Will you be using http  or  https ?"
+echo "In case you answer  https  you will later have the opportunity to install the certificate and key"
 read -p "Enter type of service:  http   or   https (DEFAULT) : " SERVICE
 if [[ -z "$SERVICE" ]]; then
     echo "Service is empty, picking up default https"
