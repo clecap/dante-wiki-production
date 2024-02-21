@@ -26,11 +26,11 @@ if [ -d ${MAIN_DIR} ]; then
   echo    # (optional) move to a new line
   if [[ $REPLY =~ ^[Yy]$ ]]
     then
-      echo "  Deleting old installation at ${PWD}${MAIN_DIR} "
+      echo "  Deleting old installation at ${PWD}/${MAIN_DIR} "
       cd ${MAIN_DIR}
+      ls -l
       rm -Rf ${BRANCH}.zip
       rm -Rf ${REPO}-${BRANCH}
-      cd ..
     else
       echo "  Keeping old installation"
       cd ${MAIN_DIR}
