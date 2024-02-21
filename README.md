@@ -1,7 +1,8 @@
 # DanteWiki Production
 
-<b>This repository</b> https://github.com/clecap/dante-wiki-production is for end users wanting to install DanteWiki on
-their machine and for administrators wanting to roll out DanteWikis automatically for a larger number of users.
+<b>This repository</b> https://github.com/clecap/dante-wiki-production is for 
+1. **end users** wanting to install DanteWiki on their machine and for 
+2. **administrators** wanting to roll out DanteWikis automatically for a larger number of users.
 
 The repository for <b>development</b> work can be found here: https://github.com/clecap/dante-wiki
 
@@ -35,9 +36,11 @@ multicore / multithreade architectures for speeding up reaction time.
 ### For End Users
 1. **Terminal:** Open a terminal window to the machine where you want to install, using a user name having docker rights.
 2. **Shell:** Ensure that you are running `/bin/bash`:
-  Check the shell with `echo $SHELL` and if needed switch, by `/bin/bash`.
-2. **Directory:** Navigate to a directory into which you want to install. A good place is your home directory.
-  The procedure will generate a directory named `dante` inside of the directory you just navigated to. 
+  Check the shell you are running with `echo $SHELL`.
+  If needed switch to the required shell by `/bin/bash`.
+2. **Directory:** Navigate to a directory into which you want to install. 
+  A good place is your home directory.
+  This installation procedure will generate a directory named `dante` inside of the directory you just navigated to. 
 3. **Run:** `Copy-and-paste` the following line into your shell and press return.
 
 ```

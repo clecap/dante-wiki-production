@@ -46,7 +46,7 @@ local SERVICE
 echo ""
 echo "Will you be using http  or  https ?"
 echo "In case you answer  https  you will later have the opportunity to install the certificate and key"
-read -p "Enter type of service:  http   or   https (DEFAULT) : " SERVICE
+read -p "Enter type of service:  http   or   https (DEFAULT: just press return) : " SERVICE
 if [[ -z "$SERVICE" ]]; then
     echo "Service is empty, picking up default https"
     SERVICE="https"
@@ -57,31 +57,44 @@ fi
 local PORT
 echo ""
 echo "Enter port number on which the container offers the service on the host "
-echo "  For example:  443, 4443, 80, 8080 "
+echo "  For example:  443, 4443, 80, 8080"
 read -p "PORT: " PORT
+
+
+
+echo ""
+echo "DanteWiki can use an optional SMTP server for sending emails to users"
 
 local SMTP_SENDER_ADDRESS="sender@domain.de"
 echo ""
-read -p "Enter email address used by DanteWiki to send messages: " SMTP_SENDER_ADDRESS
-echo "SMTP_SENDER_ADDRESS=${SMTP_SENDER_ADDRESS}" >> ${CF}
+read -p "Enter email address used by DanteWiki to send messages (RETURN to skip email configuration): " SMTP_SENDER_ADDRESS
+
 
 local SMTP_HOSTNAME
-echo ""
-read -p "Enter hostname includingg domain for an smtpserver used for sending emails "  SMTP_HOSTNAME
-echo "SMTP_HOSTNAME=${SMTP_HOSTNAME}" >> ${CF}
-
 local SMTP_PORT
-echo ""
-read -p "Enter the port number on which the SMTP server offers its service: Often it is 587. " SMTP_PORT
-echo "SMTP_PORT=${SMTP_PORT}" >> ${CF}
-
 local SMTP_USERNAME
-read -p "Enter the username for logging in into the SMTP account: " SMTP_USERNAME
-echo "SMTP_USERNAME=${SMTP_USERNAME}" >> ${CF}
-
 local SMTP_PASSWORD
-read -p "Enter the password for logging in into the SMTP account: " SMTP_PASSWORD
+
+if [[ -z "$SMTP_SENDER_ADDRESS" ]]; then
+  echo "Skipping configuration of SMT server"
+  SMTP_HOSTNAME=""
+  SMTP_PORT=""
+  SMTP_USERNAME=""
+  SMTP_PASSWORD=""
+else
+  read -p "Enter hostname includingg domain for an smtpserver used for sending emails "  SMTP_HOSTNAME
+  read -p "Enter the port number on which the SMTP server offers its service: Often it is 587. " SMTP_PORT
+  read -p "Enter the username for logging in into the SMTP account: " SMTP_USERNAME
+  read -p "Enter the password for logging in into the SMTP account: " SMTP_PASSWORD
+fi
+
+# writing the information to the configuration file
+echo "SMTP_SENDER_ADDRESS=${SMTP_SENDER_ADDRESS}" >> ${CF}
+echo "SMTP_HOSTNAME=${SMTP_HOSTNAME}" >> ${CF}
+echo "SMTP_PORT=${SMTP_PORT}" >> ${CF}
+echo "SMTP_USERNAME=${SMTP_USERNAME}" >> ${CF}
 echo "SMTP_PASSWORD=${SMTP_PASSWORD}" >> ${CF}
+
 
 }
 
