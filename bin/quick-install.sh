@@ -33,6 +33,7 @@ if [ -d ${MAIN_DIR} ]; then
       cd ..
     else
       echo "  Keeping old installation"
+      cd ${MAIN_DIR}
   fi
   else
     echo "*** Making new installation directory at ${PWD}/${MAIN_DIR} "
