@@ -17,9 +17,9 @@ echo "DONE"
 
 local HOSTNAME
 echo ""
-echo "Enter a hostname including domain"
+echo "Enter a hostname, preferably including the domain"
+echo "  Suggested DEFAULT: `hostname -f`   (select by pressing RETURN)"
 echo "  For example: iuk-stage.informatik.uni-rostock.de"
-echo "  For example: `hostname -f`"
 echo "  For example: localhost"
 echo -n "HOSTNAME: " 
 read -r HOSTNAME
@@ -33,14 +33,14 @@ fi
 
 local MY_SITE_NAME
 echo ""
-read -p "Enter a short name for the site. " MY_SITE_NAME
+read -p "Enter a short name for the site. May include blanks. Does not require quoting " MY_SITE_NAME
+echo "Will use:  ${MY_SITE_NAME}"
 echo "MY_SITE_NAME=\"${MY_SITE_NAME}\"" >> ${CF}
 
 local ADMIN_PASSWORD
 echo ""
 read -p "Enter the password for the Dantewiki admin user. Minimal length 10 characters "$'\n' -s ADMIN_PASSWORD
 echo "ADMIN_PASSWORD=\"${ADMIN_PASSWORD}\"" >> ${CF}
-
 
 local SERVICE
 echo ""
