@@ -18,41 +18,42 @@ echo "DONE"
 local HOSTNAME
 echo ""
 echo "Enter a hostname, preferably including the domain"
-echo "  Suggested DEFAULT: `hostname -f`   (select by pressing RETURN)"
-echo "  For example: iuk-stage.informatik.uni-rostock.de"
+echo "  For example: `hostname -f`   (DEFAULT; to select pres RETURN)"
+echo "  For example: somehost.informatik.uni-rostock.de"
 echo "  For example: localhost"
 echo -n "HOSTNAME: " 
 read -r HOSTNAME
 
 if [[ -z "$HOSTNAME" ]]; then
-    echo "Hostame is empty, picking up default"
-    HOSTNAME="iuk-stage.informatik.uni-rostock.de"
+    HOSTNAME="hostname -f"
+    echo "Picked up default: ${HOSTNAME}"
 else
-    echo "Hostname chosen is ${HOSTNAME}"
+    echo "Hostname chosen is: ${HOSTNAME}"
 fi
 
 local MY_SITE_NAME
 echo ""
-read -p "Enter a short name for the site. May include blanks. Does not require quoting " MY_SITE_NAME
+read -p "Enter a short name for the site. May include blanks. Does not require quoting. \n" MY_SITE_NAME
 echo "Will use:  ${MY_SITE_NAME}"
 echo "MY_SITE_NAME=\"${MY_SITE_NAME}\"" >> ${CF}
 
 local ADMIN_PASSWORD
 echo ""
-read -p "Enter the password for the Dantewiki admin user. Minimal length 10 characters "$'\n' -s ADMIN_PASSWORD
+read -p "Enter the password for the Dantewiki admin user. Minimal length is 10 characters. "$'\n' -s ADMIN_PASSWORD
 echo "ADMIN_PASSWORD=\"${ADMIN_PASSWORD}\"" >> ${CF}
 
 local SERVICE
 echo ""
 echo "Will you be using http  or  https ?"
 echo "In case you answer  https  you will later have the opportunity to install the certificate and key"
-read -p "Enter type of service:  http   or   https (DEFAULT: just press return) : " SERVICE
+read -p "Enter type of service:  http   or   https (DEFAULT; to select press return) : " SERVICE
 if [[ -z "$SERVICE" ]]; then
-    echo "Service is empty, picking up default https"
+    echo "Service was empty, picking up default https"
     SERVICE="https"
 else
-    echo "Service chosen is ${SERVICE}"
+
 fi
+echo "Service chosen is: ${SERVICE}"
 
 local PORT
 echo ""
@@ -63,10 +64,9 @@ read -p "PORT: " PORT
 
 
 echo ""
-echo "DanteWiki can use an optional SMTP server for sending emails to users"
+echo "DanteWiki can use an optional SMTP server for sending emails to users."
 
 local SMTP_SENDER_ADDRESS="sender@domain.de"
-echo ""
 read -p "Enter email address used by DanteWiki to send messages (RETURN to skip email configuration): " SMTP_SENDER_ADDRESS
 
 
@@ -76,7 +76,7 @@ local SMTP_USERNAME
 local SMTP_PASSWORD
 
 if [[ -z "$SMTP_SENDER_ADDRESS" ]]; then
-  echo "Skipping configuration of SMT server"
+  echo "Skipping configuration of SMTP server"
   SMTP_HOSTNAME=""
   SMTP_PORT=""
   SMTP_USERNAME=""

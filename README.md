@@ -11,7 +11,7 @@ The repository for <b>development</b> work can be found here: https://github.com
 <table>
 <tr><td><b>Ecosystem</b></td><td><b>Recommended:</b> Linux, MacOS<br>Windows (Win 10 and 11 with WSL Windows Subsystem for Linux)</td></tr>
 <tr><td><b>Deployment<br> Environment</b></td><td>Docker<br>
-  <a href="https://github.com/clecap/dante-wiki-production/doc/README-docker.md">Preparing docker on a Debian VM</a><br>
+  <a href="doc/README-docker.md">Preparing docker on a Debian VM</a><br>
   <a href="https://docs.docker.com/engine/install/">Preparing docker desktop on an arbitrary machine</a>
 </td></tr>
 <tr><td><b>Software</b></td><td>
