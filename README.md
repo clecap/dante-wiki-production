@@ -35,8 +35,8 @@ multicore / multithreade architectures for speeding up reaction time.
 
 ### For End Users
 1. **Terminal:** Open a terminal window to the machine where you want to install, using a user name having docker rights.
-2. **Shell:** Ensure that you are running `/bin/bash`:
-  Check the shell you are running with `echo $SHELL`.
+2. **Shell:** Ensure that you are running `/bin/bash`.<br>
+  Check the shell you are running with `echo $SHELL`.<br>
   If needed switch to the required shell by `/bin/bash`.
 2. **Directory:** Navigate to a directory into which you want to install. 
   A good place is your home directory.
