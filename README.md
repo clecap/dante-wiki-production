@@ -29,7 +29,7 @@ multicore / multithreade architectures for speeding up reaction time.
 
 <b>Requirements:</b> We currently run the system on our development machine with 8 vCPUs, 8 GB Memory and 30 GB Disc and we are studying performance to cut down on this.
 
-</details>
+</details> 
 
 ## Installation
 
