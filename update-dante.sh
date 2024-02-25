@@ -9,7 +9,7 @@
 echo "THIS SCRIPT STILL CONTAINS CALL TO run.sh and it is OLD""
 
 
-
+exit
 
 
 
