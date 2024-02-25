@@ -61,7 +61,7 @@ TOP_DIR="${DIR}"
 
 
 if test -f ${TOP_DIR}/../generated-conf-file.sh; then
-  echo "A manually generated configuration file exists at ${TOP_DIR}/../generated-conf-file.sh and will be read in"
+  echo "A manually generated configuration file exists at ${TOP_DIR}/../generated-conf-file.sh"
   source ${TOP_DIR}/../generated-conf-file.sh
 fi
 

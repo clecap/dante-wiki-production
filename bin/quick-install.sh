@@ -43,13 +43,15 @@ fi
 
 
 echo ""
-echo "STATUS: We now are in directory ${PWD} and start installing..."
+echo "*** We now are in directory ${PWD} and start downloading ${BRANCH}.zip ..."
 wget https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
 unzip ${BRANCH}.zip
 cd ${REPO}-${BRANCH}
+echo ""
+echo "DONE downloading ${BRANCH}.zip "
 
 if [ -f ${CF} ]; then
-  echo "Found an existing configuration file at ${CF}"
+  echo "*** Found an existing configuration file at ${CF}"
   echo "Shall I attempt to recreate a configuration from interactive questions ?"
   read -p "Press  y  to recreate or  n  to use old one: " -n 1 -r
   echo    # (optional) move to a new line
@@ -59,6 +61,7 @@ if [ -f ${CF} ]; then
   fi
 else
   # did not find a configuration file: generate one 
+  echo "*** Did not find a configuration file. Generating one interactively \n"
   ./bin/make-conf.sh
 fi
 

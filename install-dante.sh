@@ -32,7 +32,7 @@ printf "\n\n*** Reading in the script library at ${TOP_DIR}/volumes/full/spec/sc
 printf "DONE\n*** Script library is version ${SCRIPT_LIB_VERSION}\n\n"
 
 
-printf "*** Reading in the active configuration file ..."
+printf "*** Reading in the default configuration file ${DIR}/CONF.sh"
   source ${DIR}/CONF.sh
 printf "DONE \n\n" 
 
