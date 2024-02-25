@@ -25,7 +25,7 @@ echo -n "HOSTNAME: "
 read -r HOSTNAME
 
 if [[ -z "$HOSTNAME" ]]; then
-    HOSTNAME="hostname -f"
+    HOSTNAME=`hostname -f`
     echo "Picked up default: ${HOSTNAME}"
 else
     echo "Hostname chosen is: ${HOSTNAME}"
