@@ -59,7 +59,25 @@ local PORT
 echo ""
 echo "Enter port number on which the container offers the service on the host "
 echo "  For example:  443, 4443, 80, 8080"
+
+if [ "$SERVICE" = "http" ]; then
+  echo "  DEFAULT 80: Just press return"
+fi
+if [ "$SERVICE" = "https" ]; then
+  echo "  DEFAULT 443: Just press return"
+fi
+
 read -p "PORT: " PORT
+if [[ -z "$PORT" ]]; then
+  if [ "$SERVICE" = "http" ]; then
+    PORT="80"
+  fi
+  if [ "$SERVICE" = "https" ]; then
+    PORT="443"
+  fi
+fi
+
+echo "Picked port ${PORT}"
 echo "PORT=\"${PORT}\"" >> ${CF}
 
 echo ""
