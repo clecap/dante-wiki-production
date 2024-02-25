@@ -32,11 +32,11 @@ else
 fi
 echo "MW_HOSTNAME=\"${MW_HOSTNAME}\"" >> ${CF}
 
-local MY_SITE_NAME
+local MW_SITE_NAME
 echo ""
-read -p "Enter a short name for the site. May include blanks. Does not require quoting: " MY_SITE_NAME
-echo "Will use:  ${MY_SITE_NAME}"
-echo "MY_SITE_NAME=\"${MY_SITE_NAME}\"" >> ${CF}
+read -p "Enter a short name for the site. May include blanks. Does not require quoting: " MW_SITE_NAME
+echo "Will use:  ${MW_SITE_NAME}"
+echo "MW_SITE_NAME=\"${MW_SITE_NAME}\"" >> ${CF}
 
 local ADMIN_PASSWORD
 echo ""
