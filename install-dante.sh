@@ -77,22 +77,20 @@ printf "DONE building docker volume\n\n"
 
 DOCKER_TAG=latest
 
-
 pullDockerImages    ${DOCKER_TAG}
 retagDockerImages   ${DOCKER_TAG}
-
 
 MYSQL_CONTAINER=my-mysql
 LAP_CONTAINER=my-lap-container
 
-printf "*** Starting both containers..."
+printf "*** install-dante.sh: Starting both containers..."
+  cleanContainers
   runDB
   waitingForDatabase
-  runLap http 80
-printf "DONE starting containers\n\n"
+  runLap ${SERVICE} ${PORT}
+printf "install-dante.sh: DONE starting containers\n\n"
 
 docker ps
-
 
 
 fixPermissionsContainer
