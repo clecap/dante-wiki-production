@@ -61,7 +61,7 @@ if [ -f ${CF} ]; then
   fi
 else
   # did not find a configuration file: generate one 
-  echo "*** Did not find a configuration file. Generating one interactively \n"
+  echo "*** Did not find a configuration file. Generating one interactively"
   ./bin/make-conf.sh
 fi
 

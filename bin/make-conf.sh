@@ -48,10 +48,8 @@ echo "Will you be using http  or  https ?"
 echo "In case you answer  https  you will later have the opportunity to install the certificate and key"
 read -p "Enter type of service:  http   or   https (DEFAULT; to select press return) : " SERVICE
 if [[ -z "$SERVICE" ]]; then
-    echo "Service was empty, picking up default https"
-    SERVICE="https"
-else
-
+  echo "Service was empty, picking up default https"
+  SERVICE="https"
 fi
 echo "Service chosen is: ${SERVICE}"
 
