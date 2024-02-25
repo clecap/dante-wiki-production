@@ -86,14 +86,12 @@ MYSQL_CONTAINER=my-mysql
 LAP_CONTAINER=my-lap-container
 
 printf "*** Starting both containers..."
-  # ${DIR}/images/lap/bin/both.sh --db my-test-db-volume --vol ${LAP_VOLUME}
-
   runDB
   waitingForDatabase
   runLap http 80
-
-
 printf "DONE starting containers\n\n"
+
+docker ps
 
 
 

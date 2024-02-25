@@ -33,7 +33,7 @@ fi
 
 local MY_SITE_NAME
 echo ""
-read -p "Enter a short name for the site. May include blanks. Does not require quoting. \n" MY_SITE_NAME
+read -p "Enter a short name for the site. May include blanks. Does not require quoting: " MY_SITE_NAME
 echo "Will use:  ${MY_SITE_NAME}"
 echo "MY_SITE_NAME=\"${MY_SITE_NAME}\"" >> ${CF}
 
