@@ -25,4 +25,8 @@ if test -f ${TOP_DIR}/../generated-conf-file.sh; then
   source ${TOP_DIR}/../generated-conf-file.sh
 fi
 
+
+
+
+
 MW_SITE_SERVER=${SERVICE}://${MW_HOSTNAME}/

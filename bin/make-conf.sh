@@ -30,7 +30,7 @@ if [[ -z "$MW_HOSTNAME" ]]; then
 else
     echo "Hostname chosen is: ${MW_HOSTNAME}"
 fi
-
+echo "MW_HOSTNAME=\"${MW_HOSTNAME}\"" >> ${CF}
 
 local MY_SITE_NAME
 echo ""
