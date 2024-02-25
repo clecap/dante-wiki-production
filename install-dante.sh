@@ -86,7 +86,12 @@ MYSQL_CONTAINER=my-mysql
 LAP_CONTAINER=my-lap-container
 
 printf "*** install-dante.sh: Starting both containers..."
-  cleanDocker
+  cleanDockerContainer my-lap-container
+  cleanDockerContainer my-mysql
+  docker prune
+  cleanDockerVolume lap-volume
+  cleanDockerVolume mysql-volume
+
   runDB
   waitingForDatabase
   runLap ${SERVICE} ${PORT}
