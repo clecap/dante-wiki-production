@@ -78,7 +78,7 @@ local SMTP_PASSWORD
 if [[ -z "$SMTP_SENDER_ADDRESS" ]]; then
   echo "Skipping configuration of SMTP server"
   SMTP_HOSTNAME=""
-  SMTP_PORT=""
+  SMTP_PORT="587"
   SMTP_USERNAME=""
   SMTP_PASSWORD=""
 else

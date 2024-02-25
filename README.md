@@ -22,7 +22,7 @@ The repository for <b>development</b> work can be found here: https://github.com
 </table>
 
 <details>
-<summary><b>Explanations:</b> (Click on triangle)</summary>
+<summary><b>Explanations:</b> (Click on triangle)</summary>su
 
 <b>Docker:</b> DanteWiki is based on two Docker images, so you need a possibility to run Docker images. A traditional docker server is fine, but DanteWiki will also run on medium-sized laptops. It consists of a web-server, a PHP application process, which is a MediaWiki modification, and a number of latex processes. It uses extensive caching. It is not a microservice architecture and can make use of 
 multicore / multithreade architectures for speeding up reaction time.
@@ -34,7 +34,8 @@ multicore / multithreade architectures for speeding up reaction time.
 ## Installation
 
 ### For End Users
-1. **Terminal:** Open a terminal window to the machine where you want to install, using a user name having docker rights.
+1. **Terminal:** Open a terminal window to the machine where you want to install. <br>
+  Must use a user name having docker rights.
 2. **Shell:** Ensure that you are running `/bin/bash`.<br>
   Check the shell you are running with `echo $SHELL`.<br>
   If needed switch to the required shell by `/bin/bash`.

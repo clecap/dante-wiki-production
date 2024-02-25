@@ -22,14 +22,14 @@ printf     " *******************************************\n\n"
 
 curl -fsSL -o ${TOP_DIR}/volumes/full/spec/script-library.sh https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/script-library.sh
 
-printf "\n\n*** Reading in the script library at ${TOP_DIR}/volumes/full/spec/script-library.sh"
+printf "\n\n*** Reading in the script library at ${TOP_DIR}/volumes/full/spec/script-library.sh ..."
   if ! bash  -n  "${TOP_DIR}/volumes/full/spec/script-library.sh"; then
     printf " *** ERROR: Syntax error detected in ${TOP_DIR}/volumes/full/spec/script-library.sh" >&2
     exit 1
   else
     source ${TOP_DIR}/volumes/full/spec/script-library.sh
   fi
-printf "DONE, script library is version ${SCRIPT_LIB_VERSION}\n\n"
+printf "DONE\n*** Script library is version ${SCRIPT_LIB_VERSION}\n\n"
 
 
 printf "*** Reading in the active configuration file ..."
@@ -56,7 +56,6 @@ printf "*** Generating customize-PRIVATE shell script file at ${CUS}\n"
   echo "DEFAULT_DB_VOLUME_NAME=${DEFAULT_DB_VOLUME_NAME}"  >> ${CUS}
   echo "MW_SITE_SERVER=${MW_SITE_SERVER}"                  >> ${CUS}
   echo "MW_SITE_NAME='${MW_SITE_NAME}'"                    >> ${CUS}
-  echo "DONE generating mediawiki-PRIVATE.php"
 printf "DONE generating customize-PRIVATE shell script file at ${CUS}\n\n"
 
 

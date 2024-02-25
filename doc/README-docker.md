@@ -26,14 +26,18 @@ On a different machine, check the script or do a setp-by-step manual install, as
   ```
 * Log out and log in again.
 
-#### Generate required user
-* We need a user `dante`with a home directory (in which we install everything), with shell /bin/bash, 
-  and belonging to group docker.
+#### Generate properly qualified user
+* We need a user with 
+  * a home directory (in which we install everything)
+  * with shell /bin/bash, 
+  * with docker rights (i.e. belonging to group docker).
+
   ```
   sudo adduser --disabled-password dante
   sudo chsh -s /bin/bash dante
   grep 'dante' /etc/passwd
   sudo grep 'dante' /etc/shadow
+  sudo usermod -aG docker dante
    ```
 
 #### Install docker
