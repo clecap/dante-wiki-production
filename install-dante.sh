@@ -37,6 +37,8 @@ printf "*** Reading in the default configuration file ${DIR}/CONF.sh"
 printf "DONE \n\n" 
 
 
+
+
 printf "*** Making required local directories\n"
   rm -Rf ${DIR}/volumes/full/content
   mkdir -p ${DIR}/volumes/full/content/wiki-dir

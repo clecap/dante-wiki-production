@@ -15,21 +15,22 @@ echo -n "Removing ${CF}..."
 rm -f ${CF}
 echo "DONE"
 
-local HOSTNAME
+local MW_HOSTNAME
 echo ""
 echo "Enter a hostname, preferably including the domain"
 echo "  For example: `hostname -f`   (DEFAULT; to select pres RETURN)"
 echo "  For example: somehost.informatik.uni-rostock.de"
 echo "  For example: localhost"
 echo -n "HOSTNAME: " 
-read -r HOSTNAME
+read -r MW_HOSTNAME
 
-if [[ -z "$HOSTNAME" ]]; then
-    HOSTNAME=`hostname -f`
-    echo "Picked up default: ${HOSTNAME}"
+if [[ -z "$MW_HOSTNAME" ]]; then
+    MW_HOSTNAME=`hostname -f`
+    echo "Picked up default: ${MW_HOSTNAME}"
 else
-    echo "Hostname chosen is: ${HOSTNAME}"
+    echo "Hostname chosen is: ${MW_HOSTNAME}"
 fi
+
 
 local MY_SITE_NAME
 echo ""
@@ -58,6 +59,10 @@ echo ""
 echo "Enter port number on which the container offers the service on the host "
 echo "  For example:  443, 4443, 80, 8080"
 read -p "PORT: " PORT
+
+
+
+
 
 
 

@@ -61,13 +61,8 @@ TOP_DIR="${DIR}"
 
 
 if test -f ${TOP_DIR}/../generated-conf-file.sh; then
-  echo "A manually generated configuration file exists at ${TOP_DIR}/../generated-conf-file.sh"
+  printf "\n\n *** CONF.sh: A manually generated configuration file exists at ${TOP_DIR}/../generated-conf-file.sh"
   source ${TOP_DIR}/../generated-conf-file.sh
 fi
 
-MW_SITE_SERVER=${SERVICE}://${HOSTNAME}/
-
-# MW_SITE_SERVER=https://iuk-stage.informatik.uni-rostock.de/
-
-
-
+MW_SITE_SERVER=${SERVICE}://${MW_HOSTNAME}/
