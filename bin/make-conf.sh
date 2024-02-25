@@ -53,18 +53,14 @@ if [[ -z "$SERVICE" ]]; then
   SERVICE="https"
 fi
 echo "Service chosen is: ${SERVICE}"
+echo "SERVICE=\"${SERVICE}\"" >> ${CF}
 
 local PORT
 echo ""
 echo "Enter port number on which the container offers the service on the host "
 echo "  For example:  443, 4443, 80, 8080"
 read -p "PORT: " PORT
-
-
-
-
-
-
+echo "PORT=\"${PORT}\"" >> ${CF}
 
 echo ""
 echo "DanteWiki can use an optional SMTP server for sending emails to users."

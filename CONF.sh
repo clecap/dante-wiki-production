@@ -20,7 +20,8 @@ TOP_DIR="${DIR}"
 
 
 if test -f ${TOP_DIR}/../generated-conf-file.sh; then
-  printf "\n\n *** CONF.sh: A manually generated configuration file exists at ${TOP_DIR}/../generated-conf-file.sh"
+  printf "\n\n *** CONF.sh: A manually generated configuration file exists at ${TOP_DIR}/../generated-conf-file.sh\n"
+  printf "     Reading in this file\n"
   source ${TOP_DIR}/../generated-conf-file.sh
 fi
 
