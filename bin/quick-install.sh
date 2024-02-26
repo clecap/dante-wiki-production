@@ -5,7 +5,7 @@
 MAIN_DIR=dante
 BRANCH=master
 REPO=dante-wiki-production
-VERSION=1.3
+VERSION=1.31
 
 printf "\n"
 printf "***************************\n"
