@@ -7,10 +7,20 @@ DANTE_INSTALLER_VERSION=1.50
 ##
 ## CONFIGURE script
 ##
-#
+
 # Name of the branch in dante-wiki-volume which we are going to download
-#
 BRANCH=master
+
+DOCKER_TAG=latest
+
+## the name of the volumes we use
+LAP_VOLUME=lap-volume
+DEFAULT_DB_VOLUME_NAME=my-mysql-data-volume
+
+## the names of the containers we use
+MYSQL_CONTAINER=my-mysql
+LAP_CONTAINER=my-lap-container
+
 
 # get directory where this script resides wherever it is called from
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -43,9 +53,6 @@ MYSQL_DUMP_PASSWORD=otherpassword
 
 SITE_ACRONYM=acro
 LOCALTIMEZONE="Europe/Berlin"
-DEFAULT_DB_VOLUME_NAME=my-mysql-data-volume
-
-
 
 
 printf "*** Reading in the configuration file ${DIR}/../generated-conf-file.sh"
@@ -53,10 +60,6 @@ printf "*** Reading in the configuration file ${DIR}/../generated-conf-file.sh"
 printf "DONE \n\n" 
 
 MW_SITE_SERVER=${SERVICE}://${MW_HOSTNAME}/
-
-
-
-
 
 
 printf "*** Making required local directories\n"
@@ -88,39 +91,37 @@ printf "DONE generating customize-PRIVATE shell script file at ${CUS}\n\n"
 #  cp ${DIR}/initial-mainpage.wiki ${DIR}/volumes/full/content/wiki-dir/initial-mainpage.wiki
 #printf "DONE copying in initial contents"
 
-LAP_VOLUME=lap-volume
 
-printf " *** Building docker volume and copying in files\n"
-  docker volume create ${LAP_VOLUME}
-  #  -rm  automagically remove container when it exits
-  docker run --rm --volume ${DIR}/volumes/full/content:/source --volume ${LAP_VOLUME}:/dest -w /source alpine cp -R wiki-dir /dest
-printf "DONE building docker volume\n\n"
-
-
-DOCKER_TAG=latest
-
-pullDockerImages    ${DOCKER_TAG}
-retagDockerImages   ${DOCKER_TAG}
-
-MYSQL_CONTAINER=my-mysql
-LAP_CONTAINER=my-lap-container
-
-printf "*** install-dante.sh: Starting both containers..."
+printf "*** install-dante.sh: Ensuring we have a clean docker situation"
   cleanDockerContainer my-lap-container
   cleanDockerContainer my-mysql
   cleanDockerVolume lap-volume
   cleanDockerVolume mysql-volume
   # NOTE: we must prune now or docker might reuse cached containers or columes
   # docker system prune --force
+printf "install-dante.sh: DONE ensuring we have a clean docker situation\n\n"
+
+
+
+printf " *** install-dante.sh: Building docker volume and copying in files\n"
+  docker volume create ${LAP_VOLUME}
+  #  -rm  automagically remove container when it exits
+  docker run --rm --volume ${DIR}/volumes/full/content:/source --volume ${LAP_VOLUME}:/dest -w /source alpine cp -R wiki-dir /dest
+printf "DONE building docker volume\n\n"
+
+
+printf " *** install-dante.sh: Firing up the docker infrastructure\n"
+  pullDockerImages    ${DOCKER_TAG}
+  retagDockerImages   ${DOCKER_TAG}
   runDB
   waitingForDatabase
   runLap ${SERVICE} ${PORT}
-printf "install-dante.sh: DONE starting containers\n\n"
-
-docker ps
+  docker ps
+printf "DONE firint up the docker infrastucture"
 
 
 fixPermissionsContainer
+
 
 printf "*** Initializing Database"
 
