@@ -47,7 +47,7 @@ fi
 echo ""
 echo "*** quick-install.sh is in directory ${PWD} and starts downloading ${BRANCH}.zip ..."
 wget --directory-prefix=${MAIN_DIR} https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
-unzip ${MAIN_DIR}/${BRANCH}.zip
+unzip -d ${MAIN-DIR} ${MAIN_DIR}/${BRANCH}.zip
 echo ""
 echo "DONE downloading ${BRANCH}.zip "
 
@@ -79,4 +79,4 @@ chmod 700 ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-root-password.txt
 chmod 700 ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-backup-password.txt
 
 # now kick-off installation routine
-./install-dante.sh
+source ${MAIN_DIR}/${REPO}-${BRANCH}/install-dante.sh
