@@ -206,6 +206,17 @@ To prevent this, we will provide some automated shell scripts for the standard c
 
 TBD
 
+## Restore of DanteWiki
+
+### Restore by Command Line Interface
+
+
+
+### Restore by Browser User Interface
+
+
+
+
 ## Updating DanteWiki
 
 DanteWiki is software in development. As it follows the perpetual-beta philosophy of Web 2.0 we will see updates.
