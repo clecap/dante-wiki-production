@@ -5,7 +5,7 @@
 MAIN_DIR=dante
 BRANCH=master
 REPO=dante-wiki-production
-VERSION=1.31
+VERSION=1.32
 
 printf "\n"
 printf "***************************\n"
@@ -47,7 +47,7 @@ fi
 echo ""
 echo "*** quick-install.sh is in directory ${PWD} and starts downloading ${BRANCH}.zip ..."
 wget --directory-prefix=${MAIN_DIR} https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
-unzip -d ${MAIN-DIR} ${MAIN_DIR}/${BRANCH}.zip
+unzip -d ${MAIN_DIR} ${MAIN_DIR}/${BRANCH}.zip
 echo ""
 echo "DONE downloading ${BRANCH}.zip "
 
