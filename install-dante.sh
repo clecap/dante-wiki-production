@@ -48,7 +48,7 @@ DEFAULT_DB_VOLUME_NAME=my-mysql-data-volume
 
 
 
-printf "*** Reading in the configuration file ${DIR}/../CONF.sh"
+printf "*** Reading in the configuration file ${DIR}/../generated-conf-file.sh"
   source ${DIR}/../generated-conf-file.sh
 printf "DONE \n\n" 
 
@@ -152,10 +152,10 @@ addDatabase ${DB_NAME} ${DB_USER} ${DB_PASS} ${MYSQL_CONTAINER}
 removeLocalSettings ${LAP_CONTAINER} ${MOUNT} ${VOLUME_PATH}
 
 
-##
+# TODO: move this to script library and do not use docker exec 
 printf "*** Setting up drawio as an external service (the extension is set up together with mediawiki in cmd.sh and wiki-init.sh)\n"
   docker exec my-lap-container mkdir -p /var/www/html/wiki-dir/external-services/draw-io/
-  docker exec my-lap-container wget https://github.com/clecap/drawio/archive/refs/heads/dev.zip -O /var/www/html/wiki-dir/external-services/dev.zip
+  docker exec my-lap-container wget -q https://github.com/clecap/drawio/archive/refs/heads/dev.zip -O /var/www/html/wiki-dir/external-services/dev.zip
   docker exec my-lap-container unzip -q -o /var/www/html/wiki-dir/external-services/dev.zip -d /var/www/html/wiki-dir/external-services/draw-io/
   docker exec my-lap-container rm /var/www/html/wiki-dir/external-services/dev.zip
 printf "DONE setting up drawio\n\n"
