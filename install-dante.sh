@@ -32,9 +32,29 @@ printf "\n\n*** Reading in the script library at ${TOP_DIR}/volumes/full/spec/sc
 printf "DONE\n*** Script library is version ${SCRIPT_LIB_VERSION}\n\n"
 
 
-printf "*** Reading in the default configuration file ${DIR}/CONF.sh"
-  source ${DIR}/CONF.sh
+# TODO should be generated automagically somewhere  similar as mysql root password and also stored in private directory
+# The name of a user which will be entitled to do a dump of the entire mysql installation
+MYSQL_DUMP_USER=username
+MYSQL_DUMP_PASSWORD=otherpassword
+
+##
+## Below values should not be changed unless you know what you are doing
+##
+
+SITE_ACRONYM=acro
+LOCALTIMEZONE="Europe/Berlin"
+DEFAULT_DB_VOLUME_NAME=my-mysql-data-volume
+
+
+
+
+printf "*** Reading in the configuration file ${DIR}/../CONF.sh"
+  source ${DIR}/../generated-conf-file.sh
 printf "DONE \n\n" 
+
+MW_SITE_SERVER=${SERVICE}://${MW_HOSTNAME}/
+
+
 
 
 
