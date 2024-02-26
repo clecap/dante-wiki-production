@@ -111,11 +111,7 @@ printf "*** install-dante.sh: Starting both containers..."
   cleanDockerVolume lap-volume
   cleanDockerVolume mysql-volume
   # NOTE: we must prune now or docker might reuse cached containers or columes
-  docker system prune --force --all
-
-exit
-
-
+  # docker system prune --force --all
   runDB
   waitingForDatabase
   runLap ${SERVICE} ${PORT}
