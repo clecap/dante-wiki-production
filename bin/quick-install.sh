@@ -5,73 +5,78 @@
 MAIN_DIR=dante
 BRANCH=master
 REPO=dante-wiki-production
-VERSION=1.2
-
-# get directory where this script resides wherever it is called from
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-TOP_DIR="${DIR}/.."
-
-CF=${TOP_DIR}/../generated-conf-file.sh
+VERSION=1.3
 
 printf "\n"
 printf "***************************\n"
 printf "*** QUICK INSTALLER ${VERSION} ***\n"
 printf "***************************\n\n" 
 
-
 if [ -d ${MAIN_DIR} ]; then
-  echo "*** I found an old installation directory at ${PWD}/${MAIN_DIR} "
-  echo "Shall I attempt to delete that old installation in ${PWD}/${MAIN_DIR} ?"
-  read -p "Press  y  to delete or   n to keep:  " -n 1 -r
+  echo "*** quick-install.sh found an old installation directory at ${PWD}/${MAIN_DIR} "
+  echo "    k     Keep configuration and delete remaining installation [DEFAULT: press return]"
+  echo "    d     Delete configuration and delete installation "
+  echo "    x     Exit shell script "
+  read -p " Enter one of  k  d  x  " -n 1 -r
   echo    # (optional) move to a new line
-  if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-      echo "  Deleting old installation at ${PWD}/${MAIN_DIR} "
-      cd ${MAIN_DIR}
-      ls -l
-      rm -Rf ${BRANCH}.zip
-      rm -Rf ${REPO}-${BRANCH}
-    else
-      echo "  Keeping old installation"
-      cd ${MAIN_DIR}
+  if [[ $REPLY =~ ^[kK]$ ]]; then
+    echo "  Keeping configuation and deleting old installation at ${PWD}/${MAIN_DIR} "
+    ls -l
+    rm -Rf ${MAIN_DIR}/${BRANCH}.zip
+    rm -Rf ${MAIN_DIR}/${BRANCH}.zip.*
+    rm -Rf ${MAIN_DIR}/${REPO}-${BRANCH}
+  fi
+  if [[ $REPLY =~ ^[dD]$ ]]; then
+    echo "  Deleting configuration and installation at ${PWD}/${MAIN_DIR} "
+    ls -l
+    rm -Rf ${MAIN_DIR}/${BRANCH}.zip
+    rm -Rf ${MAIN_DIR}/${BRANCH}.zip.*
+    rm -Rf ${MAIN_DIR}/${REPO}-${BRANCH}
+    rm -Rf ${MAIN_DIR}/generated-conf-file.sh
+  fi
+  if [[ $REPLY =~ ^[xX]$ ]]; then
+    echo "  Exiting script "
+    exit
   fi
   else
-    echo "*** Making new installation directory at ${PWD}/${MAIN_DIR} "
+    echo "*** quick-install.sh making new installation directory at ${PWD}/${MAIN_DIR} "
     mkdir -p ${MAIN_DIR}
-    cd ${MAIN_DIR}
 fi
 
 
 echo ""
-echo "*** We now are in directory ${PWD} and start downloading ${BRANCH}.zip ..."
-wget https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
-unzip ${BRANCH}.zip
-cd ${REPO}-${BRANCH}
+echo "*** quick-install.sh is in directory ${PWD} and starts downloading ${BRANCH}.zip ..."
+wget --directory-prefix=${MAIN_DIR} https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
+unzip ${MAIN_DIR}/${BRANCH}.zip
 echo ""
 echo "DONE downloading ${BRANCH}.zip "
 
-if [ -f ${CF} ]; then
-  echo "*** Found an existing configuration file at ${CF}"
-  echo "Shall I attempt to recreate a configuration from interactive questions ?"
+# ensure presence of a configuration file
+if [ -f ${MAIN_DIR}/generated-conf-file.sh ]; then
+  echo "*** quick-install.sh found an existing configuration file at ${MAIN_DIR}/generated-conf-file.sh"
+  echo "    Shall I recreate a configuration from interactive questions ?"
   read -p "Press  y  to recreate or  n  to use old one: " -n 1 -r
   echo    # (optional) move to a new line
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-    ./bin/make-conf.sh
+    echo "*** quick-install is recreating a new configuration file at ${MAIN_DIR}/generated-conf-file.sh"
+    source ${MAIN_DIR}/${REPO}-${BRANCH}/bin/make-conf.sh
+  else
+    echo "*** quick-install.sh is reusing existing configuration file ${MAIN_DIR}/generated-conf-file.sh"
   fi
 else
   # did not find a configuration file: generate one 
-  echo "*** Did not find a configuration file. Generating one interactively"
-  ./bin/make-conf.sh
+  echo "*** quickinstall.sh did not find a configuration file at ${MAIN_DIR}/generated-conf-file.sh and is creating one" 
+   source ${MAIN_DIR}/${REPO}-${BRANCH}/bin/make-conf.sh
 fi
 
+# now generate throw-away secrets for the new installation
+mkdir ${MAIN_DIR}/${REPO}-${BRANCH}/private
+openssl rand -base64 16 > ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-root-password.txt
+openssl rand -base64 16 > ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-backup-password.txt
+chmod 700 ${MAIN_DIR}/${REPO}-${BRANCH}/private
+chmod 700 ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-root-password.txt
+chmod 700 ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-backup-password.txt
 
-mkdir private
-openssl rand -base64 16 > private/mysql-root-password.txt
-openssl rand -base64 16 > private/mysql-backup-password.txt
-chmod 700 private
-chmod 700 private/mysql-root-password.txt
-chmod 700 private/mysql-backup-password.txt
-
-
+# now kick-off installation routine
 ./install-dante.sh
