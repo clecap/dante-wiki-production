@@ -125,22 +125,18 @@ fixPermissionsContainer
 
 printf "*** Initializing Database"
 
-# TODO: MYSQL PASSWORD
-# volumes/full/spec/wiki-db-local-initialize.sh mysite https://localhost:4443 acro adminpassword sqlpassword
-###echo ""; echo "******* initialize-dante.sh: MW_SITE_NAME=${MW_SITE_NAME}  MW_SITE_SERVER=${MW_SITE_SERVER}  SITE_ACRONYM=${SITE_ACRONYM}  ADMIN_PASSWORD=${ADMIN_PASSWORD}  MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+
 
 #####################  TODO: for wiki-dir use db name   dir
- DB_USER=dir
+DB_USER=dir
 
 DB_NAME="DB_${DB_USER}"
+##### todo: MUST randomize this and place it into private as well for security reasons
 DB_PASS="password-$DB_USER"
 
 # Wiki user
 WK_USER=Admin
-
 WK_PASS="${ADMIN_PASSWORD}"
-# WK_PASS="password-$DB_USER"
-
 
 MOUNT="/var/www/html"
 VOLUME_PATH=wiki-dir
