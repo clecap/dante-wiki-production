@@ -168,6 +168,8 @@ fixPermissionsProduction
 
 apacheRestartDocker
 
+setUserPreferences
+
 minimalInitialContents
 
 # after minimalInitialContents some ownerships are wrong
