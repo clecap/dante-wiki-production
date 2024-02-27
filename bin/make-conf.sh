@@ -113,6 +113,8 @@ echo "SMTP_USERNAME=${SMTP_USERNAME}" >> ${CF}
 echo "SMTP_PASSWORD=${SMTP_PASSWORD}" >> ${CF}
 
 
+chmod 700 ${CF}
+
 }
 
 input

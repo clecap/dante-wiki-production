@@ -42,6 +42,8 @@ printf "\n\n*** Reading in the script library at ${TOP_DIR}/volumes/full/spec/sc
 printf "DONE\n*** Script library is version ${SCRIPT_LIB_VERSION}\n\n"
 
 
+
+
 # TODO should be generated automagically somewhere  similar as mysql root password and also stored in private directory
 # The name of a user which will be entitled to do a dump of the entire mysql installation
 MYSQL_DUMP_USER=username
@@ -56,6 +58,7 @@ LOCALTIMEZONE="Europe/Berlin"
 
 
 printf "*** Reading in the configuration file ${DIR}/../generated-conf-file.sh"
+  chmod 700 ${DIR}/../generated-conf-file.sh
   source ${DIR}/../generated-conf-file.sh
 printf "DONE \n\n" 
 
