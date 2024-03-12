@@ -72,7 +72,7 @@ printf "*** Making required local directories\n"
   #chmod 700 ${DIR}/conf
 printf "DONE making required local directories\n\n"
 
-getDanteWikiVolume
+getDanteWikiVolume 
 makeMediawikiPrivate
 
 CUS=${DIR}/conf/customize-PRIVATE.sh
