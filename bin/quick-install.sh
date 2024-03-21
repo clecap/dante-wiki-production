@@ -19,7 +19,7 @@ if [ -d ${MAIN_DIR} ]; then
   echo "    x     Exit shell script "
   read -p " Enter one of  k  d  x    or press return:  " -n 1 -r
   echo    # (optional) move to a new line
-  if [[ $REPLY =~ ^[kK]$ ]]; then
+  if [[ $REPLY =~ ^[kK]$ || "$REPLY" == "" ]]; then
     echo "  Keeping configuation and deleting old installation at ${PWD}/${MAIN_DIR} "
     ls -l
     rm -Rf ${MAIN_DIR}/${BRANCH}.zip
@@ -38,9 +38,9 @@ if [ -d ${MAIN_DIR} ]; then
     echo "  Exiting script "
     exit
   fi
-  else
-    echo "*** quick-install.sh making new installation directory at ${PWD}/${MAIN_DIR} "
-    mkdir -p ${MAIN_DIR}
+else
+  echo "*** quick-install.sh making new installation directory at ${PWD}/${MAIN_DIR} "
+  mkdir -p ${MAIN_DIR}
 fi
 
 
@@ -59,7 +59,7 @@ if [ -f ${MAIN_DIR}/generated-conf-file.sh ]; then
   echo "    r     recreate configuration from interactive questions "
   read -p "Enter one of  k  r    or press return:  " -n 1 -r
   echo    # (optional) move to a new line
-  if [[ $REPLY =~ ^[Kk]$ ]]; then
+  if [[ $REPLY =~ ^[Kk]$ || "$REPLY" == "" ]]; then
     echo "*** quick-install.sh is reusing existing configuration file ${MAIN_DIR}/generated-conf-file.sh"
   fi
   if [[ $REPLY =~ ^[Rr]$ ]]; then
