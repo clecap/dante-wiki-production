@@ -17,7 +17,7 @@ if [ -d ${MAIN_DIR} ]; then
   echo "    k     Keep configuration and keys, delete remaining installation [DEFAULT: press return]"
   echo "    d     Delete configuration, delete installation, keep keys "
   echo "    x     Exit shell script "
-  read -p " Enter one of  k  d  x  " -n 1 -r
+  read -p " Enter one of  k  d  x    or press return:  " -n 1 -r
   echo    # (optional) move to a new line
   if [[ $REPLY =~ ^[kK]$ ]]; then
     echo "  Keeping configuation and deleting old installation at ${PWD}/${MAIN_DIR} "
@@ -57,9 +57,9 @@ if [ -f ${MAIN_DIR}/generated-conf-file.sh ]; then
   echo "    Shall I recreate a configuration from interactive questions ?"
   echo "    k     Keep configuration [DEFAULT: press return]"
   echo "    r     recreate configuration from interactive questions "
-  read -p "Enter one of  k  r   " -n 1 -r
+  read -p "Enter one of  k  r    or press return:  " -n 1 -r
   echo    # (optional) move to a new line
-  if [[ $REPLY =~^[Kk]$ ]]; then
+  if [[ $REPLY =~ ^[Kk]$ ]]; then
     echo "*** quick-install.sh is reusing existing configuration file ${MAIN_DIR}/generated-conf-file.sh"
   fi
   if [[ $REPLY =~ ^[Rr]$ ]]; then
