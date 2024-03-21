@@ -30,7 +30,10 @@ printf "\n\n *****************************************************\n"
 printf     " *** THIS IS DANTE INSTALLER install-dante.sh ${DANTE_INSTALLER_VERSION} ***\n"
 printf     " ****************************************************\n\n"
 
-curl -fsSL -o ${TOP_DIR}/volumes/full/spec/script-library.sh https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/script-library.sh
+printf "\n\n***install-dante.sh: Downloading script library ... "
+  mkdir -p ${TOP_DIR}/volumes/full/spec/
+  curl -fsSL -o ${TOP_DIR}/volumes/full/spec/script-library.sh https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/script-library.sh
+printf "DONE\n\n"
 
 printf "\n\n*** install-dante.sh: Reading in the script library at ${TOP_DIR}/volumes/full/spec/script-library.sh ..."
   if ! bash  -n  "${TOP_DIR}/volumes/full/spec/script-library.sh"; then
