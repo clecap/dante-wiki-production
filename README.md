@@ -31,9 +31,9 @@ multicore / multithreade architectures for speeding up reaction time.
 
 </details> 
 
-## Installation
+## Installation for End Users
 
-### For End Users
+### Basic Installation
 1. **Terminal:** Open a terminal window to the machine where you want to install. <br>
   Must use a user name having docker rights.
 2. **Shell:** Ensure that you are running `/bin/bash`.<br>
@@ -49,6 +49,35 @@ multicore / multithreade architectures for speeding up reaction time.
 ```
 4. **Configuration:** Answer the questions posed by the interactive shell.
 5. **Wait** several minutes until completion.
+
+### Adding an https Certificate
+
+If you want to provide a trustworthy authentication of and encrypt the communication with your DanteWiki using https, you can provide a certificate and a private key using below steps. Below instructions assume that the working directory of your shell still is the directory where you started the installation procedure. This directory should contain the sub-directory `dante`.
+
+1. **Obtain** an X.509 certificate and a matching private key for use with https. 
+    1. The root certificate of the CA should be contained in the ca-certificates packahe of Alpine (which for most commercial CAs they probably are).
+    1. Certificate and key files must be in `PEM` (privacy enhanced mail) format. 
+    1. it is not necessary that the certificate contains the complete certificate chain.
+1. **Copy** the certificate (as file `server.pem`) and the private key (as file `server.key`) to the directory `dante/KEYS-AND-CERTIFICATES`.
+
+```
+scp <user>@<host>:<path-to-certificate-file> ./dante/KEYS-AND-CERTIFICATES/server.pem
+scp <user>@<host>:<path-to-key-file> ./dante/KEYS-AND-CERTIFICATES/server.key
+```
+
+3. **Install** the certificate and the private key into the container, protect them, and restart the web-server:
+```
+./dante/dante-wiki-production-master/bin/installl-keys.sh
+```
+
+### Updates
+
+### Repeacted Installations
+
+This process has to be repeated after every update, since an update removes the container.
+
+
+
 
 
 <b>Note:</b> 
@@ -69,43 +98,15 @@ Explanation of the curl parameters:
 <tr><td>-S</td><td>Show error messages on all other errors.</td></tr>
 <tr><td>-L</td><td>Follow redirects when received from the server.</td></tr>
 </table>
-
-Explanation `quick-install.sh`:
-1.
-2.
-3.
 </div>
 </details>
 
 
-### Manual Installation
+## Installation  for Administrators
 
-1. Log in to the installation machine as a normal user.
-2. Navigate to a directory which shall later contain the installation directory.
-2. Download the zip archive at https://github.com/clecap/dante-wiki-production/archive/refs/heads/master.zip into that.
-3. Unzip file `master.zip` in that directory.
-4. Navigate into the newly generated installation directory `dante-wiki-production-master`
-5. **Edit the configuration file** `CONF.sh` in `dante-wiki-production-master`. 
-  This step is essentially about naming your Wiki and entering an initial password.
-  The data required in the configuration file is described by comments directly in this file. 
-  You might want to consult the section on configuration changes below before editing this file.
-6. In case you use https: Copy the https server private key file `server.key` and the https server certificate file `server.pem` 
-into directory `dante-wiki-production-master`.
-7. Run DanteWIki installation script `install-dante.sh` (this may take a while).
-
-#### Cheat Sheet for Installation Commands
-
-```
-wget https://github.com/clecap/dante-wiki-production/archive/refs/heads/master.zip
-unzip master.zip
-cd dante-wiki-production-master
-
-vi CONF.sh
+TODO. This description will allow for a mass installation of several instances as based on pre-prepared configuration files.
 
 Copy files server.key and server.pem into  directory dante-wiki-production-master
-
-./install-dante.sh
-```
 
 ### First Test
 
@@ -162,20 +163,7 @@ Here, you will
 * install the certificate for localhost on DanteWiki web server
 
 
-### Installing HTTPS keys and certificates
 
-NOTE: For the certificate: We do not need a certificate chain in the file but only the certificate itself.
-
-1. Navigate to the parent directory of `dante-wiki-production-master`.
-2. Make directory `KEYS-AND-CERTIFICATES`
-  mkdir `KEYS-AND-CERTIFICATES`
-3. Assume `NAME`is any name of a host, conforming to [a-zA-Z0-9]*
-4. Copy the private key into file `NAME.key`
-4. Copy the certificate into file `NAME.pem`
-5. Inject the files into the container and restart the webserver.
- In `dante-wiki-production-master/` execute `./volumes/full/spec/inject-keys.sh  NAME`
-
-This process has to be repeated after every update, since an update removes the container.
 
 
 ### Port Change

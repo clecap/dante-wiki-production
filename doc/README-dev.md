@@ -1,5 +1,10 @@
 
 
+
+NOTE: For the certificate: We do not need a certificate chain in the file but only the certificate itself.
+
+
+
 # Debugging
 
 ## Container introspection

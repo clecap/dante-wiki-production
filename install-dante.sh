@@ -26,20 +26,20 @@ LAP_CONTAINER=my-lap-container
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}
 
-printf "\n\n **********************************************\n"
+printf "\n\n *****************************************************\n"
 printf     " *** THIS IS DANTE INSTALLER install-dante.sh ${DANTE_INSTALLER_VERSION} ***\n"
-printf     " *******************************************\n\n"
+printf     " ****************************************************\n\n"
 
 curl -fsSL -o ${TOP_DIR}/volumes/full/spec/script-library.sh https://raw.githubusercontent.com/clecap/dante-wiki/HEAD/volumes/full/spec/script-library.sh
 
-printf "\n\n*** Reading in the script library at ${TOP_DIR}/volumes/full/spec/script-library.sh ..."
+printf "\n\n*** install-dante.sh: Reading in the script library at ${TOP_DIR}/volumes/full/spec/script-library.sh ..."
   if ! bash  -n  "${TOP_DIR}/volumes/full/spec/script-library.sh"; then
     printf " *** ERROR: Syntax error detected in ${TOP_DIR}/volumes/full/spec/script-library.sh" >&2
     exit 1
   else
     source ${TOP_DIR}/volumes/full/spec/script-library.sh
   fi
-printf "DONE\n*** Script library is version ${SCRIPT_LIB_VERSION}\n\n"
+printf "DONE\n*** Script library is version ${SCRIPT_LIB_VERSION}\n"
 
 
 
@@ -57,7 +57,7 @@ SITE_ACRONYM=acro
 LOCALTIMEZONE="Europe/Berlin"
 
 
-printf "*** Reading in the configuration file ${DIR}/../generated-conf-file.sh"
+printf "*** Reading in the configuration file ${DIR}/../generated-conf-file.sh ..."
   chmod 700 ${DIR}/../generated-conf-file.sh
   source ${DIR}/../generated-conf-file.sh
 printf "DONE \n\n" 
@@ -65,12 +65,12 @@ printf "DONE \n\n"
 MW_SITE_SERVER=${SERVICE}://${MW_HOSTNAME}/
 
 
-printf "*** Making required local directories\n"
+printf "*** Making required local directories ..."
   rm -Rf ${DIR}/volumes/full/content
   mkdir -p ${DIR}/volumes/full/content/wiki-dir
   mkdir -p ${DIR}/conf
   #chmod 700 ${DIR}/conf
-printf "DONE making required local directories\n\n"
+printf "DONE \n\n"
 
 getDanteWikiVolume 
 makeMediawikiPrivate
@@ -162,6 +162,9 @@ printf "DONE setting up drawio\n\n"
 
 runMWInstallScript "${MW_SITE_NAME}" "${MW_SITE_SERVER}" "${SITE_ACRONYM}" "${WK_PASS}"
 addingReferenceToDante ${MOUNT} ${VOLUME_PATH} ${LAP_CONTAINER}
+
+
+
 
 fixPermissionsContainer
 fixPermissionsProduction

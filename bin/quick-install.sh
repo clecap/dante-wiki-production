@@ -78,5 +78,15 @@ chmod 700 ${MAIN_DIR}/${REPO}-${BRANCH}/private
 chmod 700 ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-root-password.txt
 chmod 700 ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-backup-password.txt
 
+
+
+printf "*** quick-install.sh: Preparing local directory for certificates..."
+mkdir -p ${MAIN_DIR}/KEYS-AND-CERTIFICATES
+chmod 700 ${MAIN_DIR}/KEYS-AND-CERTIFICATES
+printf "DONE\n\n"
+
+
+
+
 # now kick-off installation routine
 source ${MAIN_DIR}/${REPO}-${BRANCH}/install-dante.sh

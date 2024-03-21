@@ -1,5 +1,7 @@
 #!/biin/bash
 
+# Prepare debian for docker
+
 apt-get install unzip
 
 locale-gen en_US.UTF-8
