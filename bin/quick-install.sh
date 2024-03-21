@@ -8,14 +8,14 @@ REPO=dante-wiki-production
 VERSION=1.50
 
 printf "\n"
-printf "***************************\n"
+printf "****************************\n"
 printf "*** QUICK INSTALLER ${VERSION} ***\n"
-printf "***************************\n\n" 
+printf "****************************\n\n" 
 
 if [ -d ${MAIN_DIR} ]; then
   echo "*** quick-install.sh found an old installation directory at ${PWD}/${MAIN_DIR} "
-  echo "    k     Keep configuration and delete remaining installation [DEFAULT: press return]"
-  echo "    d     Delete configuration and delete installation "
+  echo "    k     Keep configuration and keys, delete remaining installation [DEFAULT: press return]"
+  echo "    d     Delete configuration, delete installation, keep keys "
   echo "    x     Exit shell script "
   read -p " Enter one of  k  d  x  " -n 1 -r
   echo    # (optional) move to a new line
@@ -55,14 +55,16 @@ echo "DONE downloading ${BRANCH}.zip "
 if [ -f ${MAIN_DIR}/generated-conf-file.sh ]; then
   echo "*** quick-install.sh found an existing configuration file at ${MAIN_DIR}/generated-conf-file.sh"
   echo "    Shall I recreate a configuration from interactive questions ?"
-  read -p "Press  y  to recreate or  n  to use old one: " -n 1 -r
+  echo "    k     Keep configuration [DEFAULT: press return]"
+  echo "    r     recreate configuration from interactive questions "
+  read -p "Enter one of  k  r   " -n 1 -r
   echo    # (optional) move to a new line
-  if [[ $REPLY =~ ^[Yy]$ ]]
-  then
+  if [[ $REPLY =~^[Kk]$ ]]; then
+    echo "*** quick-install.sh is reusing existing configuration file ${MAIN_DIR}/generated-conf-file.sh"
+  fi
+  if [[ $REPLY =~ ^[Rr]$ ]]; then
     echo "*** quick-install is recreating a new configuration file at ${MAIN_DIR}/generated-conf-file.sh"
     source ${MAIN_DIR}/${REPO}-${BRANCH}/bin/make-conf.sh
-  else
-    echo "*** quick-install.sh is reusing existing configuration file ${MAIN_DIR}/generated-conf-file.sh"
   fi
 else
   # did not find a configuration file: generate one 
