@@ -67,7 +67,7 @@ scp <user>@<host>:<path-to-key-file> ./dante/KEYS-AND-CERTIFICATES/server.key
 
 3. **Install** the certificate and the private key into the container, protect them, and restart the web-server:
 ```
-./dante/dante-wiki-production-master/bin/installl-keys.sh
+./dante/dante-wiki-production-master/bin/install-keys.sh
 ```
 
 ### Updates
