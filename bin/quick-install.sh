@@ -13,14 +13,14 @@ printf "*** QUICK INSTALLER ${VERSION} ***\n"
 printf "****************************\n\n" 
 
 if [ -d ${MAIN_DIR} ]; then
-  echo "*** quick-install.sh found an old installation directory at ${PWD}/${MAIN_DIR} "
+  echo "*** quick-install.sh: Found an old installation directory at ${PWD}/${MAIN_DIR} "
   echo "    k     Keep configuration and keys, delete remaining installation [DEFAULT: press return]"
   echo "    d     Delete configuration, delete installation, keep keys "
   echo "    x     Exit shell script "
   read -p " Enter one of  k  d  x    or press return:  " -n 1 -r
   echo    # (optional) move to a new line
   if [[ $REPLY =~ ^[kK]$ || "$REPLY" == "" ]]; then
-    echo "  Keeping configuation and deleting old installation at ${PWD}/${MAIN_DIR} "
+    echo " *** quick-install.sh: Keeping configuation and deleting old installation at ${PWD}/${MAIN_DIR} "
     ls -l
     rm -Rf ${MAIN_DIR}/${BRANCH}.zip
     rm -Rf ${MAIN_DIR}/${BRANCH}.zip.*
@@ -39,13 +39,13 @@ if [ -d ${MAIN_DIR} ]; then
     exit
   fi
 else
-  echo "*** quick-install.sh making new installation directory at ${PWD}/${MAIN_DIR} "
+  echo "*** quick-install.sh: Making new installation directory at ${PWD}/${MAIN_DIR} "
   mkdir -p ${MAIN_DIR}
 fi
 
 
 echo ""
-echo "*** quick-install.sh is in directory ${PWD} and starts downloading ${BRANCH}.zip ..."
+echo "*** quick-install.sh: I am in directory ${PWD} and start downloading ${BRANCH}.zip ..."
 wget --directory-prefix=${MAIN_DIR} https://github.com/clecap/${REPO}/archive/refs/heads/${BRANCH}.zip
 unzip -d ${MAIN_DIR} ${MAIN_DIR}/${BRANCH}.zip
 echo ""
@@ -53,22 +53,22 @@ echo "DONE downloading ${BRANCH}.zip "
 
 # ensure presence of a configuration file
 if [ -f ${MAIN_DIR}/generated-conf-file.sh ]; then
-  echo "*** quick-install.sh found an existing configuration file at ${MAIN_DIR}/generated-conf-file.sh"
+  echo "*** quick-install.sh: Found an existing configuration file at ${MAIN_DIR}/generated-conf-file.sh"
   echo "    Shall I recreate a configuration from interactive questions ?"
   echo "    k     Keep configuration [DEFAULT: press return]"
   echo "    r     recreate configuration from interactive questions "
   read -p "Enter one of  k  r    or press return:  " -n 1 -r
   echo    # (optional) move to a new line
   if [[ $REPLY =~ ^[Kk]$ || "$REPLY" == "" ]]; then
-    echo "*** quick-install.sh is reusing existing configuration file ${MAIN_DIR}/generated-conf-file.sh"
+    echo "*** quick-install.sh: Reusing existing configuration file ${MAIN_DIR}/generated-conf-file.sh"
   fi
   if [[ $REPLY =~ ^[Rr]$ ]]; then
-    echo "*** quick-install is recreating a new configuration file at ${MAIN_DIR}/generated-conf-file.sh"
+    echo "*** quick-install: Recreating a new configuration file at ${MAIN_DIR}/generated-conf-file.sh"
     source ${MAIN_DIR}/${REPO}-${BRANCH}/bin/make-conf.sh
   fi
 else
   # did not find a configuration file: generate one 
-  echo "*** quickinstall.sh did not find a configuration file at ${MAIN_DIR}/generated-conf-file.sh and is creating one" 
+  echo "*** quickinstall.sh: Did not find a configuration file at ${MAIN_DIR}/generated-conf-file.sh and is creating one" 
    source ${MAIN_DIR}/${REPO}-${BRANCH}/bin/make-conf.sh
 fi
 

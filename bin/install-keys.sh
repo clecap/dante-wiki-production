@@ -13,6 +13,8 @@ PUBLIC_KEY="$KEY_DIR/server.pem"
 LAP_CONTAINER=my-lap-container
 
 printf "*** Setting up public key infrastructure, if present\n\n"
+
+
   if [ -f $PRIVATE_KEY ]; then
     chmod 400 ${PRIVATE_KEY}
     printf "*** Found a private key at ${PRIVATE_KEY}, copying it in and fixing permissions ... \n" 
@@ -25,14 +27,16 @@ printf "*** Setting up public key infrastructure, if present\n\n"
     exit 1
   fi
   if [ -f $PUBLIC_KEY ]; then
-    printf "*** Found a public key at ${PUBLIC_KEY}, copying it in and fixing permissions ... \n" 
+    printf "*** Found a public key at ${PUBLIC_KEY} for the following domain: \n"
+    openssl x509 -in server.pem -text -noout | grep -E 'CN=|DNS:'
+    printf "\n*** Copying it in and fixing permissions ... \n" 
     chmod 444 ${PUBLIC_KEY}
     docker cp $PUBLIC_KEY $LAP_CONTAINER:/etc/ssl/apache2/server.pem
     docker exec -it $LAP_CONTAINER   chown root.root /etc/ssl/apache2/server.pem
     docker exec -it $LAP_CONTAINER   chmod 444 /etc/ssl/apache2/server.pem
     printf "DONE\n\n"
   else
-    printf "%b" "\e[1;31m *** ERROR: Found no private key, checked at ${PRIVATE_KEY} *** *** \e[0m"
+    printf "%b" "\e[1;31m *** ERROR: Found no public key, checked at ${PUBLIC_KEY} *** *** \e[0m"
     exit 1
   fi
 
