@@ -5,7 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOP_DIR=${DIR}/../../../
 
 # location where we look for keys
-KEY_DIR=${TOP_DIR}/../KEYS-AND-CERTIFICATES
+KEY_DIR=${TOP_DIR}/dante/KEYS-AND-CERTIFICATES
 PRIVATE_KEY="$KEY_DIR/server.key"
 PUBLIC_KEY="$KEY_DIR/server.pem"
 
