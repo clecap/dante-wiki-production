@@ -120,20 +120,14 @@ DanteWiki should now be up and running on the target machine at
 
 ## Configuration Changes
 
-Right now you can already use DanteWiki through the http protocol. 
+### 1. Reverse Proxy to Http
 
-Serving DanteWiki via http instead of https will cause some problems. 
+Hostname: localhost
+Port: 8080
 
-1. Using http makes the system unsafe, as passwords and data could be eavesdropped by an attacker. 
-2. Some features of the browser are only available to web pages which are serverd via https. 
-  The automatic window placement on external monitors is just one of several examples.
-  If you want to use these features, you will need https.
-3. The configuration of DanteWiki web server currently uses a non-trusted certificate, since I cannot know
-the domain under which you want to run it. This certificate produces a browser warning when accessing the service via https.
+Use a reverse proxy to ti.
 
-Therefore, you will want to make DanteWiki available via https. 
 
-For this, three solutions are suggested. The optimal solution depends on your use case and your IT skills.
 
 ### 1. https Solution: Reverse Proxy
 

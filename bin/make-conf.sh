@@ -101,6 +101,7 @@ if [[ -z "$SMTP_SENDER_ADDRESS" ]]; then
 else
   read -p "Enter hostname includingg domain for an smtpserver used for sending emails "  SMTP_HOSTNAME
   read -p "Enter the port number on which the SMTP server offers its service: Often it is 587. " SMTP_PORT
+  read -p "Enter the email address which shall show as the sender of messages from the wiki system. " SMTP_SENDER
   read -p "Enter the username for logging in into the SMTP account: " SMTP_USERNAME
   read -p "Enter the password for logging in into the SMTP account: " SMTP_PASSWORD
 fi
@@ -109,8 +110,13 @@ fi
 echo "SMTP_SENDER_ADDRESS=${SMTP_SENDER_ADDRESS}" >> ${CF}
 echo "SMTP_HOSTNAME=${SMTP_HOSTNAME}" >> ${CF}
 echo "SMTP_PORT=${SMTP_PORT}" >> ${CF}
+echo "SMTP_SENDER=${SMTP_SENDER}" >> ${CF}
 echo "SMTP_USERNAME=${SMTP_USERNAME}" >> ${CF}
 echo "SMTP_PASSWORD=${SMTP_PASSWORD}" >> ${CF}
+
+
+
+
 
 
 chmod 700 ${CF}

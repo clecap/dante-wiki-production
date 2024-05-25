@@ -87,8 +87,5 @@ mkdir -p ${MAIN_DIR}/KEYS-AND-CERTIFICATES
 chmod 700 ${MAIN_DIR}/KEYS-AND-CERTIFICATES
 printf "DONE\n\n"
 
-
-
-
 # now kick-off installation routine
 source ${MAIN_DIR}/${REPO}-${BRANCH}/install-dante.sh

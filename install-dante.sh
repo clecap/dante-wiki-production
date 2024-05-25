@@ -10,7 +10,6 @@ DANTE_INSTALLER_VERSION=1.50
 
 # Name of the branch in dante-wiki-volume which we are going to download
 BRANCH=master
-
 DOCKER_TAG=latest
 
 ## the name of the volumes we use
@@ -28,7 +27,7 @@ TOP_DIR=${DIR}
 
 printf "\n\n *****************************************************\n"
 printf     " *** THIS IS DANTE INSTALLER install-dante.sh ${DANTE_INSTALLER_VERSION} ***\n"
-printf     " ****************************************************\n\n"
+printf     " **************************************************+**\n\n"
 
 printf "\n\n***install-dante.sh: Downloading script library ... "
   mkdir -p ${TOP_DIR}/volumes/full/spec/
@@ -66,7 +65,6 @@ printf "*** Reading in the configuration file ${DIR}/../generated-conf-file.sh .
 printf "DONE \n\n" 
 
 MW_SITE_SERVER=${SERVICE}://${MW_HOSTNAME}/
-
 
 printf "*** Making required local directories ..."
   rm -Rf ${DIR}/volumes/full/content
@@ -123,7 +121,7 @@ printf " *** install-dante.sh: Firing up the docker infrastructure\n"
   waitingForDatabase
   runLap ${SERVICE} ${PORT}
   docker ps
-printf "DONE firint up the docker infrastucture"
+printf "DONE firing up the docker infrastucture"
 
 
 fixPermissionsContainer
@@ -167,6 +165,7 @@ runMWInstallScript "${MW_SITE_NAME}" "${MW_SITE_SERVER}" "${SITE_ACRONYM}" "${WK
 addingReferenceToDante ${MOUNT} ${VOLUME_PATH} ${LAP_CONTAINER}
 
 
+appendMSMTPRC
 
 
 fixPermissionsContainer
