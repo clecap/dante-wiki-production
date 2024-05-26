@@ -5,46 +5,65 @@
 # and send information on this to the intended user
 #
 
-# Example:   clemens@clemens-cap.de  heinrich "Math Wiki"  backmeup  ki40.iuk.one
+# Example:   clemens@clemens-cap.de  heinrich "Math Wiki"  backup-user  ki40.iuk.one
 
-# Email address of the recipient of the backup completed email
+# Parameter 1: Email address of the recipient of the backup completed email
+# Parameter 2: Email address to be used as sender of the backup completed email
+# Parameter 3: Short name (preferably without blank), identifying the source wiki
+# Parameter 4: User name on the remote machine
+# Parameter 5: Fully qualified domain name of the remote machine to which the dump is sent
+
 MAIL=$1
-
-# Email address to be used as sender of the backup completed email
 FROM=$2
-
-# Short name (preferably without blank), identifying the source wiki
 SOURCE_NAME=$3
-
 TARGET_USER=$4
 TARGET_HOST=$5
+
+MODE="dumpPagesBySsh"
+
 
 # Directory prefix for the wiki directory inside of the container
 PREFIX=wiki-dir
 
 # Subject of email
-SUBJECT="Report on dump of DanteWiki ${PREFIX} to ${TARGET_HOST}"
+SUBJECT="Report on dump of DanteWiki ${PREFIX} to ${TARGET_HOST} via ${DROP}"
 
 # Name of the
-DUMP_FILE_NAME="${REMOTE_PATH}/wiki-xml-dump-$(date +%d.%m.%y).xml"
-
+DUMP_FILE_NAME="wiki-xml-dump-$(date +%d.%m.%y).xml"
 
 # Name of a temporary file for building up the mail
 TMPFILE=`mktemp`
+TMPFILE2=`mktemp`
 
 DUMPUSER=backmeup
 
-# request proper newline behavior of shell
-shopt -s xpg_echo
-
 # generate header in mail file
-echo "To: $MAIL"   >> $TMPFILE
-echo "From: $FROM" >> $TMPFILE
+echo "To: $MAIL"         >> $TMPFILE
+echo "From: $FROM"       >> $TMPFILE
 echo "Subject: $SUBJECT" >> $TMPFILE
 
-php /var/www/html/${PREFIX}/maintenance/dumpBackup.php --full --include-files --uploads | ssh ${TARGET_USER}@${TARGET_HOST} 'cat > ${DUMP_FILE_REMOTE}'
+case "$MODE" in
+  "dumpPagesBySsh")
+    echo "Generating dump files via $MODE" >> $TMPFILE
+    php /var/www/html/${PREFIX}/maintenance/dumpBackup.php --full --include-files --uploads | ssh ${TARGET_USER}@${TARGET_HOST} ${DUMP_FILE_NAME} >> $TMPFILE 2>>$TMPFILE2
+    echo "Done generating dump files" >> $TMPFILE
+    ;;
+  "aws")
+    echo "AWS not yet implemented " >> $TMPFILE
+    ;;
+  *)
+    echo "Unknown drop mode: $DROP" >> $TMPFILE
+    ;;
+esac
 
-ssh ${TARGET_USER}@$TARGET_HOST "ls -l -t $TARGET_PATH" >> $TMPFILE
+
+echo "Done dumping, now sending email"
 
 # dispatch email
+
+
+
+
 msmtp $MAIL < $TMPFILE
+
+echo "Sent email"

@@ -186,7 +186,9 @@ To prevent this, we will provide some automated shell scripts for the standard c
 
 ## Backup of DanteWiki
 
-TBD
+
+
+
 
 ## Restore of DanteWiki
 

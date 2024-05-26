@@ -1,42 +1,77 @@
+# Preparation of Backup Servers
 
+This document describes how to prepare a backup server.
 
-## Preparation of an ssh based Backup Server
+## Preparation of an ssh based Backup System
 
-Prepare a server which allows to drop-off files by authentication via an ssh key file.
-
-1. **User:** Add user `backmeup` to the server.
-2. **Dump area:** Make a directory on the server which will serve as dump area. Ensure that it has owner backmeup and permissions 700. Below we will use `/opt/dantewiki-backup`.
-2. **Script:** Add the following script as file `back.sh` to the home directory of that user: Use the apropriate path name for `DUMP_DIR`.
+1. **User:** Add a backup user to the server. In this example we will use user `backmeup`.
+2. **Dump area:** Make a directory on the server which will serve as dump area. In this example we will use `/opt/dantewiki-backup`.
+<br>Ensure directory has owner backmeup.
+<br>Ensure directory has permissions 700. 
+2. **Script:** Add the following script as file `back.sh` to the home directory of user. 
+<br>Place the path name pf the doirectory into shell variable `DUMP_DIR`.
 
 ```
 #!/bin/bash
 DUMP_DIR=/opt/dantewiki-backup
-regex="^[a-zA-Z0-9_\-]+.[a-zA-Z0-9]+$"
-if [[ $1 =~ $regex ]]; then
+regex="^[a-zA-Z0-9_\-\.][a-zA-Z0-9_\.-]*$"
+echo "File name provided is $1"
+if echo "$1" | grep -qE "$regex"; then
+  echo "Starting to pipe input to file ${DUMP_DIR}/$1 at $(date)"
   cat /dev/stdin > ${DUMP_DIR}/$1
+  echo "Finished to pipe input to file ${DUMP_DIR}/$1 at $(date)"
   chmod 400 ${DUMP_DIR}/$1
-  ls -l ${DUMP_DIR}
-  df -h ${DUMP_DIR}
+  ls -l --block-size=M ${DUMP_DIR}
+  df --block-size=M ${DUMP_DIR}
 else
-    echo "Provided file name $1 did not match regular expression"
-    ls -l ${DUMP_DIR}
-    df -h ${DUMP_DIR}
+    echo "The provided file name $1 did not match the given regular expression"
+    ls -l --block-size=M ${DUMP_DIR}
+    df --block-size=M ${DUMP_DIR}
 fi
+echo "Script completed at $(date)"
 ```
 
-3. **Permissions:** Ensure that this script file is executable to the user only.
+4. **Permissions:** Ensure that this script file is executable by the user `backmeup` only.
 
 ```
 chmod 700 back.sh
 ```
 
-4.
-4.
-5. **Restrict** the ssh login of that specific key by adding in file `~backmeup/.ssh/authorized_keys` in front of the specific key the following command restriction:
+5. **Client Keys:** On the client (which here is the docker container running the web server)
+
+``` 
+  rm /root/.ssh/id_rsa
+  rm /root/.ssh/id_rsa.pub
+  ssh-keygen -R full-domain-name-of-backup-host
+#  -t rsa -b 4096    use an rsa key of block liength 4096
+#  Write the new (public,private) key pair into id_rsa.pub and id_rsa
+ssh-keygen -t rsa -b 4096 -f /root/.ssh/id_rsa -N ''
+# The following will require the user backmeup to be set up on the host already.
+ssh-copy-id  backmeup@full-domain-name-of-backup-host
+``` 
+
+6. **Restrict** the ssh login on the server of that specific key by adding in file `~backmeup/.ssh/authorized_keys` in front of the specific key the following command restriction:
 
 ```
-command="/home/backmeup/back.sh ${SSH_ORIGINAL_COMMAND}" ssh-rsa AAAAB3NzaC
+command="/home/backmeup/back.sh ${SSH_ORIGINAL_COMMAND}" ssh-rsa AAAAB3NzaC...(key)
 ```
+
+7. **Prepare Client Scripts**
+
+Place backup.sh into /etc
+Place backup-do.sh into /etc and adapt the encoded parameters
+
+```
+chmod 700 /etc/backup.sh
+chmdo 700 /etc/backup-do.sh
+ln -s /etc/backup-do.sh backup-do.sh
+``` 
+
+8. **Kickoff Cron Daemon**
+
+Inside of the conatiner, run `crond`
+<br>Check that it is running with ps
+
 
 #### Explanation:
 
