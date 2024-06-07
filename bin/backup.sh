@@ -44,9 +44,14 @@ echo "Subject: $SUBJECT" >> $TMPFILE
 
 case "$MODE" in
   "dumpPagesBySsh")
-    echo "Generating dump files via $MODE" >> $TMPFILE
-    php /var/www/html/${PREFIX}/maintenance/dumpBackup.php --full --include-files --uploads | ssh ${TARGET_USER}@${TARGET_HOST} ${DUMP_FILE_NAME} >> $TMPFILE 2>>$TMPFILE2
-    echo "Done generating dump files" >> $TMPFILE
+    echo "backup.sh: Generating dump files via $MODE" >> $TMPFILE
+    echo "" >> $TMPFILE
+    php /var/www/html/${PREFIX}/maintenance/dumpBackup.php --full --include-files --uploads | ssh -o ServerAliveInterval=240 ${TARGET_USER}@${TARGET_HOST} ${DUMP_FILE_NAME} >> $TMPFILE 2>>$TMPFILE2
+    echo "" >> $TMPFILE
+    echo "backup.sh: Done generating dump files" >> $TMPFILE
+    echo "" >> $TMPFILE
+    echo "backup.sh: stderr of ssh is:" >> $TMPFILE
+    cat $TMPFILE2 >> $TMPFILE
     ;;
   "aws")
     echo "AWS not yet implemented " >> $TMPFILE

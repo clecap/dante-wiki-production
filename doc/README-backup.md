@@ -17,18 +17,18 @@ DUMP_DIR=/opt/dantewiki-backup
 regex="^[a-zA-Z0-9_\-\.][a-zA-Z0-9_\.-]*$"
 echo "File name provided is $1"
 if echo "$1" | grep -qE "$regex"; then
-  echo "Starting to pipe input to file ${DUMP_DIR}/$1 at $(date)"
-  cat /dev/stdin > ${DUMP_DIR}/$1
-  echo "Finished to pipe input to file ${DUMP_DIR}/$1 at $(date)"
+  echo "Remote: Starting to pipe input to file ${DUMP_DIR}/$1 at $(date)"
+  cat /dev/stdin > ${DUMP_DIR}/$1 2>> /tmp/error
+  echo "Remote: Finished to pipe input to file ${DUMP_DIR}/$1 at $(date)"
   chmod 400 ${DUMP_DIR}/$1
-  ls -l --block-size=M ${DUMP_DIR}
+  ls -lt --block-size=M ${DUMP_DIR}
   df --block-size=M ${DUMP_DIR}
 else
-    echo "The provided file name $1 did not match the given regular expression"
-    ls -l --block-size=M ${DUMP_DIR}
+    echo "Remote: The provided file name $1 did not match the given regular expression"
+    ls -lt --block-size=M ${DUMP_DIR}
     df --block-size=M ${DUMP_DIR}
 fi
-echo "Script completed at $(date)"
+echo "Remote: Script completed at $(date)"
 ```
 
 4. **Permissions:** Ensure that this script file is executable by the user `backmeup` only.
