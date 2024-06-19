@@ -66,9 +66,6 @@ echo "Done dumping, now sending email"
 
 # dispatch email
 
-
-
-
 msmtp $MAIL < $TMPFILE
 
 echo "Sent email"

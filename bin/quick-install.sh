@@ -72,14 +72,14 @@ else
    source ${MAIN_DIR}/${REPO}-${BRANCH}/bin/make-conf.sh
 fi
 
-# now generate throw-away secrets for the new installation
+printf "*** quick-install.sh: Generating throw-away secrets for the new installation..."
 mkdir ${MAIN_DIR}/${REPO}-${BRANCH}/private
 openssl rand -base64 16 > ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-root-password.txt
 openssl rand -base64 16 > ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-backup-password.txt
 chmod 700 ${MAIN_DIR}/${REPO}-${BRANCH}/private
 chmod 700 ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-root-password.txt
 chmod 700 ${MAIN_DIR}/${REPO}-${BRANCH}/private/mysql-backup-password.txt
-
+printf "DONE\n\n"
 
 
 printf "*** quick-install.sh: Preparing local directory for certificates..."
@@ -88,4 +88,5 @@ chmod 700 ${MAIN_DIR}/KEYS-AND-CERTIFICATES
 printf "DONE\n\n"
 
 # now kick-off installation routine
+printf "*** quick-install.sh: Now starting installation routine install-dante.sh..."
 source ${MAIN_DIR}/${REPO}-${BRANCH}/install-dante.sh
